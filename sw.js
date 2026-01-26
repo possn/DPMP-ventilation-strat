@@ -1,4 +1,3 @@
-// sw.js (FINAL) — IMPORTANTÍSSIMO: muda o CACHE_NAME quando alterares ficheiros (iPhone cache agressiva)
 const CACHE_NAME = "ucip-dp-mp-tabs-v1";
 
 const ASSETS = [
@@ -35,6 +34,7 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(req).then((cached) => {
       if (cached) return cached;
+
       return fetch(req).then((resp) => {
         if (resp && resp.ok) {
           const copy = resp.clone();
