@@ -1,386 +1,292 @@
 <!doctype html>
 <html lang="pt-PT">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#0f172a" />
-  <title>UCIP — ΔP & Mechanical Power (VCV)</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UCIP Ventilação Protectora</title>
 
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="icons/favicon-32.png.PNG" sizes="32x32" type="image/png">
-  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png.PNG">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon-32.png.PNG">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png.PNG">
+<meta name="theme-color" content="#0f172a">
 
-  <style>
-    :root { color-scheme: light dark; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: -apple-system, system-ui, Segoe UI, Roboto, Arial, sans-serif;
-      background: #0b1220;
-      color: #e5e7eb;
-    }
-    header {
-      position: sticky; top: 0; z-index: 10;
-      background: rgba(15,23,42,.92); backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(148,163,184,.18);
-      padding: 14px 16px;
-    }
-    header .title { font-size: 16px; font-weight: 800; letter-spacing: .2px; }
-    header .sub { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+<style>
+body {
+ margin:0;
+ font-family:-apple-system,system-ui,Segoe UI;
+ background:#0b1220;
+ color:#e5e7eb;
+}
 
-    main { max-width: 920px; margin: 0 auto; padding: 14px 14px 96px; }
+header {
+ position:fixed;
+ top:0;
+ left:0;
+ right:0;
+ background:#0f172a;
+ display:flex;
+ justify-content:space-around;
+ padding:10px;
+ border-bottom:1px solid #1e293b;
+ z-index:10;
+}
 
-    .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
-    @media (min-width: 860px) { .grid { grid-template-columns: 1fr 1fr; } }
+.tab {
+ color:#94a3b8;
+ font-weight:700;
+ cursor:pointer;
+ padding:6px 10px;
+}
 
-    .card {
-      background: rgba(15,23,42,.8);
-      border: 1px solid rgba(148,163,184,.18);
-      border-radius: 14px;
-      padding: 14px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.25);
-    }
-    .card h2 {
-      margin: 0 0 10px;
-      font-size: 13px; text-transform: uppercase; letter-spacing: .8px;
-      color: #cbd5e1;
-    }
+.tab.active {
+ color:#ffffff;
+ border-bottom:2px solid #38bdf8;
+}
 
-    .row { display: grid; grid-template-columns: 1fr; gap: 10px; }
-    @media (min-width: 520px) {
-      .row.cols2 { grid-template-columns: 1fr 1fr; }
-      .row.cols3 { grid-template-columns: 1fr 1fr 1fr; }
-    }
+main {
+ padding:70px 14px 20px;
+ max-width:900px;
+ margin:auto;
+}
 
-    label { display: block; font-size: 12px; color: #cbd5e1; margin-bottom: 6px; }
-    input, select {
-      width: 100%;
-      padding: 10px 10px;
-      border-radius: 10px;
-      border: 1px solid rgba(148,163,184,.25);
-      background: rgba(2,6,23,.55);
-      color: #e5e7eb;
-      outline: none;
-    }
-    input::placeholder { color: rgba(148,163,184,.7); }
+.section {
+ display:none;
+}
 
-    .hint { font-size: 11px; color: #94a3b8; margin-top: 6px; line-height: 1.25; }
-    .btnrow { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-    button {
-      border: 0; border-radius: 12px; padding: 10px 12px;
-      font-weight: 800; cursor: pointer;
-      background: #e5e7eb; color: #0b1220;
-    }
-    button.secondary {
-      background: rgba(148,163,184,.18);
-      color: #e5e7eb;
-      border: 1px solid rgba(148,163,184,.22);
-    }
+.section.active {
+ display:block;
+}
 
-    .pillbar { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-    .pill {
-      padding: 6px 10px; border-radius: 999px; font-size: 12px;
-      border: 1px solid rgba(148,163,184,.22);
-      background: rgba(2,6,23,.45);
-      color: #cbd5e1;
-    }
-    .pill strong { color: #e5e7eb; }
-    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+.card {
+ background:#111827;
+ padding:14px;
+ border-radius:12px;
+ margin-bottom:12px;
+ border:1px solid #1e293b;
+}
 
-    .alert {
-      margin-top: 10px;
-      padding: 10px 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(148,163,184,.22);
-      background: rgba(2,6,23,.45);
-      font-size: 12px;
-      line-height: 1.35;
-      color: #e5e7eb;
-    }
-    .alert.warn { border-color: rgba(234,179,8,.35); }
-    .alert.bad  { border-color: rgba(239,68,68,.35); }
-    .alert.ok   { border-color: rgba(34,197,94,.35); }
+input {
+ width:100%;
+ padding:10px;
+ margin-top:6px;
+ background:#020617;
+ color:white;
+ border-radius:8px;
+ border:1px solid #1e293b;
+}
 
-    footer {
-      position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
-      background: rgba(2,6,23,.92); backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(148,163,184,.18);
-      padding: 10px 14px;
-    }
-    .footerline {
-      max-width: 920px; margin: 0 auto;
-      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
-      font-size: 12px; color: #94a3b8;
-    }
-  </style>
+button {
+ background:#38bdf8;
+ border:none;
+ padding:10px 14px;
+ border-radius:10px;
+ font-weight:800;
+ margin-top:10px;
+}
+
+.alert {
+ margin-top:10px;
+ padding:10px;
+ border-radius:8px;
+ background:#020617;
+ border:1px solid #334155;
+}
+
+.flowstep {
+ padding:12px;
+ border-radius:10px;
+ background:#020617;
+ border:1px solid #334155;
+ margin-bottom:10px;
+}
+</style>
 </head>
 
 <body>
+
 <header>
-  <div class="title">UCIP — ΔP & Mechanical Power (VCV)</div>
-  <div class="sub">VCV • Auto-PEEP incluído • cálculo bedside • PWA offline</div>
+ <div class="tab active" onclick="openTab('calc')">Cálculo</div>
+ <div class="tab" onclick="openTab('manual')">Manual</div>
+ <div class="tab" onclick="openTab('flow')">Fluxograma</div>
 </header>
 
-<main class="grid">
+<main>
 
-  <section class="card">
-    <h2>Entradas (VCV)</h2>
+<!-- ================= CALCULADORA ================= -->
 
-    <div class="row cols2">
-      <div>
-        <label for="unitsVT">Unidade do VT</label>
-        <select id="unitsVT">
-          <option value="mL">mL</option>
-          <option value="L">L</option>
-        </select>
-        <div class="hint">A fórmula usa VT em litros (conversão automática).</div>
-      </div>
-      <div>
-        <label for="autopeep">Auto-PEEP (cmH₂O)</label>
-        <input id="autopeep" inputmode="decimal" placeholder="ex: 0" />
-        <div class="hint">Se desconhecido, assume 0. Se presente, a PEEP total aumenta.</div>
-      </div>
-    </div>
+<section id="calc" class="section active">
 
-    <div class="row cols3" style="margin-top:10px;">
-      <div>
-        <label for="vt">VT</label>
-        <input id="vt" inputmode="decimal" placeholder="ex: 120" />
-      </div>
-      <div>
-        <label for="rr">RR (/min)</label>
-        <input id="rr" inputmode="decimal" placeholder="ex: 22" />
-      </div>
-      <div>
-        <label for="peep">PEEP set (cmH₂O)</label>
-        <input id="peep" inputmode="decimal" placeholder="ex: 8" />
-      </div>
-    </div>
+<div class="card">
+<h3>Entradas (VCV)</h3>
 
-    <div class="row cols2" style="margin-top:10px;">
-      <div>
-        <label for="pplat">Pplat (cmH₂O)</label>
-        <input id="pplat" inputmode="decimal" placeholder="ex: 22" />
-        <div class="hint">Idealmente com pausa inspiratória e ventilação estável.</div>
-      </div>
-      <div>
-        <label for="ppeak">Ppeak (cmH₂O)</label>
-        <input id="ppeak" inputmode="decimal" placeholder="ex: 28" />
-        <div class="hint">Usado na MP em VCV (inclui componente resistiva).</div>
-      </div>
-    </div>
+<label>VT (mL)</label>
+<input id="vt">
 
-    <div class="btnrow">
-      <button id="calcBtn">Calcular</button>
-      <button class="secondary" id="resetBtn">Limpar</button>
-    </div>
+<label>RR (/min)</label>
+<input id="rr">
 
-    <div class="hint" style="margin-top:10px;">
-      <b>Fórmulas (VCV)</b><br>
-      • <span class="mono">ΔP_set = Pplat − PEEP_set</span><br>
-      • <span class="mono">PEEP_total = PEEP_set + Auto-PEEP</span><br>
-      • <span class="mono">ΔP_total = Pplat − PEEP_total</span> (preferível se auto-PEEP relevante)<br>
-      • <span class="mono">MP = 0.098 × RR × VT(L) × (Ppeak − ½ΔP)</span>
-    </div>
-  </section>
+<label>PEEP set (cmH₂O)</label>
+<input id="peep">
 
-  <section class="card">
-    <h2>Resultados</h2>
+<label>Auto-PEEP (cmH₂O)</label>
+<input id="autopeep">
 
-    <div class="pillbar">
-      <span class="pill"><strong>PEEP_total</strong> <span id="peepTotOut">—</span> cmH₂O</span>
-      <span class="pill"><strong>ΔP_set</strong> <span id="dpSetOut">—</span> cmH₂O</span>
-      <span class="pill"><strong>ΔP_total</strong> <span id="dpTotOut">—</span> cmH₂O</span>
-      <span class="pill"><strong>Cstat</strong> <span id="cstatOut">—</span> mL/cmH₂O</span>
-      <span class="pill"><strong>MP (ΔP_total)</strong> <span id="mpTotOut">—</span> J/min</span>
-      <span class="pill"><strong>MP (ΔP_set)</strong> <span id="mpSetOut">—</span> J/min</span>
-    </div>
+<label>Pplat (cmH₂O)</label>
+<input id="pplat">
 
-    <div id="alerts"></div>
+<label>Ppeak (cmH₂O)</label>
+<input id="ppeak">
 
-    <div class="alert ok" style="margin-top:12px;">
-      <b>Alvos operacionais (orientadores)</b><br>
-      • Prioridade: <span class="mono">ΔP &lt; 14–15</span> cmH₂O se possível.<br>
-      • Mechanical Power em pediatria: usar como <b>tendência</b> e para optimização (subir = alerta).<br>
-      • Referência conceptual adulto ARDS: risco frequentemente acima de ~<span class="mono">17–22</span> J/min (não transpor directamente).
-    </div>
+<button onclick="calcular()">Calcular</button>
 
-    <div class="alert" style="margin-top:12px;">
-      <b>Algoritmo de actuação (VCV, sequencial)</b><br>
-      1) <b>Pré-condições</b>: corrigir assincronia, esforço elevado (P-SILI) e auto-PEEP (se presente).<br>
-      2) <b>Controlar ΔP</b>: ↓VT (passos pequenos) mantendo estabilidade; aceitar hipercapnia permissiva se tolerável.<br>
-      3) <b>Se MP alta com ΔP aceitável</b>: ↓RR (principal “driver” de energia/min) e optimizar tempo expiratório.<br>
-      4) <b>PEEP funcional</b>: +2 cmH₂O → manter se <span class="mono">ΔP ↓</span>; recuar se <span class="mono">ΔP ↑</span> ou hemodinâmica piora.<br>
-      5) <b>Se Ppeak alto com Pplat normal</b>: componente resistiva → tratar broncoespasmo/secreções, rever tubo, evitar fluxo excessivo.<br>
-      6) Reavaliar 5–10 min após cada ajuste: ΔP, MP, gasometria, hemodinâmica.
-    </div>
-  </section>
+</div>
+
+<div class="card">
+<h3>Resultados</h3>
+
+<div id="res"></div>
+<div id="alerts"></div>
+
+</div>
+
+</section>
+
+<!-- ================= MANUAL ================= -->
+
+<section id="manual" class="section">
+
+<div class="card">
+<h3>1 — Conceitos-chave</h3>
+<p>
+• Pulmão funcional reduzido ("baby lung") → stress local elevado<br>
+• ΔP = stress elástico por ciclo<br>
+• Mechanical Power = energia por minuto<br>
+• Objectivo: minimizar stress + energia mantendo gasometria aceitável
+</p>
+</div>
+
+<div class="card">
+<h3>2 — Antes de medir</h3>
+<p>
+✓ Ventilação estável<br>
+✓ Pausa inspiratória válida<br>
+✓ Sem drive elevado<br>
+✓ Avaliar auto-PEEP<br>
+✓ Sem fugas
+</p>
+</div>
+
+<div class="card">
+<h3>3 — Fórmulas (VCV)</h3>
+
+<p>
+PEEPtotal = PEEP + AutoPEEP<br>
+ΔP = Pplat − PEEPtotal<br>
+VT(L) = VT/1000<br>
+MP = 0.098 × RR × VT × (Ppeak − ½ΔP)
+</p>
+
+</div>
+
+<div class="card">
+<h3>4 — Interpretação</h3>
+
+<p>
+ΔP alvo &lt; 14–15 cmH₂O<br>
+MP usar como tendência<br>
+RR é principal driver da MP<br>
+Ppeak − Pplat alto = resistência
+</p>
+
+</div>
+
+</section>
+
+<!-- ================= FLUXOGRAMA ================= -->
+
+<section id="flow" class="section">
+
+<div class="flowstep">
+<b>PASSO 1</b><br>
+Confirmar medições fiáveis<br>
+Pplat válida + auto-PEEP avaliada
+</div>
+
+<div class="flowstep">
+<b>PASSO 2</b><br>
+Auto-PEEP ≥2?<br>
+→ reduzir RR, ↑expiração, broncodilatar
+</div>
+
+<div class="flowstep">
+<b>PASSO 3</b><br>
+ΔP &gt; 15?<br>
+→ reduzir VT primeiro
+</div>
+
+<div class="flowstep">
+<b>PASSO 4</b><br>
+ΔP ok mas MP alta?<br>
+→ reduzir RR
+</div>
+
+<div class="flowstep">
+<b>PASSO 5</b><br>
+Teste PEEP +2<br>
+Manter se ΔP ↓<br>
+Reverter se ΔP ↑
+</div>
+
+<div class="flowstep">
+<b>PASSO 6</b><br>
+Reavaliar 5–10 min<br>
+ΔP, MP, gasometria
+</div>
+
+</section>
 
 </main>
 
-<footer>
-  <div class="footerline">
-    <div id="swStatus">PWA: a iniciar…</div>
-    <div>Instalar: Safari → Partilhar → “Adicionar ao ecrã principal”.</div>
-  </div>
-</footer>
-
 <script>
-  const $ = (id) => document.getElementById(id);
 
-  function toNum(v) {
-    const s = String(v ?? "").trim().replace(",", ".");
-    if (!s) return NaN;
-    const n = Number(s);
-    return Number.isFinite(n) ? n : NaN;
-  }
+function openTab(id) {
+ document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+ document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
 
-  function vtToLiters(vt, unit) {
-    if (!Number.isFinite(vt) || vt <= 0) return NaN;
-    return unit === "L" ? vt : (vt / 1000);
-  }
+ document.getElementById(id).classList.add('active');
+ event.target.classList.add('active');
+}
 
-  function addAlert(kind, html) {
-    const div = document.createElement("div");
-    div.className = "alert " + kind;
-    div.innerHTML = html;
-    $("alerts").appendChild(div);
-  }
+function calcular(){
 
-  function calc() {
-    $("alerts").innerHTML = "";
+ let vt = parseFloat(vtInput.value = document.getElementById("vt").value);
+ let rr = parseFloat(document.getElementById("rr").value);
+ let peep = parseFloat(document.getElementById("peep").value);
+ let autopeep = parseFloat(document.getElementById("autopeep").value || 0);
+ let pplat = parseFloat(document.getElementById("pplat").value);
+ let ppeak = parseFloat(document.getElementById("ppeak").value);
 
-    const vtRaw = toNum($("vt").value);
-    const rr = toNum($("rr").value);
-    const peepSet = toNum($("peep").value);
-    const autopeep = toNum($("autopeep").value || "0");
-    const pplat = toNum($("pplat").value);
-    const ppeak = toNum($("ppeak").value);
+ let vtL = vt/1000;
+ let peepTot = peep + autopeep;
+ let dp = pplat - peepTot;
 
-    const vtL = vtToLiters(vtRaw, $("unitsVT").value);
+ let mp = 0.098 * rr * vtL * (ppeak - 0.5*dp);
 
-    const errs = [];
-    if (!Number.isFinite(vtL) || vtL <= 0) errs.push("VT inválido");
-    if (!Number.isFinite(rr) || rr <= 0) errs.push("RR inválida");
-    if (!Number.isFinite(peepSet) || peepSet < 0) errs.push("PEEP set inválida");
-    if (!Number.isFinite(autopeep) || autopeep < 0) errs.push("Auto-PEEP inválida");
-    if (!Number.isFinite(pplat) || pplat <= 0) errs.push("Pplat inválida");
-    if (!Number.isFinite(ppeak) || ppeak <= 0) errs.push("Ppeak inválida");
+ document.getElementById("res").innerHTML = `
+ PEEP total: ${peepTot.toFixed(1)}<br>
+ ΔP: ${dp.toFixed(1)}<br>
+ Mechanical Power: ${mp.toFixed(1)} J/min
+ `;
 
-    if (errs.length) {
-      alert("Corrige:\n• " + errs.join("\n• "));
-      return;
-    }
+ let alertTxt = "";
 
-    const peepTot = peepSet + autopeep;
+ if(autopeep>=2) alertTxt += "⚠ Auto-PEEP relevante<br>";
+ if(dp>15) alertTxt += "⚠ ΔP elevada<br>";
+ if(mp>15) alertTxt += "⚠ MP elevada (avaliar tendência)<br>";
 
-    const dpSet = pplat - peepSet;
-    const dpTot = pplat - peepTot;
+ document.getElementById("alerts").innerHTML = alertTxt;
+}
 
-    // Mechanical Power VCV (J/min)
-    const mpUsingDpTot = 0.098 * rr * vtL * (ppeak - 0.5 * dpTot);
-    const mpUsingDpSet = 0.098 * rr * vtL * (ppeak - 0.5 * dpSet);
-
-    // Compliance estática (mL/cmH2O) usando ΔP_total (se ΔP_total<=0, não faz sentido)
-    const cstat = (dpTot > 0) ? ((vtL * 1000) / dpTot) : NaN;
-
-    $("peepTotOut").textContent = peepTot.toFixed(1);
-    $("dpSetOut").textContent = dpSet.toFixed(1);
-    $("dpTotOut").textContent = dpTot.toFixed(1);
-    $("mpTotOut").textContent = mpUsingDpTot.toFixed(1);
-    $("mpSetOut").textContent = mpUsingDpSet.toFixed(1);
-    $("cstatOut").textContent = Number.isFinite(cstat) ? cstat.toFixed(1) : "—";
-
-    // Avisos clínicos práticos
-    if (autopeep >= 2) {
-      addAlert("warn",
-        "<b>Auto-PEEP relevante</b><br>" +
-        "Auto-PEEP ≥ 2 cmH₂O sugere air-trapping/tempo expiratório insuficiente. " +
-        "Priorizar ↓RR, aumentar tempo expiratório, tratar broncoespasmo e rever assincronia."
-      );
-    }
-
-    if (dpTot > 15) {
-      addAlert("bad",
-        "<b>ΔP_total elevado</b><br>" +
-        "ΔP_total > 15 cmH₂O aumenta risco de VILI. Considerar ↓VT (passos pequenos), optimizar PEEP funcional e permissividade de CO₂ se tolerável."
-      );
-    } else if (dpTot >= 14) {
-      addAlert("warn",
-        "<b>ΔP_total na zona de atenção</b><br>" +
-        "ΔP_total ~14–15: optimizar para descer se possível (↓VT / recrutamento útil)."
-      );
-    } else {
-      addAlert("ok",
-        "<b>ΔP_total favorável</b><br>" +
-        "ΔP_total < 14 sugere menor stress elástico (mantendo contexto clínico)."
-      );
-    }
-
-    // MP: não há cut-off pediátrico; usar tendência. Ainda assim, sinalizar ordens de grandeza.
-    // Usamos limiares “soft” para chamar atenção (não são regras pediátricas).
-    const mp = mpUsingDpTot;
-
-    if (mp >= 17) {
-      addAlert("warn",
-        "<b>Mechanical Power elevada (atenção)</b><br>" +
-        "Em pediatria não existe cut-off universal; interpretar como tendência. " +
-        "MP alta sugere carga energética/minuto importante. Se gasometria permitir, reduzir RR (primeiro) e depois VT/fluxo."
-      );
-    } else if (mp >= 12) {
-      addAlert("warn",
-        "<b>Mechanical Power moderada</b><br>" +
-        "Se houver margem clínica, optimizar RR/VT para reduzir energia cumulativa."
-      );
-    } else {
-      addAlert("ok",
-        "<b>Mechanical Power baixa</b><br>" +
-        "Manter estratégia e monitorizar tendência."
-      );
-    }
-
-    // Relação Ppeak vs Pplat (resistência)
-    const resistGap = ppeak - pplat;
-    if (resistGap >= 8) {
-      addAlert("warn",
-        "<b>Componente resistiva importante</b><br>" +
-        "Ppeak − Pplat ≥ 8 cmH₂O sugere resistência/fluxo/tubo/secreções. " +
-        "Tratar broncoespasmo, aspirar secreções, rever tubo e evitar fluxo excessivo."
-      );
-    }
-
-    if (dpTot <= 0) {
-      addAlert("bad",
-        "<b>Inconsistência</b><br>" +
-        "ΔP_total ≤ 0 não é fisiologicamente coerente para ventilação passiva. Confirmar medições (Pplat, PEEP, auto-PEEP) e estabilidade."
-      );
-    }
-  }
-
-  function resetAll() {
-    ["vt","rr","peep","autopeep","pplat","ppeak"].forEach(id => $(id).value = "");
-    ["peepTotOut","dpSetOut","dpTotOut","mpTotOut","mpSetOut","cstatOut"].forEach(id => $(id).textContent = "—");
-    $("alerts").innerHTML = "";
-  }
-
-  $("calcBtn").addEventListener("click", calc);
-  $("resetBtn").addEventListener("click", resetAll);
-
-  // PWA Service Worker
-  async function registerSW() {
-    if (!("serviceWorker" in navigator)) {
-      $("swStatus").textContent = "PWA: service worker não disponível";
-      return;
-    }
-    try {
-      await navigator.serviceWorker.register("./sw.js");
-      $("swStatus").textContent = "PWA: offline activo";
-    } catch {
-      $("swStatus").textContent = "PWA: falha no registo";
-    }
-  }
-  registerSW();
 </script>
 
 </body>
