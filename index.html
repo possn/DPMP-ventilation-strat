@@ -1,292 +1,650 @@
+<!-- index.html (FINAL) — PWA UCIP (VCV) com TABS: Cálculo | Manual | Fluxograma
+     Compatível com ícones com nomes .png.PNG dentro de /icons/
+     Basta apagares o teu index.html e substituíres por este.
+-->
 <!doctype html>
 <html lang="pt-PT">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UCIP Ventilação Protectora</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>UCIP — ΔP & Mechanical Power (VCV)</title>
 
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icons/favicon-32.png.PNG">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png.PNG">
-<meta name="theme-color" content="#0f172a">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/favicon-32.png.PNG" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png.PNG">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 
-<style>
-body {
- margin:0;
- font-family:-apple-system,system-ui,Segoe UI;
- background:#0b1220;
- color:#e5e7eb;
-}
+  <style>
+    :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      background: #0b1220;
+      color: #e5e7eb;
+    }
 
-header {
- position:fixed;
- top:0;
- left:0;
- right:0;
- background:#0f172a;
- display:flex;
- justify-content:space-around;
- padding:10px;
- border-bottom:1px solid #1e293b;
- z-index:10;
-}
+    /* Header + Tabs */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15,23,42,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148,163,184,.18);
+      padding: 10px 12px 12px;
+    }
+    .headTop {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .title { font-size: 15px; font-weight: 900; letter-spacing: .2px; }
+    .subtitle { font-size: 12px; color: #94a3b8; }
 
-.tab {
- color:#94a3b8;
- font-weight:700;
- cursor:pointer;
- padding:6px 10px;
-}
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .tabBtn {
+      border: 1px solid rgba(148,163,184,.22);
+      background: rgba(2,6,23,.45);
+      color: #cbd5e1;
+      padding: 10px 10px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 12px;
+      cursor: pointer;
+      text-align: center;
+      user-select: none;
+    }
+    .tabBtn.active {
+      background: rgba(148,163,184,.18);
+      border-color: rgba(56,189,248,.55);
+      color: #ffffff;
+    }
 
-.tab.active {
- color:#ffffff;
- border-bottom:2px solid #38bdf8;
-}
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 12px 12px 96px;
+    }
 
-main {
- padding:70px 14px 20px;
- max-width:900px;
- margin:auto;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 880px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
 
-.section {
- display:none;
-}
+    .card {
+      background: rgba(15,23,42,.8);
+      border: 1px solid rgba(148,163,184,.18);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    }
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: #cbd5e1;
+    }
 
-.section.active {
- display:block;
-}
+    .row { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    @media (min-width: 540px) {
+      .row.cols2 { grid-template-columns: 1fr 1fr; }
+      .row.cols3 { grid-template-columns: 1fr 1fr 1fr; }
+    }
 
-.card {
- background:#111827;
- padding:14px;
- border-radius:12px;
- margin-bottom:12px;
- border:1px solid #1e293b;
-}
+    label { display:block; font-size: 12px; color: #cbd5e1; margin-bottom: 6px; }
+    input, select {
+      width: 100%;
+      padding: 10px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(148,163,184,.25);
+      background: rgba(2,6,23,.55);
+      color: #e5e7eb;
+      outline: none;
+    }
+    input::placeholder { color: rgba(148,163,184,.7); }
 
-input {
- width:100%;
- padding:10px;
- margin-top:6px;
- background:#020617;
- color:white;
- border-radius:8px;
- border:1px solid #1e293b;
-}
+    .hint { font-size: 11px; color: #94a3b8; margin-top: 6px; line-height: 1.25; }
+    .btnrow { display:flex; gap:10px; flex-wrap: wrap; margin-top: 12px; }
+    button.action {
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 900;
+      cursor: pointer;
+      background: #e5e7eb;
+      color: #0b1220;
+    }
+    button.secondary {
+      background: rgba(148,163,184,.18);
+      color: #e5e7eb;
+      border: 1px solid rgba(148,163,184,.22);
+    }
 
-button {
- background:#38bdf8;
- border:none;
- padding:10px 14px;
- border-radius:10px;
- font-weight:800;
- margin-top:10px;
-}
+    .pillbar { display:flex; gap:8px; flex-wrap: wrap; margin-top: 10px; }
+    .pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(148,163,184,.22);
+      background: rgba(2,6,23,.45);
+      color: #cbd5e1;
+    }
+    .pill strong { color: #e5e7eb; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
 
-.alert {
- margin-top:10px;
- padding:10px;
- border-radius:8px;
- background:#020617;
- border:1px solid #334155;
-}
+    .alert {
+      margin-top: 10px;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(148,163,184,.22);
+      background: rgba(2,6,23,.45);
+      font-size: 12px;
+      line-height: 1.35;
+      color: #e5e7eb;
+    }
+    .alert.ok   { border-color: rgba(34,197,94,.35); }
+    .alert.warn { border-color: rgba(234,179,8,.35); }
+    .alert.bad  { border-color: rgba(239,68,68,.35); }
 
-.flowstep {
- padding:12px;
- border-radius:10px;
- background:#020617;
- border:1px solid #334155;
- margin-bottom:10px;
-}
-</style>
+    /* Manual / Flux sections */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    details {
+      border: 1px solid rgba(148,163,184,.18);
+      border-radius: 12px;
+      padding: 10px 10px;
+      background: rgba(2,6,23,.35);
+    }
+    details + details { margin-top: 10px; }
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+      color: #e5e7eb;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    .detailsBody { margin-top: 10px; color: #e5e7eb; font-size: 12px; line-height: 1.4; }
+    .detailsBody ul { margin: 8px 0 0 18px; }
+    .detailsBody li { margin: 6px 0; }
+
+    /* Footer */
+    footer {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 2000;
+      background: rgba(2,6,23,.92);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(148,163,184,.18);
+      padding: 10px 12px;
+    }
+    .footerline {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+    .spacerDot { opacity: .6; }
+  </style>
 </head>
 
 <body>
-
 <header>
- <div class="tab active" onclick="openTab('calc')">Cálculo</div>
- <div class="tab" onclick="openTab('manual')">Manual</div>
- <div class="tab" onclick="openTab('flow')">Fluxograma</div>
+  <div class="headTop">
+    <div>
+      <div class="title">UCIP — ΔP & Mechanical Power (VCV)</div>
+      <div class="subtitle">Cálculo bedside + manual de formação + fluxograma</div>
+    </div>
+    <div class="subtitle" id="versionTag">PWA</div>
+  </div>
+
+  <div class="tabs">
+    <div class="tabBtn active" id="tab_calc" onclick="openTab('calc', this)">Cálculo</div>
+    <div class="tabBtn" id="tab_manual" onclick="openTab('manual', this)">Manual</div>
+    <div class="tabBtn" id="tab_flow" onclick="openTab('flow', this)">Fluxograma</div>
+  </div>
 </header>
 
 <main>
 
-<!-- ================= CALCULADORA ================= -->
+  <!-- ================== TAB: CÁLCULO ================== -->
+  <section id="calc" class="section active">
+    <div class="grid">
 
-<section id="calc" class="section active">
+      <section class="card">
+        <h2>Entradas (VCV)</h2>
 
-<div class="card">
-<h3>Entradas (VCV)</h3>
+        <div class="row cols2">
+          <div>
+            <label for="unitsVT">Unidade do VT</label>
+            <select id="unitsVT">
+              <option value="mL">mL</option>
+              <option value="L">L</option>
+            </select>
+            <div class="hint">A fórmula usa VT em litros (conversão automática).</div>
+          </div>
 
-<label>VT (mL)</label>
-<input id="vt">
+          <div>
+            <label for="autopeep">Auto-PEEP (cmH₂O)</label>
+            <input id="autopeep" inputmode="decimal" placeholder="ex: 0" />
+            <div class="hint">Se desconhecido, assume 0. Se ≥2, usar PEEP_total/ΔP_total.</div>
+          </div>
+        </div>
 
-<label>RR (/min)</label>
-<input id="rr">
+        <div class="row cols3" style="margin-top:10px;">
+          <div>
+            <label for="vt">VT</label>
+            <input id="vt" inputmode="decimal" placeholder="ex: 120" />
+          </div>
+          <div>
+            <label for="rr">RR (/min)</label>
+            <input id="rr" inputmode="decimal" placeholder="ex: 22" />
+          </div>
+          <div>
+            <label for="peep">PEEP set (cmH₂O)</label>
+            <input id="peep" inputmode="decimal" placeholder="ex: 8" />
+          </div>
+        </div>
 
-<label>PEEP set (cmH₂O)</label>
-<input id="peep">
+        <div class="row cols2" style="margin-top:10px;">
+          <div>
+            <label for="pplat">Pplat (cmH₂O)</label>
+            <input id="pplat" inputmode="decimal" placeholder="ex: 22" />
+            <div class="hint">Idealmente com pausa inspiratória e fluxo=0; doente passivo/estável.</div>
+          </div>
+          <div>
+            <label for="ppeak">Ppeak (cmH₂O)</label>
+            <input id="ppeak" inputmode="decimal" placeholder="ex: 30" />
+            <div class="hint">Componente resistiva: Ppeak − Pplat.</div>
+          </div>
+        </div>
 
-<label>Auto-PEEP (cmH₂O)</label>
-<input id="autopeep">
+        <div class="btnrow">
+          <button class="action" id="calcBtn">Calcular</button>
+          <button class="action secondary" id="resetBtn">Limpar</button>
+        </div>
 
-<label>Pplat (cmH₂O)</label>
-<input id="pplat">
+        <div class="hint" style="margin-top:10px;">
+          <b>Fórmulas (VCV)</b><br>
+          • <span class="mono">PEEP_total = PEEP_set + Auto-PEEP</span><br>
+          • <span class="mono">ΔP_total = Pplat − PEEP_total</span> (preferir se Auto-PEEP relevante)<br>
+          • <span class="mono">VT(L) = VT(mL) / 1000</span><br>
+          • <span class="mono">MP ≈ 0.098 × RR × VT(L) × (Ppeak − ½ΔP)</span>
+        </div>
+      </section>
 
-<label>Ppeak (cmH₂O)</label>
-<input id="ppeak">
+      <section class="card">
+        <h2>Resultados & interpretação</h2>
 
-<button onclick="calcular()">Calcular</button>
+        <div class="pillbar">
+          <span class="pill"><strong>PEEP_total</strong> <span id="peepTotOut">—</span> cmH₂O</span>
+          <span class="pill"><strong>ΔP_set</strong> <span id="dpSetOut">—</span> cmH₂O</span>
+          <span class="pill"><strong>ΔP_total</strong> <span id="dpTotOut">—</span> cmH₂O</span>
+          <span class="pill"><strong>Gap resistivo</strong> <span id="gapOut">—</span> cmH₂O</span>
+          <span class="pill"><strong>Cstat</strong> <span id="cstatOut">—</span> mL/cmH₂O</span>
+          <span class="pill"><strong>MP (ΔP_total)</strong> <span id="mpTotOut">—</span> J/min</span>
+          <span class="pill"><strong>MP (ΔP_set)</strong> <span id="mpSetOut">—</span> J/min</span>
+        </div>
 
-</div>
+        <div id="alerts"></div>
 
-<div class="card">
-<h3>Resultados</h3>
+        <div class="alert ok" style="margin-top:12px;">
+          <b>Alvos operacionais (orientadores)</b><br>
+          • Prioridade: <span class="mono">ΔP_total &lt; 14–15</span> cmH₂O se possível.<br>
+          • MP em pediatria: usar como <b>tendência</b> (subir = alerta); RR é frequentemente o maior driver.<br>
+          • Referência conceptual adulta (não pediátrica): risco frequentemente reportado acima de ~<span class="mono">17–22</span> J/min.
+        </div>
 
-<div id="res"></div>
-<div id="alerts"></div>
+        <div class="alert" style="margin-top:12px;">
+          <b>Atalho</b><br>
+          Se queres ensinar internos: abre a tab <b>Manual</b> (como medir Pplat/Auto-PEEP) e a tab <b>Fluxograma</b> (decisão sequencial).
+        </div>
+      </section>
 
-</div>
+    </div>
+  </section>
 
-</section>
+  <!-- ================== TAB: MANUAL ================== -->
+  <section id="manual" class="section">
+    <section class="card">
+      <h2>Manual de formação (resumo operacional)</h2>
 
-<!-- ================= MANUAL ================= -->
+      <details open>
+        <summary>1) Fisiologia/fisiopatologia (porquê ΔP e MP)</summary>
+        <div class="detailsBody">
+          <ul>
+            <li><b>Componente elástica vs resistiva</b>: Ppeak inclui ambas; Pplat aproxima a elástica quando há pausa inspiratória e fluxo=0.</li>
+            <li><b>Baby lung</b>: em doença pulmonar aguda, a massa ventilável é menor e heterogénea; VT “normal” por kg pode causar stress local elevado.</li>
+            <li><b>VILI como dose mecânica</b>: não é só “pressão” — é stress por ciclo (ΔP) + número de ciclos (RR) + energia/min (MP).</li>
+            <li><b>Porque ml/kg não chega</b>: ignora compliance real, recrutabilidade, auto-PEEP, parede torácica, resistência e heterogeneidade.</li>
+          </ul>
+        </div>
+      </details>
 
-<section id="manual" class="section">
+      <details>
+        <summary>2) Pré-condições (evitar números enganadores)</summary>
+        <div class="detailsBody">
+          <ul>
+            <li>Ventilação estável ≥ 2–3 min.</li>
+            <li>Minimizar assincronia e tosse.</li>
+            <li>Se drive elevado (P-SILI), a MP do ventilador subestima a carga total (ventilador + músculos).</li>
+            <li>Suspeitar/medir auto-PEEP em obstrução, RR alta, expiração curta, trapping.</li>
+            <li>Leaks distorcem VT/pressões.</li>
+          </ul>
+        </div>
+      </details>
 
-<div class="card">
-<h3>1 — Conceitos-chave</h3>
-<p>
-• Pulmão funcional reduzido ("baby lung") → stress local elevado<br>
-• ΔP = stress elástico por ciclo<br>
-• Mechanical Power = energia por minuto<br>
-• Objectivo: minimizar stress + energia mantendo gasometria aceitável
-</p>
-</div>
+      <details>
+        <summary>3) Como obter parâmetros (passo-a-passo)</summary>
+        <div class="detailsBody">
+          <ul>
+            <li><b>Pplat</b>: activar pausa inspiratória (0.5–2 s, consoante contexto). Confirmar <b>fluxo=0</b> e pressão estabilizada; doente o mais passivo possível.</li>
+            <li><b>Auto-PEEP</b>: pausa expiratória; diferença acima da PEEP set é auto-PEEP. Se doente muito activo, medição perde fiabilidade.</li>
+            <li><b>Gap resistivo</b>: <span class="mono">Ppeak − Pplat</span>. Gap alto sugere resistência (tubo/fluxo/secreções/broncoespasmo).</li>
+            <li><b>VT</b>: garantir ausência de fugas; converter para litros na fórmula.</li>
+          </ul>
+        </div>
+      </details>
 
-<div class="card">
-<h3>2 — Antes de medir</h3>
-<p>
-✓ Ventilação estável<br>
-✓ Pausa inspiratória válida<br>
-✓ Sem drive elevado<br>
-✓ Avaliar auto-PEEP<br>
-✓ Sem fugas
-</p>
-</div>
+      <details>
+        <summary>4) Cálculos (VCV)</summary>
+        <div class="detailsBody">
+          <div class="mono">
+            PEEP_total = PEEP_set + AutoPEEP<br>
+            ΔP_set = Pplat − PEEP_set<br>
+            ΔP_total = Pplat − PEEP_total<br>
+            VT(L) = VT(mL)/1000<br>
+            MP ≈ 0.098 × RR × VT(L) × (Ppeak − ½ΔP)
+          </div>
+          <ul>
+            <li>Se auto-PEEP ≥ 2, preferir ΔP_total e MP(ΔP_total).</li>
+            <li>Compliance: <span class="mono">Cstat = VT(mL) / ΔP_total</span>.</li>
+          </ul>
+        </div>
+      </details>
 
-<div class="card">
-<h3>3 — Fórmulas (VCV)</h3>
+      <details>
+        <summary>5) Interpretação (como ler ΔP, MP e resistência)</summary>
+        <div class="detailsBody">
+          <ul>
+            <li><b>ΔP</b> é a prioridade: alvo prático <b>&lt;14–15</b> cmH₂O sempre que possível.</li>
+            <li><b>MP</b> é energia/min: em pediatria usar como <b>tendência</b>. Subida sustentada = alerta.</li>
+            <li><b>RR</b> multiplica a energia/min: reduzir RR pode baixar MP sem mexer em VT (se tolerável).</li>
+            <li><b>Ppeak − Pplat</b> alto: problema resistivo; MP pode subir por resistência, não por stress alveolar.</li>
+          </ul>
+        </div>
+      </details>
+    </section>
+  </section>
 
-<p>
-PEEPtotal = PEEP + AutoPEEP<br>
-ΔP = Pplat − PEEPtotal<br>
-VT(L) = VT/1000<br>
-MP = 0.098 × RR × VT × (Ppeak − ½ΔP)
-</p>
+  <!-- ================== TAB: FLUXOGRAMA ================== -->
+  <section id="flow" class="section">
+    <section class="card">
+      <h2>Fluxograma (decisão sequencial bedside)</h2>
 
-</div>
+      <details open>
+        <summary>PASSO 0 — Mediões fiáveis?</summary>
+        <div class="detailsBody">
+          <ul>
+            <li>Estabilidade 2–3 min</li>
+            <li>Pplat com pausa inspiratória válida (fluxo=0)</li>
+            <li>Se suspeita: auto-PEEP medido</li>
+            <li>Sem leaks/assincronia grosseira</li>
+          </ul>
+          <div class="alert warn">Se NÃO: corrigir primeiro; não “perseguir números”.</div>
+        </div>
+      </details>
 
-<div class="card">
-<h3>4 — Interpretação</h3>
+      <details>
+        <summary>PASSO 1 — Auto-PEEP ≥ 2 cmH₂O?</summary>
+        <div class="detailsBody">
+          <ul>
+            <li>Priorizar: ↓RR, ↑tempo expiratório, tratar broncoespasmo/secreções, rever tubo/curvas.</li>
+            <li>Recalcular usando <b>PEEP_total</b> e <b>ΔP_total</b>.</li>
+          </ul>
+        </div>
+      </details>
 
-<p>
-ΔP alvo &lt; 14–15 cmH₂O<br>
-MP usar como tendência<br>
-RR é principal driver da MP<br>
-Ppeak − Pplat alto = resistência
-</p>
+      <details>
+        <summary>PASSO 2 — ΔP_total &gt; 15?</summary>
+        <div class="detailsBody">
+          <ul>
+            <li>Prioridade: ↓VT em passos pequenos (e reavaliar).</li>
+            <li>Considerar permissiva CO₂ se tolerável.</li>
+            <li>Evitar aumentar RR como “compensação” sem avaliar MP.</li>
+          </ul>
+        </div>
+      </details>
 
-</div>
+      <details>
+        <summary>PASSO 3 — ΔP aceitável mas MP elevada/ascendente?</summary>
+        <div class="detailsBody">
+          <ul>
+            <li>Se gasometria permitir: ↓RR (maior alavanca sobre MP).</li>
+            <li>Optimizar Ti/fluxo para reduzir resistência e trapping.</li>
+          </ul>
+        </div>
+      </details>
 
-</section>
+      <details>
+        <summary>PASSO 4 — PEEP funcional (teste +2)</summary>
+        <div class="detailsBody">
+          <ul>
+            <li>Subir PEEP +2 cmH₂O e reavaliar.</li>
+            <li>Manter se <b>ΔP ↓</b> (compliance melhora).</li>
+            <li>Reverter se <b>ΔP ↑</b> ou instabilidade hemodinâmica.</li>
+          </ul>
+        </div>
+      </details>
 
-<!-- ================= FLUXOGRAMA ================= -->
+      <details>
+        <summary>PASSO 5 — Gap resistivo (Ppeak − Pplat) alto?</summary>
+        <div class="detailsBody">
+          <ul>
+            <li>Tratar resistência: broncodilatadores, aspiração, rever tubo, reduzir fluxo excessivo.</li>
+            <li>Se Pplat baixo mas Ppeak alto, não é “sobredistensão” — é resistência.</li>
+          </ul>
+        </div>
+      </details>
 
-<section id="flow" class="section">
+      <div class="alert">
+        <b>Regra de segurança</b><br>
+        Ajustar uma variável de cada vez e reavaliar 5–10 min: ΔP, MP, gasometria, hemodinâmica.
+      </div>
 
-<div class="flowstep">
-<b>PASSO 1</b><br>
-Confirmar medições fiáveis<br>
-Pplat válida + auto-PEEP avaliada
-</div>
-
-<div class="flowstep">
-<b>PASSO 2</b><br>
-Auto-PEEP ≥2?<br>
-→ reduzir RR, ↑expiração, broncodilatar
-</div>
-
-<div class="flowstep">
-<b>PASSO 3</b><br>
-ΔP &gt; 15?<br>
-→ reduzir VT primeiro
-</div>
-
-<div class="flowstep">
-<b>PASSO 4</b><br>
-ΔP ok mas MP alta?<br>
-→ reduzir RR
-</div>
-
-<div class="flowstep">
-<b>PASSO 5</b><br>
-Teste PEEP +2<br>
-Manter se ΔP ↓<br>
-Reverter se ΔP ↑
-</div>
-
-<div class="flowstep">
-<b>PASSO 6</b><br>
-Reavaliar 5–10 min<br>
-ΔP, MP, gasometria
-</div>
-
-</section>
+    </section>
+  </section>
 
 </main>
 
+<footer>
+  <div class="footerline">
+    <span id="swStatus">PWA: a iniciar…</span>
+    <span class="spacerDot">•</span>
+    <span>Instalar: Safari → Partilhar → “Adicionar ao ecrã principal”.</span>
+  </div>
+</footer>
+
 <script>
+  const $ = (id) => document.getElementById(id);
 
-function openTab(id) {
- document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
- document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  function openTab(id, el) {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    document.querySelectorAll(".tabBtn").forEach(t => t.classList.remove("active"));
+    $(id).classList.add("active");
+    el.classList.add("active");
+    // scroll topo (útil em mobile)
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
 
- document.getElementById(id).classList.add('active');
- event.target.classList.add('active');
-}
+  function toNum(v) {
+    const s = String(v ?? "").trim().replace(",", ".");
+    if (!s) return NaN;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : NaN;
+  }
 
-function calcular(){
+  function vtToLiters(vt, unit) {
+    if (!Number.isFinite(vt) || vt <= 0) return NaN;
+    return unit === "L" ? vt : (vt / 1000);
+  }
 
- let vt = parseFloat(vtInput.value = document.getElementById("vt").value);
- let rr = parseFloat(document.getElementById("rr").value);
- let peep = parseFloat(document.getElementById("peep").value);
- let autopeep = parseFloat(document.getElementById("autopeep").value || 0);
- let pplat = parseFloat(document.getElementById("pplat").value);
- let ppeak = parseFloat(document.getElementById("ppeak").value);
+  function clearOutputs() {
+    ["peepTotOut","dpSetOut","dpTotOut","gapOut","cstatOut","mpTotOut","mpSetOut"].forEach(id => $(id).textContent = "—");
+    $("alerts").innerHTML = "";
+  }
 
- let vtL = vt/1000;
- let peepTot = peep + autopeep;
- let dp = pplat - peepTot;
+  function addAlert(kind, html) {
+    const div = document.createElement("div");
+    div.className = "alert " + kind;
+    div.innerHTML = html;
+    $("alerts").appendChild(div);
+  }
 
- let mp = 0.098 * rr * vtL * (ppeak - 0.5*dp);
+  function calc() {
+    $("alerts").innerHTML = "";
 
- document.getElementById("res").innerHTML = `
- PEEP total: ${peepTot.toFixed(1)}<br>
- ΔP: ${dp.toFixed(1)}<br>
- Mechanical Power: ${mp.toFixed(1)} J/min
- `;
+    const vtRaw = toNum($("vt").value);
+    const rr = toNum($("rr").value);
+    const peepSet = toNum($("peep").value);
+    const autopeep = toNum($("autopeep").value || "0");
+    const pplat = toNum($("pplat").value);
+    const ppeak = toNum($("ppeak").value);
+    const vtL = vtToLiters(vtRaw, $("unitsVT").value);
 
- let alertTxt = "";
+    const errs = [];
+    if (!Number.isFinite(vtL) || vtL <= 0) errs.push("VT inválido");
+    if (!Number.isFinite(rr) || rr <= 0) errs.push("RR inválida");
+    if (!Number.isFinite(peepSet) || peepSet < 0) errs.push("PEEP set inválida");
+    if (!Number.isFinite(autopeep) || autopeep < 0) errs.push("Auto-PEEP inválida");
+    if (!Number.isFinite(pplat) || pplat <= 0) errs.push("Pplat inválida");
+    if (!Number.isFinite(ppeak) || ppeak <= 0) errs.push("Ppeak inválida");
 
- if(autopeep>=2) alertTxt += "⚠ Auto-PEEP relevante<br>";
- if(dp>15) alertTxt += "⚠ ΔP elevada<br>";
- if(mp>15) alertTxt += "⚠ MP elevada (avaliar tendência)<br>";
+    if (errs.length) {
+      clearOutputs();
+      alert("Corrige:\n• " + errs.join("\n• "));
+      return;
+    }
 
- document.getElementById("alerts").innerHTML = alertTxt;
-}
+    const peepTot = peepSet + autopeep;
+    const dpSet = pplat - peepSet;
+    const dpTot = pplat - peepTot;
+    const gap = ppeak - pplat;
 
+    // Mechanical Power VCV (J/min)
+    const mpUsingDpTot = 0.098 * rr * vtL * (ppeak - 0.5 * dpTot);
+    const mpUsingDpSet = 0.098 * rr * vtL * (ppeak - 0.5 * dpSet);
+
+    // Compliance estática (mL/cmH2O) usando ΔP_total (se ΔP_total<=0, não faz sentido)
+    const cstat = (dpTot > 0) ? ((vtL * 1000) / dpTot) : NaN;
+
+    $("peepTotOut").textContent = peepTot.toFixed(1);
+    $("dpSetOut").textContent = dpSet.toFixed(1);
+    $("dpTotOut").textContent = dpTot.toFixed(1);
+    $("gapOut").textContent = gap.toFixed(1);
+    $("mpTotOut").textContent = mpUsingDpTot.toFixed(1);
+    $("mpSetOut").textContent = mpUsingDpSet.toFixed(1);
+    $("cstatOut").textContent = Number.isFinite(cstat) ? cstat.toFixed(1) : "—";
+
+    // Alerts (operacionais)
+    if (autopeep >= 2) {
+      addAlert("warn",
+        "<b>Auto-PEEP relevante</b><br>" +
+        "Auto-PEEP ≥ 2 cmH₂O sugere trapping/expiração insuficiente. " +
+        "Priorizar ↓RR, aumentar tempo expiratório, tratar broncoespasmo/secreções e rever assincronia."
+      );
+    }
+
+    if (dpTot <= 0) {
+      addAlert("bad",
+        "<b>Inconsistência</b><br>" +
+        "ΔP_total ≤ 0 não é coerente para ventilação passiva. Confirmar Pplat (pausa/fluxo=0), PEEP e auto-PEEP."
+      );
+    } else if (dpTot > 15) {
+      addAlert("bad",
+        "<b>ΔP_total elevado</b><br>" +
+        "ΔP_total > 15 cmH₂O: priorizar ↓VT (passos pequenos) ± permissiva CO₂ se tolerável. Reavaliar após cada ajuste."
+      );
+    } else if (dpTot >= 14) {
+      addAlert("warn",
+        "<b>ΔP_total na zona de atenção</b><br>" +
+        "ΔP_total 14–15: optimizar para descer se possível (↓VT / PEEP funcional se ΔP ↓)."
+      );
+    } else {
+      addAlert("ok",
+        "<b>ΔP_total favorável</b><br>" +
+        "ΔP_total < 14 sugere menor stress elástico (mantendo contexto clínico)."
+      );
+    }
+
+    const mp = mpUsingDpTot;
+    if (mp >= 17) {
+      addAlert("warn",
+        "<b>Mechanical Power elevada (atenção)</b><br>" +
+        "Em pediatria não existe cut-off universal; interpretar como tendência. " +
+        "Se gasometria permitir, reduzir RR (primeira alavanca) e optimizar fluxo/tempo expiratório."
+      );
+    } else if (mp >= 12) {
+      addAlert("warn",
+        "<b>Mechanical Power moderada</b><br>" +
+        "Se houver margem clínica, optimizar RR/VT e resistência para reduzir energia cumulativa."
+      );
+    } else {
+      addAlert("ok",
+        "<b>Mechanical Power baixa</b><br>" +
+        "Manter estratégia e monitorizar tendência."
+      );
+    }
+
+    if (gap >= 8) {
+      addAlert("warn",
+        "<b>Componente resistiva importante</b><br>" +
+        "Ppeak − Pplat ≥ 8 cmH₂O: sugere resistência/fluxo/tubo/secreções. " +
+        "Tratar broncoespasmo, aspirar secreções, rever tubo e evitar fluxo excessivo."
+      );
+    }
+  }
+
+  function resetAll() {
+    ["vt","rr","peep","autopeep","pplat","ppeak"].forEach(id => $(id).value = "");
+    clearOutputs();
+  }
+
+  $("calcBtn").addEventListener("click", calc);
+  $("resetBtn").addEventListener("click", resetAll);
+
+  // PWA Service Worker
+  async function registerSW() {
+    if (!("serviceWorker" in navigator)) {
+      $("swStatus").textContent = "PWA: service worker indisponível";
+      return;
+    }
+    try {
+      await navigator.serviceWorker.register("./sw.js");
+      $("swStatus").textContent = "PWA: offline activo";
+    } catch {
+      $("swStatus").textContent = "PWA: falha no registo";
+    }
+  }
+  registerSW();
 </script>
 
 </body>
