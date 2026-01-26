@@ -1,4 +1,4 @@
-const CACHE_NAME = "ucip-dp-mp-tabs-v1";
+const CACHE_NAME = "ucip-dp-mp-full-v2";
 
 const ASSETS = [
   "./",
@@ -34,7 +34,6 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(req).then((cached) => {
       if (cached) return cached;
-
       return fetch(req).then((resp) => {
         if (resp && resp.ok) {
           const copy = resp.clone();
