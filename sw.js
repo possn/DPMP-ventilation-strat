@@ -1,4 +1,4 @@
-const CACHE_NAME = "ucip-dp-mp-full-v3";
+const CACHE_NAME = "ucip-dp-mp-full-v4";
 
 const ASSETS = [
   "./",
