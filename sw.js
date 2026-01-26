@@ -1,46 +1,58 @@
-const CACHE_NAME = "ucip-dp-mp-full-v3";
+const CACHE_NAME = "ucip-dp-mp-PWA-V4"; // <-- versão FORÇADA nova
 
 const ASSETS = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
   "./sw.js",
-  "./icons/apple-touch-icon.png.PNG",
-  "./icons/favicon-32.png.PNG",
   "./icons/icon-192.png.PNG",
-  "./icons/icon-512.png.PNG"
+  "./icons/icon-512.png.PNG",
+  "./icons/apple-touch-icon.png.PNG",
+  "./icons/favicon-32.png.PNG"
 ];
 
-self.addEventListener("install", (event) => {
+// INSTALL
+self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(ASSETS))
-      .then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(ASSETS);
+    }).then(() => self.skipWaiting())
   );
 });
 
-self.addEventListener("activate", (event) => {
+// ACTIVATE — LIMPA CACHES ANTIGOS
+self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))))
-      .then(() => self.clients.claim())
+    caches.keys().then(keys => {
+      return Promise.all(
+        keys.map(key => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
   );
 });
 
-self.addEventListener("fetch", (event) => {
-  const req = event.request;
-  if (req.method !== "GET") return;
+// FETCH — CACHE FIRST
+self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET") return;
 
   event.respondWith(
-    caches.match(req).then((cached) => {
+    caches.match(event.request).then(cached => {
       if (cached) return cached;
-      return fetch(req).then((resp) => {
-        if (resp && resp.ok) {
-          const copy = resp.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(req, copy));
-        }
-        return resp;
-      }).catch(() => cached);
+
+      return fetch(event.request).then(response => {
+        if (!response || response.status !== 200) return response;
+
+        const responseClone = response.clone();
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, responseClone);
+        });
+
+        return response;
+      });
     })
   );
 });
