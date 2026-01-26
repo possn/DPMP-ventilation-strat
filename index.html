@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#0f172a" />
   <title>UCIP — ΔP & Mechanical Power (VCV)</title>
 
-  <!-- PWA -->
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/favicon-32.png.PNG" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png.PNG">
@@ -22,7 +21,6 @@
       color: #e5e7eb;
     }
 
-    /* Header + Tabs */
     header {
       position: sticky;
       top: 0;
@@ -32,22 +30,11 @@
       border-bottom: 1px solid rgba(148,163,184,.18);
       padding: 10px 12px 12px;
     }
-    .headTop {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
+    .headTop { display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:10px; }
     .title { font-size: 15px; font-weight: 900; letter-spacing: .2px; }
     .subtitle { font-size: 12px; color: #94a3b8; }
 
-    .tabs {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
+    .tabs { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px; margin-bottom:10px; }
     .tabBtn {
       border: 1px solid rgba(148,163,184,.22);
       background: rgba(2,6,23,.45);
@@ -57,8 +44,8 @@
       font-weight: 900;
       font-size: 12px;
       cursor: pointer;
-      text-align: center;
-      user-select: none;
+      text-align:center;
+      user-select:none;
     }
     .tabBtn.active {
       background: rgba(148,163,184,.18);
@@ -66,12 +53,7 @@
       color: #ffffff;
     }
 
-    /* Mode toggle bar */
-    .modeBar {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
+    .modeBar { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
     .chipBtn {
       border: 1px solid rgba(148,163,184,.22);
       background: rgba(2,6,23,.45);
@@ -81,7 +63,7 @@
       font-weight: 900;
       font-size: 12px;
       cursor: pointer;
-      text-align: center;
+      text-align:center;
     }
     .chipBtn.on {
       background: rgba(148,163,184,.18);
@@ -89,20 +71,10 @@
       color: #ffffff;
     }
 
-    main {
-      max-width: 1020px;
-      margin: 0 auto;
-      padding: 12px 12px 110px;
-    }
+    main { max-width: 1120px; margin: 0 auto; padding: 12px 12px 120px; }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    @media (min-width: 920px) {
-      .grid { grid-template-columns: 1fr 1fr; }
-    }
+    .grid { display:grid; grid-template-columns:1fr; gap:12px; }
+    @media (min-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
 
     .card {
       background: rgba(15,23,42,.8);
@@ -119,14 +91,14 @@
       color: #cbd5e1;
     }
 
-    .row { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .row { display:grid; grid-template-columns:1fr; gap:10px; }
     @media (min-width: 560px) {
-      .row.cols2 { grid-template-columns: 1fr 1fr; }
-      .row.cols3 { grid-template-columns: 1fr 1fr 1fr; }
+      .row.cols2 { grid-template-columns:1fr 1fr; }
+      .row.cols3 { grid-template-columns:1fr 1fr 1fr; }
     }
 
-    label { display:block; font-size: 12px; color: #cbd5e1; margin-bottom: 6px; }
-    input, select {
+    label { display:block; font-size:12px; color:#cbd5e1; margin-bottom:6px; }
+    input, select, textarea {
       width: 100%;
       padding: 10px 10px;
       border-radius: 10px;
@@ -135,41 +107,42 @@
       color: #e5e7eb;
       outline: none;
     }
-    input::placeholder { color: rgba(148,163,184,.7); }
+    input::placeholder, textarea::placeholder { color: rgba(148,163,184,.7); }
+    textarea { min-height: 70px; resize: vertical; }
 
     .hint { font-size: 11px; color: #94a3b8; margin-top: 6px; line-height: 1.25; }
-    .teaching.hidden { display: none; }
+    .teaching.hidden { display:none; }
 
-    .btnrow { display:flex; gap:10px; flex-wrap: wrap; margin-top: 12px; }
+    .btnrow { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
     button.action {
-      border: 0;
-      border-radius: 12px;
+      border:0;
+      border-radius:12px;
       padding: 10px 12px;
       font-weight: 900;
       cursor: pointer;
-      background: #e5e7eb;
-      color: #0b1220;
+      background:#e5e7eb;
+      color:#0b1220;
     }
     button.secondary {
       background: rgba(148,163,184,.18);
-      color: #e5e7eb;
+      color:#e5e7eb;
       border: 1px solid rgba(148,163,184,.22);
     }
 
-    .pillbar { display:flex; gap:8px; flex-wrap: wrap; margin-top: 10px; }
+    .pillbar { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
     .pill {
       padding: 6px 10px;
       border-radius: 999px;
       font-size: 12px;
       border: 1px solid rgba(148,163,184,.22);
       background: rgba(2,6,23,.45);
-      color: #cbd5e1;
+      color:#cbd5e1;
     }
-    .pill strong { color: #e5e7eb; }
+    .pill strong { color:#e5e7eb; }
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
 
     .alert {
-      margin-top: 10px;
+      margin-top:10px;
       padding: 10px 10px;
       border-radius: 12px;
       border: 1px solid rgba(148,163,184,.22);
@@ -182,10 +155,10 @@
     .alert.warn { border-color: rgba(234,179,8,.35); }
     .alert.bad  { border-color: rgba(239,68,68,.35); }
 
-    /* Color coding (ponto 4) */
-    .good { color: #22c55e; }
-    .warnColor { color: #eab308; }
-    .badColor { color: #ef4444; }
+    /* Color coding */
+    .good { color:#22c55e; }
+    .warnColor { color:#eab308; }
+    .badColor { color:#ef4444; }
     .badge {
       display:inline-block;
       padding: 4px 10px;
@@ -199,9 +172,8 @@
     .badge.warnColor { border-color: rgba(234,179,8,.35); }
     .badge.badColor { border-color: rgba(239,68,68,.35); }
 
-    /* Sections */
-    .section { display: none; }
-    .section.active { display: block; }
+    .section { display:none; }
+    .section.active { display:block; }
 
     details {
       border: 1px solid rgba(148,163,184,.18);
@@ -209,68 +181,56 @@
       padding: 10px 10px;
       background: rgba(2,6,23,.35);
     }
-    details + details { margin-top: 10px; }
-    summary {
-      cursor: pointer;
-      font-weight: 900;
-      color: #e5e7eb;
-      list-style: none;
-    }
-    summary::-webkit-details-marker { display: none; }
-    .detailsBody { margin-top: 10px; color: #e5e7eb; font-size: 12px; line-height: 1.4; }
-    .detailsBody ul { margin: 8px 0 0 18px; }
-    .detailsBody li { margin: 6px 0; }
+    details + details { margin-top:10px; }
+    summary { cursor:pointer; font-weight: 900; color:#e5e7eb; list-style:none; }
+    summary::-webkit-details-marker { display:none; }
+    .detailsBody { margin-top:10px; color:#e5e7eb; font-size:12px; line-height:1.4; }
+    .detailsBody ul { margin:8px 0 0 18px; }
+    .detailsBody li { margin:6px 0; }
 
-    /* Chart */
     .chartWrap {
-      margin-top: 10px;
+      margin-top:10px;
       border-radius: 12px;
-      overflow: hidden;
+      overflow:hidden;
       border: 1px solid rgba(148,163,184,.18);
       background: rgba(2,6,23,.35);
     }
-    canvas { display:block; width: 100%; height: 220px; }
+    canvas { display:block; width:100%; height:220px; }
 
-    /* Footer */
     footer {
-      position: fixed;
-      left: 0; right: 0; bottom: 0;
-      z-index: 2000;
+      position: fixed; left:0; right:0; bottom:0;
+      z-index:2000;
       background: rgba(2,6,23,.92);
       backdrop-filter: blur(10px);
       border-top: 1px solid rgba(148,163,184,.18);
       padding: 10px 12px;
     }
     .footerline {
-      max-width: 1020px;
+      max-width: 1120px;
       margin: 0 auto;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-      font-size: 12px;
-      color: #94a3b8;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      font-size:12px;
+      color:#94a3b8;
     }
-    .spacerDot { opacity: .6; }
+    .spacerDot { opacity:.6; }
 
-    /* PRINT (ponto 3: export PDF via print) */
-    #printSheet { display: none; }
+    /* Print sheet (PDF) */
+    #printSheet { display:none; }
     @media print {
-      header, footer { display: none !important; }
-      body { background: #ffffff; color: #000000; }
-      main { padding: 0; max-width: none; }
-      .section { display: none !important; }
-      #printSheet { display: block !important; }
-      .printCard {
-        border: 1px solid #000;
-        padding: 10px;
-        margin-bottom: 10px;
-      }
-      .printTitle { font-size: 16px; font-weight: 900; margin-bottom: 6px; }
-      .printSub { font-size: 12px; margin-bottom: 10px; }
-      .printGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-      .printGrid div { border: 1px solid #000; padding: 8px; }
-      .printSmall { font-size: 10px; }
+      header, footer { display:none !important; }
+      body { background:#ffffff; color:#000000; }
+      main { padding:0; max-width:none; }
+      .section { display:none !important; }
+      #printSheet { display:block !important; }
+      .printCard { border:1px solid #000; padding:10px; margin-bottom:10px; }
+      .printTitle { font-size:16px; font-weight:900; margin-bottom:6px; }
+      .printSub { font-size:12px; margin-bottom:10px; }
+      .printGrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+      .printGrid div { border:1px solid #000; padding:8px; }
+      .printSmall { font-size:10px; white-space:pre-wrap; }
     }
   </style>
 </head>
@@ -279,41 +239,80 @@
 <header>
   <div class="headTop">
     <div>
-      <div class="title">UCIP — ΔP & Mechanical Power (VCV)</div>
-      <div class="subtitle">Cálculo bedside + manual de formação + fluxograma</div>
+      <div class="title">UCIP — ΔP & Mechanical Power</div>
+      <div class="subtitle">VCV validado • ensino + ronda + auditoria</div>
     </div>
     <div class="subtitle" id="versionTag">PWA</div>
   </div>
 
   <div class="tabs">
-    <div class="tabBtn active" id="tab_calc" onclick="openTab('calc', this)">Cálculo</div>
-    <div class="tabBtn" id="tab_manual" onclick="openTab('manual', this)">Manual</div>
-    <div class="tabBtn" id="tab_flow" onclick="openTab('flow', this)">Fluxograma</div>
+    <div class="tabBtn active" onclick="openTab('calc', this)">Cálculo</div>
+    <div class="tabBtn" onclick="openTab('manual', this)">Manual</div>
+    <div class="tabBtn" onclick="openTab('flow', this)">Fluxograma</div>
+    <div class="tabBtn" onclick="openTab('audit', this)">Auditoria</div>
   </div>
 
-  <!-- Ponto 1: modo Ensino/Clínico -->
   <div class="modeBar">
     <div class="chipBtn on" id="modeBtn" onclick="toggleMode()">Modo: Ensino</div>
-    <div class="chipBtn" id="clearHistBtn" onclick="clearHistoryConfirm()">Limpar histórico</div>
+    <div class="chipBtn" onclick="roundModeNext()">Modo ronda: Próximo</div>
   </div>
 </header>
 
 <main>
 
-  <!-- ================== TAB: CÁLCULO ================== -->
+  <!-- ================= TAB: CÁLCULO ================= -->
   <section id="calc" class="section active">
     <div class="grid">
 
       <section class="card">
-        <h2>Identificação e entradas (VCV)</h2>
+        <h2>Doente, patologia, modo</h2>
 
-        <!-- Ponto 2: histórico por doente -->
         <div class="row cols2">
           <div>
-            <label for="patient">Doente / Cama (texto livre)</label>
-            <input id="patient" placeholder="ex: Cama 3 | RN 2.8 kg | ID" />
-            <div class="hint teaching">Usado no histórico local e no relatório PDF.</div>
+            <label for="patientSelect">Doente/Cama (selector)</label>
+            <select id="patientSelect"></select>
+            <div class="hint teaching">O histórico e a auditoria são separados por doente/cama.</div>
           </div>
+          <div>
+            <label for="patientNew">Criar/renomear doente (texto)</label>
+            <input id="patientNew" placeholder="ex: Cama 3 | RN 2.8 kg | ID" />
+            <div class="btnrow">
+              <button class="action secondary" onclick="addOrRenamePatient()">Guardar nome</button>
+              <button class="action secondary" onclick="deletePatientConfirm()">Apagar doente</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row cols2" style="margin-top:10px;">
+          <div>
+            <label for="pathology">Perfil por patologia</label>
+            <select id="pathology" onchange="applyPathologyProfile()">
+              <option value="GEN">Geral (sem perfil)</option>
+              <option value="PARDS">PARDS / hipoxémia difusa</option>
+              <option value="OBSTR">Obstrução / bronquiolite / asma (trapping)</option>
+              <option value="POSTOP">Pós-operatório / pulmão “normal”</option>
+              <option value="NEURO">Neuro (evitar hipercapnia importante)</option>
+            </select>
+            <div class="hint teaching" id="pathologyHint">Perfis ajustam alvos/zonas e ênfase do algoritmo.</div>
+          </div>
+          <div>
+            <label for="modeVent">Modo ventilatório</label>
+            <select id="modeVent" onchange="onModeChange()">
+              <option value="VCV">VCV (cálculo activo)</option>
+              <option value="PCV">PCV (ensino/estrutura)</option>
+              <option value="PSIMV">PSIMV (ensino/estrutura)</option>
+            </select>
+            <div class="hint teaching" id="modeVentHint">
+              Cálculo de MP/ΔP nesta app está validado para <b>VCV</b>. Em PCV/PSIMV mostramos guia e campos, mas não calculamos MP.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Entradas (VCV)</h2>
+
+        <div class="row cols2">
           <div>
             <label for="unitsVT">Unidade do VT</label>
             <select id="unitsVT">
@@ -322,17 +321,10 @@
             </select>
             <div class="hint teaching">A fórmula usa VT em litros (conversão automática).</div>
           </div>
-        </div>
-
-        <div class="row cols2" style="margin-top:10px;">
           <div>
             <label for="autopeep">Auto-PEEP (cmH₂O)</label>
             <input id="autopeep" inputmode="decimal" placeholder="ex: 0" />
-            <div class="hint teaching">Se ≥2, calcular com PEEP_total e ΔP_total.</div>
-          </div>
-          <div>
-            <label for="peep">PEEP set (cmH₂O)</label>
-            <input id="peep" inputmode="decimal" placeholder="ex: 8" />
+            <div class="hint teaching">Se ≥2: usar PEEP_total e ΔP_total.</div>
           </div>
         </div>
 
@@ -346,101 +338,107 @@
             <input id="rr" inputmode="decimal" placeholder="ex: 22" />
           </div>
           <div>
-            <label for="pplat">Pplat (cmH₂O)</label>
-            <input id="pplat" inputmode="decimal" placeholder="ex: 22" />
+            <label for="peep">PEEP set (cmH₂O)</label>
+            <input id="peep" inputmode="decimal" placeholder="ex: 8" />
           </div>
         </div>
 
         <div class="row cols2" style="margin-top:10px;">
           <div>
+            <label for="pplat">Pplat (cmH₂O)</label>
+            <input id="pplat" inputmode="decimal" placeholder="ex: 22" />
+          </div>
+          <div>
             <label for="ppeak">Ppeak (cmH₂O)</label>
             <input id="ppeak" inputmode="decimal" placeholder="ex: 30" />
           </div>
-          <div>
-            <label for="notes">Notas clínicas (opcional)</label>
-            <input id="notes" placeholder="ex: broncoespasmo, sedação ajustada…" />
-          </div>
         </div>
 
-        <div class="btnrow">
-          <button class="action" id="calcBtn">Calcular</button>
-          <button class="action secondary" id="resetBtn">Limpar</button>
-          <!-- Ponto 3: export PDF via print -->
-          <button class="action secondary" id="pdfBtn" onclick="exportPDF()">Exportar PDF</button>
+        <div class="row cols2" style="margin-top:10px;">
+          <div>
+            <label for="notes">Notas (opcional)</label>
+            <textarea id="notes" placeholder="ex: broncoespasmo, sedação, recrutamento…"></textarea>
+          </div>
+          <div>
+            <label>Exportações / registo</label>
+            <div class="btnrow">
+              <button class="action" id="calcBtn">Calcular</button>
+              <button class="action secondary" onclick="resetInputs()">Limpar</button>
+              <button class="action secondary" onclick="exportPDF()">Exportar PDF</button>
+              <button class="action secondary" onclick="exportJSON()">Exportar JSON</button>
+              <button class="action secondary" onclick="exportCSV()">Exportar CSV</button>
+            </div>
+            <div class="hint teaching">JSON/CSV incluem histórico do doente seleccionado.</div>
+          </div>
         </div>
 
         <div class="hint teaching" style="margin-top:10px;">
           <b>Fórmulas (VCV)</b><br>
           • <span class="mono">PEEP_total = PEEP_set + Auto-PEEP</span><br>
-          • <span class="mono">ΔP_set = Pplat − PEEP_set</span><br>
           • <span class="mono">ΔP_total = Pplat − PEEP_total</span><br>
           • <span class="mono">VT(L) = VT(mL)/1000</span><br>
-          • <span class="mono">MP ≈ 0.098 × RR × VT(L) × (Ppeak − ½ΔP)</span><br>
+          • <span class="mono">MP ≈ 0.098 × RR × VT(L) × (Ppeak − ½ΔP_total)</span><br>
           • <span class="mono">Cstat = VT(mL) / ΔP_total</span>
         </div>
       </section>
 
       <section class="card">
-        <h2>Resultados, cor e tendência</h2>
+        <h2>Resultados + tendência</h2>
 
         <div class="pillbar">
           <span class="pill"><strong>PEEP_total</strong> <span id="peepTotOut">—</span> cmH₂O</span>
-          <span class="pill"><strong>ΔP_set</strong> <span id="dpSetOut">—</span> cmH₂O</span>
           <span class="pill"><strong>ΔP_total</strong> <span id="dpTotOut">—</span> cmH₂O</span>
-          <span class="pill"><strong>Gap (Ppeak−Pplat)</strong> <span id="gapOut">—</span> cmH₂O</span>
+          <span class="pill"><strong>MP</strong> <span id="mpTotOut">—</span> J/min</span>
+          <span class="pill"><strong>Gap</strong> <span id="gapOut">—</span> cmH₂O</span>
           <span class="pill"><strong>Cstat</strong> <span id="cstatOut">—</span> mL/cmH₂O</span>
-          <span class="pill"><strong>MP (ΔP_total)</strong> <span id="mpTotOut">—</span> J/min</span>
         </div>
 
         <div style="margin-top:10px;">
           <span class="badge" id="statusBadge">Estado: —</span>
-          <div class="hint teaching" style="margin-top:8px;">
-            Estado global combina: ΔP_total (prioritário) + MP + tendência (histórico).
+          <div class="hint teaching" id="thresholdHint" style="margin-top:8px;">
+            Limiares: ΔP_total < 14 (verde), 14–16 (amarelo), ≥16 (vermelho). MP: <12 / 12–17 / ≥17. (Ajustável por perfil.)
           </div>
         </div>
 
         <div id="alerts"></div>
 
-        <!-- Ponto 2: gráfico -->
-        <div class="chartWrap" style="margin-top:12px;">
-          <canvas id="trendChart" width="900" height="220" aria-label="Tendência ΔP/MP"></canvas>
+        <div class="chartWrap">
+          <canvas id="trendChart" width="900" height="220"></canvas>
         </div>
 
         <div class="hint teaching" style="margin-top:10px;">
-          <b>Leitura rápida</b><br>
-          • ΔP_total alvo: <span class="mono">&lt; 14–15</span> cmH₂O sempre que possível<br>
-          • MP: sem cut-off pediátrico universal → usar como <b>tendência</b> (subir = alerta)<br>
-          • RR é geralmente a maior alavanca sobre MP (energia/minuto)
+          <b>Regra operacional</b>: reduzir primeiro ΔP (stress por ciclo), depois MP (energia/min). Se gap alto, tratar resistência antes de “baixar VT por Ppeak”.
         </div>
       </section>
 
     </div>
   </section>
 
-  <!-- ================== TAB: MANUAL ================== -->
+  <!-- ================= TAB: MANUAL ================= -->
   <section id="manual" class="section">
     <section class="card">
-      <h2>Manual (formação) — versão dentro da app</h2>
+      <h2>Manual (formação) — dentro da app</h2>
 
       <details open>
-        <summary>1) Fisiologia e fisiopatologia (essencial)</summary>
+        <summary>1) Fisiologia/fisiopatologia (porquê ΔP e MP)</summary>
         <div class="detailsBody">
           <ul>
-            <li><b>Stress elástico</b>: aproximado por ΔP (Pplat − PEEP_total). É o “stress por ciclo”.</li>
-            <li><b>Energia cumulativa</b>: aproximada por Mechanical Power (J/min). Aumenta com VT, pressões e <b>RR</b>.</li>
-            <li><b>Baby lung</b>: pulmão funcional reduzido e heterogéneo → VT/kg pode ser enganador.</li>
-            <li><b>Resistência</b>: Ppeak − Pplat alto sugere broncoespasmo/secreções/tubo/fluxo; MP pode subir sem piorar stress alveolar.</li>
+            <li><b>Pplat</b> aproxima a componente elástica (pulmão/parede) quando há pausa inspiratória e fluxo=0.</li>
+            <li><b>ΔP</b> aproxima o stress elástico por ciclo: Pplat − PEEP_total.</li>
+            <li><b>MP</b> aproxima energia por minuto: sobe com VT, pressões e sobretudo RR.</li>
+            <li><b>Baby lung</b>: massa ventilável reduzida e heterogénea → VT/kg pode enganar.</li>
+            <li><b>Resistência</b>: gap (Ppeak−Pplat) alto = vias aéreas/tubo/fluxo; MP pode subir sem “pior stress alveolar”.</li>
           </ul>
         </div>
       </details>
 
       <details>
-        <summary>2) Como obter Pplat correctamente (VCV)</summary>
+        <summary>2) Como medir Pplat (VCV)</summary>
         <div class="detailsBody">
           <ul>
-            <li>Activar <b>pausa inspiratória</b> (tipicamente 0.5–2 s, conforme FR/tempo inspiratório).</li>
-            <li>Confirmar que há <b>fluxo=0</b> durante a pausa e a pressão estabiliza (plateau).</li>
-            <li>Evitar medição durante tosse/drive/assincronia.</li>
+            <li>Ventilação estável 2–3 min.</li>
+            <li>Pausa inspiratória suficiente; confirmar <b>fluxo=0</b> durante a pausa.</li>
+            <li>Evitar tosse, drive elevado, assincronia.</li>
           </ul>
         </div>
       </details>
@@ -449,45 +447,38 @@
         <summary>3) Como medir Auto-PEEP</summary>
         <div class="detailsBody">
           <ul>
-            <li>Suspeitar em obstrução, FR alta, expiração curta, curva expiratória sem retorno a zero.</li>
-            <li>Usar <b>pausa expiratória</b> (expiratory hold). Diferença acima da PEEP set = auto-PEEP.</li>
-            <li>Se auto-PEEP ≥2, usar ΔP_total (não apenas PEEP set).</li>
+            <li>Suspeitar em obstrução, RR alta, expiração curta, curva expiratória sem retornar a zero.</li>
+            <li>Pausa expiratória → diferença acima da PEEP set = auto-PEEP.</li>
+            <li>Se auto-PEEP ≥2: usar ΔP_total.</li>
           </ul>
         </div>
       </details>
 
       <details>
-        <summary>4) Cálculos e interpretação</summary>
+        <summary>4) PCV/PSIMV (estrutura de ensino)</summary>
         <div class="detailsBody">
-          <div class="mono">
-            PEEP_total = PEEP + AutoPEEP<br>
-            ΔP_total = Pplat − PEEP_total<br>
-            VT(L) = VT(mL)/1000<br>
-            MP ≈ 0.098 × RR × VT(L) × (Ppeak − ½ΔP_total)<br>
-            Cstat = VT(mL)/ΔP_total
-          </div>
           <ul>
-            <li><b>Prioridade</b>: baixar ΔP_total (stress) antes de optimizar MP.</li>
-            <li><b>Se ΔP ok mas MP alta</b>: reduzir RR (energia/min) e optimizar tempos/fluxo.</li>
+            <li>Em PCV/PSIMV, a medição/estimativa de MP é mais sensível a suposições (forma de onda, esforço, volumes variáveis).</li>
+            <li>Nesta versão, o cálculo automático é <b>apenas VCV</b>. Mantemos PCV/PSIMV como conteúdos e checklists para expansão futura.</li>
           </ul>
         </div>
       </details>
     </section>
   </section>
 
-  <!-- ================== TAB: FLUXOGRAMA ================== -->
+  <!-- ================= TAB: FLUXOGRAMA ================= -->
   <section id="flow" class="section">
     <section class="card">
-      <h2>Fluxograma (bedside) — VCV</h2>
+      <h2>Fluxograma bedside (adaptado ao perfil)</h2>
 
       <details open>
         <summary>PASSO 0 — Mediões fiáveis?</summary>
         <div class="detailsBody">
           <ul>
             <li>Estável 2–3 min</li>
-            <li>Pplat com pausa inspiratória válida</li>
-            <li>Sem leaks/assincronia grosseira</li>
-            <li>Auto-PEEP medido se suspeita</li>
+            <li>Pplat válida (pausa insp, fluxo=0)</li>
+            <li>Leaks/assincronia minimizados</li>
+            <li>Auto-PEEP medida se suspeita</li>
           </ul>
         </div>
       </details>
@@ -496,30 +487,28 @@
         <summary>PASSO 1 — Auto-PEEP ≥ 2?</summary>
         <div class="detailsBody">
           <ul>
-            <li>↓RR, ↑tempo expiratório</li>
-            <li>Tratar broncoespasmo/secreções, rever tubo</li>
+            <li>↓RR, ↑tempo expiratório, tratar broncoespasmo/secreções, rever tubo</li>
             <li>Recalcular com PEEP_total/ΔP_total</li>
           </ul>
         </div>
       </details>
 
       <details>
-        <summary>PASSO 2 — ΔP_total &gt; 15?</summary>
+        <summary>PASSO 2 — ΔP_total acima do alvo?</summary>
         <div class="detailsBody">
           <ul>
             <li>Prioridade: ↓VT em passos pequenos</li>
-            <li>Permissiva CO₂ se tolerável</li>
-            <li>Reavaliar após cada ajuste</li>
+            <li>Permissiva CO₂ se tolerável (excepto perfil Neuro)</li>
           </ul>
         </div>
       </details>
 
       <details>
-        <summary>PASSO 3 — ΔP ok mas MP alta/ascendente?</summary>
+        <summary>PASSO 3 — ΔP ok mas MP elevada/ascendente?</summary>
         <div class="detailsBody">
           <ul>
-            <li>Se tolerável: ↓RR (maior alavanca)</li>
-            <li>Optimizar Ti/fluxo e expiratório</li>
+            <li>Se tolerável: ↓RR (primeira alavanca)</li>
+            <li>Optimizar fluxo/tempo inspiratório/expiratório</li>
           </ul>
         </div>
       </details>
@@ -528,43 +517,62 @@
         <summary>PASSO 4 — PEEP funcional (+2)</summary>
         <div class="detailsBody">
           <ul>
-            <li>Manter se ΔP ↓</li>
+            <li>Manter se ΔP ↓ (compliance melhora)</li>
             <li>Reverter se ΔP ↑ ou instabilidade</li>
           </ul>
         </div>
       </details>
 
       <details>
-        <summary>PASSO 5 — Gap resistivo alto (Ppeak − Pplat)?</summary>
+        <summary>PASSO 5 — Gap alto (Ppeak − Pplat)?</summary>
         <div class="detailsBody">
           <ul>
-            <li>Tratar resistência: broncodilatação, aspiração, rever tubo</li>
-            <li>Evitar interpretar Ppeak isoladamente como sobredistensão</li>
+            <li>Tratar resistência: broncodilatar, aspirar, rever tubo, evitar fluxo excessivo</li>
           </ul>
         </div>
       </details>
 
       <div class="alert">
-        <b>Regra</b>: 1 ajuste de cada vez → reavaliar 5–10 min (ΔP, MP, gasometria, hemodinâmica).
+        Ajustar 1 variável de cada vez → reavaliar 5–10 min (ΔP, MP, gasometria, hemodinâmica).
       </div>
     </section>
   </section>
 
-  <!-- ================== PRINT SHEET (PDF) ================== -->
+  <!-- ================= TAB: AUDITORIA ================= -->
+  <section id="audit" class="section">
+    <div class="grid">
+
+      <section class="card">
+        <h2>Auditoria por doente</h2>
+        <div class="alert" id="auditSummary">Sem dados.</div>
+
+        <div class="hint teaching">
+          Métricas rápidas: nº de registos, percentagem em verde/amarelo/vermelho, ΔP média, MP média, tendência recente.
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Auditoria global (no telemóvel)</h2>
+        <div class="alert" id="auditGlobal">Sem dados.</div>
+
+        <div class="btnrow">
+          <button class="action secondary" onclick="clearAllDataConfirm()">Apagar TUDO (app)</button>
+        </div>
+        <div class="hint teaching">Isto apaga doentes + histórico local (apenas neste dispositivo).</div>
+      </section>
+
+    </div>
+  </section>
+
+  <!-- ================= PRINT SHEET ================= -->
   <section id="printSheet">
     <div class="printCard">
       <div class="printTitle">Relatório — UCIP ΔP & Mechanical Power (VCV)</div>
       <div class="printSub printSmall" id="printMeta">—</div>
 
       <div class="printGrid">
-        <div>
-          <b>Entradas</b><br>
-          <span class="printSmall" id="printInputs">—</span>
-        </div>
-        <div>
-          <b>Resultados</b><br>
-          <span class="printSmall" id="printResults">—</span>
-        </div>
+        <div><b>Entradas</b><br><span class="printSmall" id="printInputs">—</span></div>
+        <div><b>Resultados</b><br><span class="printSmall" id="printResults">—</span></div>
       </div>
 
       <div class="printCard" style="margin-top:10px;">
@@ -573,7 +581,7 @@
       </div>
 
       <div class="printSmall" style="margin-top:10px;">
-        Nota: ferramenta de apoio à decisão. Interpretar no contexto clínico (drive, hemodinâmica, gasometria, patologia).
+        Nota: apoio à decisão. Interpretar no contexto clínico (drive, hemodinâmica, gasometria, patologia).
       </div>
     </div>
   </section>
@@ -584,12 +592,24 @@
   <div class="footerline">
     <span id="swStatus">PWA: a iniciar…</span>
     <span class="spacerDot">•</span>
-    <span>Exportar PDF: botão “Exportar PDF” → iOS: Partilhar/Guardar em PDF.</span>
+    <span>PDF: “Exportar PDF” → iOS: Guardar/Partilhar como PDF.</span>
   </div>
 </footer>
 
 <script>
   const $ = (id) => document.getElementById(id);
+
+  /* ---------- Storage keys ---------- */
+  const KEY_MODE = "ucipTeachingMode_v2";
+  const KEY_PATIENTS = "ucipPatients_v2";
+  const KEY_HISTORY = "ucipHistory_v2"; // array {ts, pid, pname, dp, mp, peepTot, gap, cstat, notes, pathology}
+
+  /* ---------- App state ---------- */
+  let teachingMode = true;
+  let patients = [];  // [{id, name}]
+  let historyData = []; // measurements
+  let thresholds = { dpGreen: 14, dpRed: 16, mpGreen: 12, mpRed: 17 };
+  let pathologyProfile = "GEN";
 
   /* ---------- Tabs ---------- */
   function openTab(id, el) {
@@ -598,22 +618,18 @@
     $(id).classList.add("active");
     el.classList.add("active");
     window.scrollTo({ top: 0, behavior: "instant" });
+    if (id === "audit") refreshAudit();
   }
 
-  /* ---------- Mode toggle (ponto 1) ---------- */
-  let teachingMode = true;
-
+  /* ---------- Mode toggle ---------- */
   function applyMode() {
-    document.querySelectorAll(".teaching").forEach(el => {
-      el.classList.toggle("hidden", !teachingMode);
-    });
+    document.querySelectorAll(".teaching").forEach(el => el.classList.toggle("hidden", !teachingMode));
     $("modeBtn").textContent = teachingMode ? "Modo: Ensino" : "Modo: Clínico";
     $("modeBtn").classList.toggle("on", teachingMode);
   }
-
   function toggleMode() {
     teachingMode = !teachingMode;
-    localStorage.setItem("ucipTeachingMode", teachingMode ? "1" : "0");
+    localStorage.setItem(KEY_MODE, teachingMode ? "1" : "0");
     applyMode();
   }
 
@@ -624,17 +640,198 @@
     const n = Number(s);
     return Number.isFinite(n) ? n : NaN;
   }
-
   function vtToLiters(vt, unit) {
     if (!Number.isFinite(vt) || vt <= 0) return NaN;
     return unit === "L" ? vt : (vt / 1000);
   }
+  function nowStr() {
+    const d = new Date();
+    return `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`;
+  }
+  function uid() {
+    return "p_" + Math.random().toString(16).slice(2) + "_" + Date.now().toString(16);
+  }
 
+  /* ---------- Patients ---------- */
+  function loadPatients() {
+    try { patients = JSON.parse(localStorage.getItem(KEY_PATIENTS) || "[]"); } catch { patients = []; }
+    if (!Array.isArray(patients)) patients = [];
+    if (patients.length === 0) {
+      const id = uid();
+      patients = [{ id, name: "Cama 1" }];
+      localStorage.setItem(KEY_PATIENTS, JSON.stringify(patients));
+    }
+  }
+  function savePatients() {
+    localStorage.setItem(KEY_PATIENTS, JSON.stringify(patients));
+  }
+  function populatePatientSelect() {
+    const sel = $("patientSelect");
+    sel.innerHTML = "";
+    patients.forEach(p => {
+      const opt = document.createElement("option");
+      opt.value = p.id;
+      opt.textContent = p.name;
+      sel.appendChild(opt);
+    });
+    sel.onchange = () => { drawChart(); refreshAudit(); };
+    // manter selecção se possível
+    const last = localStorage.getItem("ucipLastPatient_v2");
+    if (last && patients.some(p => p.id === last)) sel.value = last;
+    else sel.value = patients[0].id;
+    localStorage.setItem("ucipLastPatient_v2", sel.value);
+  }
+  function currentPatient() {
+    const pid = $("patientSelect").value;
+    const p = patients.find(x => x.id === pid);
+    return { pid, pname: p ? p.name : "Sem identificação" };
+  }
+  function addOrRenamePatient() {
+    const text = ($("patientNew").value || "").trim();
+    if (!text) { alert("Escreve um nome para guardar."); return; }
+    const { pid } = currentPatient();
+    const p = patients.find(x => x.id === pid);
+    if (p) p.name = text;
+    savePatients();
+    populatePatientSelect();
+    $("patientNew").value = "";
+    alert("Guardado.");
+  }
+  function deletePatientConfirm() {
+    if (patients.length <= 1) { alert("Tem de existir pelo menos 1 doente."); return; }
+    const { pid, pname } = currentPatient();
+    const ok = confirm(`Apagar o doente "${pname}" e o histórico associado?`);
+    if (!ok) return;
+
+    // apagar histórico desse doente
+    historyData = historyData.filter(x => x.pid !== pid);
+    saveHistory();
+
+    // remover doente
+    patients = patients.filter(x => x.id !== pid);
+    savePatients();
+
+    populatePatientSelect();
+    drawChart();
+    refreshAudit();
+  }
+
+  /* ---------- History ---------- */
+  function loadHistory() {
+    try { historyData = JSON.parse(localStorage.getItem(KEY_HISTORY) || "[]"); } catch { historyData = []; }
+    if (!Array.isArray(historyData)) historyData = [];
+  }
+  function saveHistory() { localStorage.setItem(KEY_HISTORY, JSON.stringify(historyData)); }
+  function historyForCurrentPatient() {
+    const { pid } = currentPatient();
+    return historyData.filter(x => x.pid === pid);
+  }
+
+  /* ---------- Profiles (patologia) ---------- */
+  function applyPathologyProfile() {
+    pathologyProfile = $("pathology").value;
+
+    // defaults
+    thresholds = { dpGreen: 14, dpRed: 16, mpGreen: 12, mpRed: 17 };
+
+    let hint = "Perfis ajustam alvos/zonas e ênfase do algoritmo.";
+
+    if (pathologyProfile === "PARDS") {
+      thresholds.dpGreen = 14;
+      thresholds.dpRed = 16;
+      thresholds.mpGreen = 12;
+      thresholds.mpRed = 17;
+      hint = "PARDS: foco em stress/energia. PEEP funcional pode reduzir ΔP se houver recrutabilidade.";
+    } else if (pathologyProfile === "OBSTR") {
+      thresholds.dpGreen = 15;   // em obstrução, prioridade é trapping/expiração; ΔP pode ser menos determinante que auto-PEEP e resistência
+      thresholds.dpRed = 18;
+      thresholds.mpGreen = 13;
+      thresholds.mpRed = 18;
+      hint = "Obstrução: prioridade é auto-PEEP/trapping. ↓RR e ↑tempo expiratório geralmente primeiro.";
+    } else if (pathologyProfile === "POSTOP") {
+      thresholds.dpGreen = 13;
+      thresholds.dpRed = 15;
+      thresholds.mpGreen = 11;
+      thresholds.mpRed = 16;
+      hint = "Pós-op/pulmão normal: tende a tolerar menos stress desnecessário. Optimizar rapidamente para valores baixos.";
+    } else if (pathologyProfile === "NEURO") {
+      thresholds.dpGreen = 14;
+      thresholds.dpRed = 16;
+      thresholds.mpGreen = 12;
+      thresholds.mpRed = 17;
+      hint = "Neuro: evitar hipercapnia importante; ao reduzir VT/RR, validar objectivos de PaCO₂ e PPC.";
+    } else {
+      hint = "Geral: usar limiares padrão e interpretar no contexto clínico.";
+    }
+
+    $("pathologyHint").textContent = hint;
+    $("thresholdHint").textContent =
+      `Limiar por perfil — ΔP_total: <${thresholds.dpGreen} (verde), ${thresholds.dpGreen}–${thresholds.dpRed} (amarelo), ≥${thresholds.dpRed} (vermelho). ` +
+      `MP: <${thresholds.mpGreen} / ${thresholds.mpGreen}–${thresholds.mpRed} / ≥${thresholds.mpRed}.`;
+
+    refreshAudit();
+    drawChart();
+  }
+
+  /* ---------- Mode Vent (VCV vs PCV/PSIMV) ---------- */
+  function onModeChange() {
+    const mv = $("modeVent").value;
+    if (mv !== "VCV") {
+      alert("Nesta versão, o cálculo automático de ΔP/MP está validado para VCV. PCV/PSIMV ficam como estrutura de ensino por agora.");
+      $("modeVent").value = "VCV";
+    }
+  }
+
+  /* ---------- Colouring + status ---------- */
+  function setClassByThreshold(el, v, tGreen, tRed) {
+    el.classList.remove("good","warnColor","badColor");
+    if (!Number.isFinite(v)) return;
+    if (v < tGreen) el.classList.add("good");
+    else if (v < tRed) el.classList.add("warnColor");
+    else el.classList.add("badColor");
+  }
+  function setStatus(text, cls) {
+    const b = $("statusBadge");
+    b.classList.remove("good","warnColor","badColor");
+    b.textContent = `Estado: ${text}`;
+    if (cls) b.classList.add(cls);
+  }
+
+  function computeTrendFlag(patientSeries) {
+    if (patientSeries.length < 6) return { dpUp:false, mpUp:false };
+    const last = patientSeries.slice(-3);
+    const prev = patientSeries.slice(-6,-3);
+    const mean = arr => arr.reduce((a,b)=>a+b,0)/arr.length;
+    const dpLast = mean(last.map(x=>x.dp));
+    const dpPrev = mean(prev.map(x=>x.dp));
+    const mpLast = mean(last.map(x=>x.mp));
+    const mpPrev = mean(prev.map(x=>x.mp));
+    return { dpUp: (dpLast-dpPrev)>1.0, mpUp: (mpLast-mpPrev)>1.0 };
+  }
+
+  function overallStatus(dp, mp, patientSeries) {
+    let lvl = 0; // 0 green, 1 yellow, 2 red
+    if (Number.isFinite(dp)) {
+      if (dp >= thresholds.dpRed) lvl = Math.max(lvl,2);
+      else if (dp >= thresholds.dpGreen) lvl = Math.max(lvl,1);
+    }
+    if (Number.isFinite(mp)) {
+      if (mp >= thresholds.mpRed) lvl = Math.max(lvl,2);
+      else if (mp >= thresholds.mpGreen) lvl = Math.max(lvl,1);
+    }
+    const tr = computeTrendFlag(patientSeries);
+    if (tr.dpUp || tr.mpUp) lvl = Math.min(2, lvl+1);
+
+    if (lvl===0) return {text:"Verde", cls:"good"};
+    if (lvl===1) return {text:"Amarelo", cls:"warnColor"};
+    return {text:"Vermelho", cls:"badColor"};
+  }
+
+  /* ---------- Core calc (VCV) ---------- */
   function clearOutputs() {
-    ["peepTotOut","dpSetOut","dpTotOut","gapOut","cstatOut","mpTotOut"].forEach(id => $(id).textContent = "—");
+    ["peepTotOut","dpTotOut","mpTotOut","gapOut","cstatOut"].forEach(id => $(id).textContent="—");
     $("alerts").innerHTML = "";
-    setStatus("—", "");
-    drawChart(); // refresh even if empty
+    setStatus("—","");
   }
 
   function addAlert(kind, html) {
@@ -644,103 +841,143 @@
     $("alerts").appendChild(div);
   }
 
-  /* ---------- History + Chart (ponto 2) ---------- */
-  const HISTORY_KEY = "ucipHistory_v1";
-  // Estrutura: [{ts, patient, dp, mp}]
-  let historyData = [];
+  function calc() {
+    $("alerts").innerHTML = "";
 
-  function loadHistory() {
-    try {
-      historyData = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
-      if (!Array.isArray(historyData)) historyData = [];
-    } catch {
-      historyData = [];
-    }
-  }
+    const vtRaw = toNum($("vt").value);
+    const rr = toNum($("rr").value);
+    const peepSet = toNum($("peep").value);
+    const autopeep = toNum($("autopeep").value || "0");
+    const pplat = toNum($("pplat").value);
+    const ppeak = toNum($("ppeak").value);
 
-  function saveHistory() {
-    localStorage.setItem(HISTORY_KEY, JSON.stringify(historyData));
-  }
+    const vtL = vtToLiters(vtRaw, $("unitsVT").value);
 
-  function currentPatient() {
-    return ($("patient").value || "").trim() || "Sem identificação";
-  }
+    const errs = [];
+    if (!Number.isFinite(vtL) || vtL<=0) errs.push("VT inválido");
+    if (!Number.isFinite(rr) || rr<=0) errs.push("RR inválida");
+    if (!Number.isFinite(peepSet) || peepSet<0) errs.push("PEEP set inválida");
+    if (!Number.isFinite(autopeep) || autopeep<0) errs.push("Auto-PEEP inválida");
+    if (!Number.isFinite(pplat) || pplat<=0) errs.push("Pplat inválida");
+    if (!Number.isFinite(ppeak) || ppeak<=0) errs.push("Ppeak inválida");
 
-  function pushMeasurement(dp, mp) {
-    const ts = Date.now();
-    const patient = currentPatient();
-    historyData.push({ ts, patient, dp, mp });
+    if (errs.length) { clearOutputs(); alert("Corrige:\n• " + errs.join("\n• ")); return; }
 
-    // manter ~60 pontos (últimos)
-    if (historyData.length > 60) historyData = historyData.slice(historyData.length - 60);
+    const peepTot = peepSet + autopeep;
+    const dpTot = pplat - peepTot;
+    const gap = ppeak - pplat;
+    const mpTot = 0.098 * rr * vtL * (ppeak - 0.5 * dpTot);
+    const cstat = (dpTot > 0) ? ((vtL*1000)/dpTot) : NaN;
 
+    $("peepTotOut").textContent = peepTot.toFixed(1);
+    $("dpTotOut").textContent = dpTot.toFixed(1);
+    $("mpTotOut").textContent = mpTot.toFixed(1);
+    $("gapOut").textContent = gap.toFixed(1);
+    $("cstatOut").textContent = Number.isFinite(cstat) ? cstat.toFixed(1) : "—";
+
+    setClassByThreshold($("dpTotOut"), dpTot, thresholds.dpGreen, thresholds.dpRed);
+    setClassByThreshold($("mpTotOut"), mpTot, thresholds.mpGreen, thresholds.mpRed);
+
+    // alerts
+    if (autopeep >= 2) addAlert("warn", "<b>Auto-PEEP relevante</b><br>Priorizar ↓RR, ↑Te, tratar broncoespasmo/secreções, rever assincronia.");
+    if (dpTot <= 0) addAlert("bad", "<b>Inconsistência</b><br>ΔP_total ≤ 0 → confirmar pausa/fluxo=0, PEEP e auto-PEEP.");
+    else if (dpTot >= thresholds.dpRed) addAlert("bad", "<b>ΔP_total elevado</b><br>Prioridade: ↓VT (passos pequenos) ± permissiva CO₂ (excepto perfil Neuro).");
+    else if (dpTot >= thresholds.dpGreen) addAlert("warn", "<b>ΔP_total na zona de atenção</b><br>Optimizar (↓VT / PEEP funcional se ΔP ↓).");
+    else addAlert("ok", "<b>ΔP_total favorável</b><br>Stress elástico mais baixo (interpretar no contexto).");
+
+    if (mpTot >= thresholds.mpRed) addAlert("warn", "<b>Mechanical Power elevada</b><br>Usar como tendência. Se possível: ↓RR (primeira alavanca), optimizar expiração e resistência.");
+    else if (mpTot >= thresholds.mpGreen) addAlert("warn", "<b>Mechanical Power moderada</b><br>Considerar optimizar RR/VT e resistência.");
+    else addAlert("ok", "<b>Mechanical Power baixa</b><br>Manter e monitorizar tendência.");
+
+    if (gap >= 8) addAlert("warn", "<b>Componente resistiva importante</b><br>Ppeak − Pplat elevado → tratar resistência antes de reduzir VT por Ppeak.");
+
+    // save measurement
+    const { pid, pname } = currentPatient();
+    const entry = {
+      ts: Date.now(),
+      pid, pname,
+      dp: dpTot,
+      mp: mpTot,
+      peepTot,
+      gap,
+      cstat: Number.isFinite(cstat) ? cstat : null,
+      notes: ($("notes").value||"").trim(),
+      pathology: pathologyProfile
+    };
+    historyData.push(entry);
+    if (historyData.length > 2000) historyData = historyData.slice(-2000);
     saveHistory();
+    localStorage.setItem("ucipLastPatient_v2", pid);
+
+    const series = historyForCurrentPatient();
+    const st = overallStatus(dpTot, mpTot, series);
+    setStatus(st.text, st.cls);
+
+    drawChart();
+    refreshAudit();
+  }
+
+  /* ---------- Round mode: next patient ---------- */
+  function roundModeNext() {
+    // guardar cálculo se inputs preenchidos e outputs ainda não actualizados? (melhor: se RR e VT têm números)
+    // não força cálculo. Apenas avança doente e limpa inputs.
+    const sel = $("patientSelect");
+    const idx = patients.findIndex(p => p.id === sel.value);
+    const nextIdx = (idx + 1) % patients.length;
+    sel.value = patients[nextIdx].id;
+    localStorage.setItem("ucipLastPatient_v2", sel.value);
+    resetInputs();
+    drawChart();
+    refreshAudit();
+    alert("Próximo doente seleccionado.");
+  }
+
+  /* ---------- Inputs ---------- */
+  function resetInputs() {
+    ["vt","rr","peep","autopeep","pplat","ppeak","notes"].forEach(id => $(id).value="");
+    clearOutputs();
     drawChart();
   }
 
-  function clearHistoryConfirm() {
-    const ok = confirm("Apagar o histórico local (tudo) desta app neste telemóvel?");
-    if (!ok) return;
-    historyData = [];
-    saveHistory();
-    drawChart();
-    alert("Histórico apagado.");
-  }
+  $("calcBtn").addEventListener("click", calc);
 
+  /* ---------- Chart (no libs) ---------- */
   function formatTime(ts) {
     const d = new Date(ts);
-    const hh = String(d.getHours()).padStart(2,"0");
-    const mm = String(d.getMinutes()).padStart(2,"0");
-    return `${hh}:${mm}`;
-  }
-
-  function getPatientSeries(patient) {
-    const filtered = historyData.filter(x => x.patient === patient);
-    // se não houver série para esse doente, usa tudo
-    return filtered.length ? filtered : historyData;
+    return String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0");
   }
 
   function drawChart() {
     const canvas = $("trendChart");
     const ctx = canvas.getContext("2d");
-
-    // ajustar para largura real (para não ficar desfocado)
     const rect = canvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
     canvas.width = Math.floor(rect.width * dpr);
     canvas.height = Math.floor(220 * dpr);
 
-    const W = canvas.width;
-    const H = canvas.height;
-
-    // background
+    const W = canvas.width, H = canvas.height;
     ctx.clearRect(0,0,W,H);
     ctx.fillStyle = "rgba(2,6,23,.35)";
     ctx.fillRect(0,0,W,H);
 
-    const patient = currentPatient();
-    const series = getPatientSeries(patient);
-    if (!series.length) {
-      ctx.fillStyle = "rgba(148,163,184,.8)";
+    const seriesFull = historyForCurrentPatient();
+    const series = seriesFull.slice(Math.max(0, seriesFull.length - 20));
+    if (series.length === 0) {
+      ctx.fillStyle = "rgba(148,163,184,.85)";
       ctx.font = `${12*dpr}px -apple-system, system-ui, Segoe UI`;
-      ctx.fillText("Sem histórico ainda — faz um cálculo para criar tendência.", 12*dpr, 24*dpr);
+      ctx.fillText("Sem histórico para este doente — faz um cálculo.", 12*dpr, 24*dpr);
       return;
     }
 
-    // pegar últimos 20
-    const data = series.slice(Math.max(0, series.length - 20));
-    const labels = data.map(x => formatTime(x.ts));
-    const dpVals = data.map(x => x.dp);
-    const mpVals = data.map(x => x.mp);
+    const labels = series.map(x => formatTime(x.ts));
+    const dpVals = series.map(x => x.dp);
+    const mpVals = series.map(x => x.mp);
 
-    // escalas: dp e mp em eixos separados normalizados na mesma altura
-    const pad = 28 * dpr;
-    const x0 = 12 * dpr;
-    const y0 = 12 * dpr;
+    const pad = 28*dpr;
+    const x0 = 12*dpr, y0 = 12*dpr;
     const w = W - x0 - 12*dpr;
     const h = H - y0 - pad;
 
-    // grid
     ctx.strokeStyle = "rgba(148,163,184,.18)";
     ctx.lineWidth = 1*dpr;
     for (let i=0;i<=4;i++){
@@ -748,20 +985,18 @@
       ctx.beginPath(); ctx.moveTo(x0,y); ctx.lineTo(x0+w,y); ctx.stroke();
     }
 
-    const n = data.length;
+    const n = series.length;
     const x = (i) => x0 + (w * (n===1 ? 0 : i/(n-1)));
 
-    // dp scale
     const dpMin = Math.min(...dpVals, 0);
-    const dpMax = Math.max(...dpVals, 20);
+    const dpMax = Math.max(...dpVals, thresholds.dpRed + 4);
     const dpY = (v) => y0 + h - ((v - dpMin) / (dpMax - dpMin || 1)) * h;
 
-    // mp scale
     const mpMin = Math.min(...mpVals, 0);
-    const mpMax = Math.max(...mpVals, 30);
+    const mpMax = Math.max(...mpVals, thresholds.mpRed + 8);
     const mpY = (v) => y0 + h - ((v - mpMin) / (mpMax - mpMin || 1)) * h;
 
-    // draw lines (DP)
+    // DP line
     ctx.strokeStyle = "rgba(56,189,248,.95)";
     ctx.lineWidth = 2*dpr;
     ctx.beginPath();
@@ -771,7 +1006,7 @@
     }
     ctx.stroke();
 
-    // draw lines (MP)
+    // MP line
     ctx.strokeStyle = "rgba(234,179,8,.9)";
     ctx.lineWidth = 2*dpr;
     ctx.beginPath();
@@ -781,8 +1016,8 @@
     }
     ctx.stroke();
 
-    // points
-    function dot(px,py, color){
+    // dots
+    function dot(px,py,color){
       ctx.fillStyle = color;
       ctx.beginPath();
       ctx.arc(px,py,3.2*dpr,0,Math.PI*2);
@@ -793,12 +1028,11 @@
       dot(x(i), mpY(mpVals[i]), "rgba(234,179,8,.9)");
     }
 
-    // legend
+    // labels
     ctx.fillStyle = "rgba(229,231,235,.95)";
     ctx.font = `${12*dpr}px -apple-system, system-ui, Segoe UI`;
     ctx.fillText("ΔP (azul) e MP (amarelo) — últimos registos", 12*dpr, (H - 10*dpr));
 
-    // x labels (só alguns)
     ctx.fillStyle = "rgba(148,163,184,.9)";
     ctx.font = `${10*dpr}px -apple-system, system-ui, Segoe UI`;
     const step = Math.max(1, Math.floor(n/5));
@@ -807,189 +1041,145 @@
     }
   }
 
-  /* ---------- Color coding + status (ponto 4) ---------- */
-  function setClassByThreshold(el, v, t1, t2) {
-    el.classList.remove("good","warnColor","badColor");
-    if (!Number.isFinite(v)) return;
-    if (v < t1) el.classList.add("good");
-    else if (v < t2) el.classList.add("warnColor");
-    else el.classList.add("badColor");
-  }
+  /* ---------- Auditoria ---------- */
+  function pct(a,b){ return b>0 ? Math.round((a/b)*100) : 0; }
 
-  function setStatus(text, cls) {
-    const b = $("statusBadge");
-    b.classList.remove("good","warnColor","badColor");
-    b.textContent = `Estado: ${text}`;
-    if (cls) b.classList.add(cls);
-  }
+  function auditSeries(series) {
+    const n = series.length;
+    if (n === 0) return null;
 
-  function computeTrendFlag(patient) {
-    // tendência simples: comparar média dos últimos 3 vs 3 anteriores (se existir)
-    const s = getPatientSeries(patient);
-    if (s.length < 6) return { dpUp:false, mpUp:false };
-    const last = s.slice(-3);
-    const prev = s.slice(-6,-3);
-    const mean = arr => arr.reduce((a,b)=>a+b,0)/arr.length;
+    let green=0,yellow=0,red=0;
+    let dpSum=0, mpSum=0;
+    for (const x of series) {
+      dpSum += x.dp;
+      mpSum += x.mp;
 
-    const dpLast = mean(last.map(x=>x.dp));
-    const dpPrev = mean(prev.map(x=>x.dp));
-    const mpLast = mean(last.map(x=>x.mp));
-    const mpPrev = mean(prev.map(x=>x.mp));
+      let lvl = 0;
+      if (x.dp >= thresholds.dpRed) lvl = Math.max(lvl,2);
+      else if (x.dp >= thresholds.dpGreen) lvl = Math.max(lvl,1);
+
+      if (x.mp >= thresholds.mpRed) lvl = Math.max(lvl,2);
+      else if (x.mp >= thresholds.mpGreen) lvl = Math.max(lvl,1);
+
+      if (lvl===0) green++;
+      else if (lvl===1) yellow++;
+      else red++;
+    }
+
+    const dpMean = dpSum/n;
+    const mpMean = mpSum/n;
+    const tr = computeTrendFlag(series);
 
     return {
-      dpUp: (dpLast - dpPrev) > 1.0,
-      mpUp: (mpLast - mpPrev) > 1.0
+      n,
+      green, yellow, red,
+      dpMean, mpMean,
+      trend: tr
     };
   }
 
-  function overallStatus(dp, mp, patient) {
-    // prioridade ΔP; MP secundária; tendência sobe = agrava 1 nível
-    // níveis: 0=verde 1=amarelo 2=vermelho
-    let lvl = 0;
+  function refreshAudit() {
+    // current patient
+    const { pname } = currentPatient();
+    const series = historyForCurrentPatient();
+    const a = auditSeries(series);
 
-    if (Number.isFinite(dp)) {
-      if (dp >= 16) lvl = Math.max(lvl,2);
-      else if (dp >= 14) lvl = Math.max(lvl,1);
-      else lvl = Math.max(lvl,0);
-    }
-
-    if (Number.isFinite(mp)) {
-      if (mp >= 17) lvl = Math.max(lvl,2);
-      else if (mp >= 12) lvl = Math.max(lvl,1);
-    }
-
-    const tr = computeTrendFlag(patient);
-    if (tr.dpUp || tr.mpUp) lvl = Math.min(2, lvl + 1);
-
-    if (lvl === 0) return { text:"Verde", cls:"good" };
-    if (lvl === 1) return { text:"Amarelo", cls:"warnColor" };
-    return { text:"Vermelho", cls:"badColor" };
-  }
-
-  /* ---------- Core calc ---------- */
-  function calc() {
-    $("alerts").innerHTML = "";
-
-    const vtRaw = toNum($("vt").value);
-    const rr = toNum($("rr").value);
-    const peepSet = toNum($("peep").value);
-    const autopeep = toNum($("autopeep").value || "0");
-    const pplat = toNum($("pplat").value);
-    const ppeak = toNum($("ppeak").value);
-    const vtL = vtToLiters(vtRaw, $("unitsVT").value);
-
-    const errs = [];
-    if (!Number.isFinite(vtL) || vtL <= 0) errs.push("VT inválido");
-    if (!Number.isFinite(rr) || rr <= 0) errs.push("RR inválida");
-    if (!Number.isFinite(peepSet) || peepSet < 0) errs.push("PEEP set inválida");
-    if (!Number.isFinite(autopeep) || autopeep < 0) errs.push("Auto-PEEP inválida");
-    if (!Number.isFinite(pplat) || pplat <= 0) errs.push("Pplat inválida");
-    if (!Number.isFinite(ppeak) || ppeak <= 0) errs.push("Ppeak inválida");
-
-    if (errs.length) {
-      clearOutputs();
-      alert("Corrige:\n• " + errs.join("\n• "));
-      return;
-    }
-
-    const peepTot = peepSet + autopeep;
-    const dpSet = pplat - peepSet;
-    const dpTot = pplat - peepTot;
-    const gap = ppeak - pplat;
-
-    const mpTot = 0.098 * rr * vtL * (ppeak - 0.5 * dpTot);
-
-    const cstat = (dpTot > 0) ? ((vtL * 1000) / dpTot) : NaN;
-
-    $("peepTotOut").textContent = peepTot.toFixed(1);
-    $("dpSetOut").textContent = dpSet.toFixed(1);
-    $("dpTotOut").textContent = dpTot.toFixed(1);
-    $("gapOut").textContent = gap.toFixed(1);
-    $("mpTotOut").textContent = mpTot.toFixed(1);
-    $("cstatOut").textContent = Number.isFinite(cstat) ? cstat.toFixed(1) : "—";
-
-    // Ponto 4: cores
-    setClassByThreshold($("dpTotOut"), dpTot, 14, 16);
-    setClassByThreshold($("mpTotOut"), mpTot, 12, 17);
-
-    // Alerts operacionais
-    if (autopeep >= 2) {
-      addAlert("warn",
-        "<b>Auto-PEEP relevante</b><br>" +
-        "Auto-PEEP ≥ 2 cmH₂O sugere trapping/tempo expiratório insuficiente. Priorizar ↓RR, ↑Te, broncodilatação/aspiração e revisão de assincronia."
-      );
-    }
-
-    if (dpTot <= 0) {
-      addAlert("bad",
-        "<b>Inconsistência</b><br>" +
-        "ΔP_total ≤ 0 não é coerente em ventilação passiva. Confirmar Pplat (pausa/fluxo=0), PEEP e auto-PEEP."
-      );
-    } else if (dpTot > 15) {
-      addAlert("bad",
-        "<b>ΔP_total elevado</b><br>" +
-        "Prioridade: ↓VT (passos pequenos) ± permissiva CO₂ se tolerável. Reavaliar após cada ajuste."
-      );
-    } else if (dpTot >= 14) {
-      addAlert("warn",
-        "<b>ΔP_total na zona de atenção</b><br>" +
-        "Optimizar para reduzir (↓VT / PEEP funcional se ΔP ↓)."
-      );
+    if (!a) {
+      $("auditSummary").innerHTML = `Doente: <b>${pname}</b><br>Sem dados ainda.`;
     } else {
-      addAlert("ok",
-        "<b>ΔP_total favorável</b><br>" +
-        "Stress elástico mais baixo (interpretar no contexto clínico)."
-      );
+      $("auditSummary").innerHTML =
+        `Doente: <b>${pname}</b><br>` +
+        `Registos: <b>${a.n}</b> | Verde: <b>${pct(a.green,a.n)}%</b> | Amarelo: <b>${pct(a.yellow,a.n)}%</b> | Vermelho: <b>${pct(a.red,a.n)}%</b><br>` +
+        `ΔP média: <b>${a.dpMean.toFixed(1)}</b> | MP média: <b>${a.mpMean.toFixed(1)}</b><br>` +
+        `Tendência: ΔP ${a.trend.dpUp ? "↑" : "—"} | MP ${a.trend.mpUp ? "↑" : "—"} (últimos 3 vs 3 anteriores)`;
     }
 
-    if (mpTot >= 17) {
-      addAlert("warn",
-        "<b>Mechanical Power elevada</b><br>" +
-        "Em pediatria não há cut-off universal; usar como tendência. Se gasometria permitir, reduzir RR (primeira alavanca) e optimizar resistência/expiração."
-      );
-    } else if (mpTot >= 12) {
-      addAlert("warn",
-        "<b>Mechanical Power moderada</b><br>" +
-        "Se possível, optimizar RR/VT e reduzir resistência para baixar energia cumulativa."
-      );
+    // global
+    const g = auditSeries(historyData);
+    if (!g) {
+      $("auditGlobal").innerHTML = "Sem dados globais.";
     } else {
-      addAlert("ok",
-        "<b>Mechanical Power baixa</b><br>" +
-        "Manter e monitorizar tendência."
-      );
+      $("auditGlobal").innerHTML =
+        `Global (neste dispositivo): Registos <b>${g.n}</b><br>` +
+        `Verde: <b>${pct(g.green,g.n)}%</b> | Amarelo: <b>${pct(g.yellow,g.n)}%</b> | Vermelho: <b>${pct(g.red,g.n)}%</b><br>` +
+        `ΔP média: <b>${g.dpMean.toFixed(1)}</b> | MP média: <b>${g.mpMean.toFixed(1)}</b>`;
     }
-
-    if (gap >= 8) {
-      addAlert("warn",
-        "<b>Componente resistiva importante</b><br>" +
-        "Ppeak − Pplat ≥ 8 cmH₂O sugere resistência (tubo/fluxo/secreções/broncoespasmo). Tratar resistência antes de reduzir VT por ‘pressões altas’."
-      );
-    }
-
-    // Ponto 2: guardar + gráfico
-    pushMeasurement(dpTot, mpTot);
-
-    // Ponto 4: estado global (inclui tendência)
-    const patient = currentPatient();
-    const st = overallStatus(dpTot, mpTot, patient);
-    setStatus(st.text, st.cls);
   }
 
-  function resetAll() {
-    ["patient","vt","rr","peep","autopeep","pplat","ppeak","notes"].forEach(id => $(id).value = "");
-    clearOutputs();
+  function clearAllDataConfirm() {
+    const ok = confirm("Apagar TUDO (doentes + histórico) neste dispositivo?");
+    if (!ok) return;
+    localStorage.removeItem(KEY_PATIENTS);
+    localStorage.removeItem(KEY_HISTORY);
+    localStorage.removeItem(KEY_MODE);
+    localStorage.removeItem("ucipLastPatient_v2");
+    alert("Dados apagados. Recarrega a app.");
+    location.reload();
   }
 
-  $("calcBtn").addEventListener("click", calc);
-  $("resetBtn").addEventListener("click", resetAll);
+  /* ---------- Exports ---------- */
+  function downloadText(filename, text, mime="text/plain") {
+    const blob = new Blob([text], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
 
-  /* ---------- Export PDF (ponto 3) ---------- */
+  function exportJSON() {
+    const { pname } = currentPatient();
+    const series = historyForCurrentPatient();
+    const payload = {
+      exported_at: nowStr(),
+      patient: pname,
+      pathology: pathologyProfile,
+      thresholds,
+      data: series
+    };
+    downloadText(`UCIP_${sanitizeFile(pname)}_history.json`, JSON.stringify(payload, null, 2), "application/json");
+  }
+
+  function exportCSV() {
+    const { pname } = currentPatient();
+    const series = historyForCurrentPatient();
+    const header = ["ts","datetime","patient","dp","mp","peepTot","gap","cstat","pathology","notes"];
+    const rows = [header.join(",")];
+    for (const x of series) {
+      const dt = new Date(x.ts).toISOString();
+      const row = [
+        x.ts,
+        dt,
+        csvEsc(x.pname),
+        numOrBlank(x.dp),
+        numOrBlank(x.mp),
+        numOrBlank(x.peepTot),
+        numOrBlank(x.gap),
+        x.cstat==null ? "" : x.cstat,
+        x.pathology || "",
+        csvEsc(x.notes || "")
+      ];
+      rows.push(row.join(","));
+    }
+    downloadText(`UCIP_${sanitizeFile(pname)}_history.csv`, rows.join("\n"), "text/csv");
+  }
+
+  function csvEsc(s) {
+    const t = String(s ?? "");
+    if (t.includes('"') || t.includes(",") || t.includes("\n")) return `"${t.replaceAll('"','""')}"`;
+    return t;
+  }
+  function numOrBlank(n) { return Number.isFinite(n) ? n : ""; }
+  function sanitizeFile(s) { return String(s).replace(/[^\w\-]+/g,"_").slice(0,60); }
+
+  /* ---------- PDF via print ---------- */
   function exportPDF() {
-    // preencher folha de impressão com o estado actual (mesmo que vazio)
-    const patient = currentPatient();
+    const { pname } = currentPatient();
     const now = new Date();
-    const meta = `Doente/Cama: ${patient} | Data/hora: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
-    $("printMeta").textContent = meta;
+    $("printMeta").textContent = `Doente/Cama: ${pname} | Perfil: ${pathologyProfile} | ${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
 
     const vt = ($("vt").value || "—") + " " + $("unitsVT").value;
     const rr = $("rr").value || "—";
@@ -1003,60 +1193,49 @@
       `VT: ${vt}\nRR: ${rr}/min\nPEEP set: ${peep} cmH₂O\nAuto-PEEP: ${auto} cmH₂O\nPplat: ${pplat} cmH₂O\nPpeak: ${ppeak} cmH₂O` +
       (notes ? `\nNotas: ${notes}` : "");
 
-    const peepTot = $("peepTotOut").textContent;
-    const dpTot = $("dpTotOut").textContent;
-    const mpTot = $("mpTotOut").textContent;
-    const gap = $("gapOut").textContent;
-    const cstat = $("cstatOut").textContent;
-
     $("printResults").textContent =
-      `PEEP total: ${peepTot} cmH₂O\nΔP total: ${dpTot} cmH₂O\nMechanical Power: ${mpTot} J/min\nGap (Ppeak−Pplat): ${gap} cmH₂O\nCstat: ${cstat} mL/cmH₂O`;
+      `PEEP total: ${$("peepTotOut").textContent} cmH₂O\n` +
+      `ΔP total: ${$("dpTotOut").textContent} cmH₂O\n` +
+      `Mechanical Power: ${$("mpTotOut").textContent} J/min\n` +
+      `Gap: ${$("gapOut").textContent} cmH₂O\n` +
+      `Cstat: ${$("cstatOut").textContent} mL/cmH₂O\n` +
+      `Estado: ${$("statusBadge").textContent.replace("Estado:","").trim()}`;
 
-    const status = $("statusBadge").textContent.replace("Estado:","").trim() || "—";
+    $("printPlan").textContent =
+      "Prioridade: controlar ΔP (stress) e depois MP (energia/min). " +
+      "Se auto-PEEP relevante: optimizar expiração/↓RR. " +
+      "Se gap elevado: tratar resistência (tubo/fluxo/secreções/broncoespasmo).";
 
-    // plano resumido (simples, baseado no estado)
-    let plan = `Estado global: ${status}.\n`;
-    plan += `Prioridade: controlar ΔP (stress) e depois MP (energia/min). `;
-    plan += `Se auto-PEEP presente: optimizar expiração/↓RR. `;
-    plan += `Se gap resistivo alto: tratar resistência.`;
-
-    $("printPlan").textContent = plan;
-
-    // imprimir: iOS permite guardar como PDF
     window.print();
   }
 
   /* ---------- Init ---------- */
   function init() {
-    // modo
-    const savedMode = localStorage.getItem("ucipTeachingMode");
-    if (savedMode === "0") teachingMode = false;
+    // mode
+    const m = localStorage.getItem(KEY_MODE);
+    if (m === "0") teachingMode = false;
     applyMode();
 
-    // history
+    // data
+    loadPatients();
     loadHistory();
+    populatePatientSelect();
+
+    // defaults
+    applyPathologyProfile();
+    clearOutputs();
     drawChart();
+    refreshAudit();
 
-    // badge init
-    setStatus("—", "");
-
-    // tag
-    $("versionTag").textContent = "PWA v1";
+    $("versionTag").textContent = "PWA v2 (full)";
   }
   init();
 
-  // PWA Service Worker
+  /* ---------- PWA SW ---------- */
   async function registerSW() {
-    if (!("serviceWorker" in navigator)) {
-      $("swStatus").textContent = "PWA: service worker indisponível";
-      return;
-    }
-    try {
-      await navigator.serviceWorker.register("./sw.js");
-      $("swStatus").textContent = "PWA: offline activo";
-    } catch {
-      $("swStatus").textContent = "PWA: falha no registo";
-    }
+    if (!("serviceWorker" in navigator)) { $("swStatus").textContent = "PWA: SW indisponível"; return; }
+    try { await navigator.serviceWorker.register("./sw.js"); $("swStatus").textContent = "PWA: offline activo"; }
+    catch { $("swStatus").textContent = "PWA: falha no registo"; }
   }
   registerSW();
 </script>
