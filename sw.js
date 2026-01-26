@@ -1,58 +1,32 @@
-const CACHE_NAME = "ucip-dp-mp-PWA-V4"; // <-- versão FORÇADA nova
+// UCIP PWA — NUKE SW (força sair de caches antigas)
+// Objectivo: limpar tudo e auto-desregistar o SW antigo que te prende no v2.
 
-const ASSETS = [
-  "./",
-  "./index.html",
-  "./manifest.webmanifest",
-  "./sw.js",
-  "./icons/icon-192.png.PNG",
-  "./icons/icon-512.png.PNG",
-  "./icons/apple-touch-icon.png.PNG",
-  "./icons/favicon-32.png.PNG"
-];
-
-// INSTALL
-self.addEventListener("install", event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(ASSETS);
-    }).then(() => self.skipWaiting())
-  );
+self.addEventListener("install", (event) => {
+  // instala imediatamente
+  self.skipWaiting();
 });
 
-// ACTIVATE — LIMPA CACHES ANTIGOS
-self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(keys => {
-      return Promise.all(
-        keys.map(key => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
-        })
-      );
-    }).then(() => self.clients.claim())
-  );
+self.addEventListener("activate", (event) => {
+  event.waitUntil((async () => {
+    // 1) apagar todas as caches
+    const keys = await caches.keys();
+    await Promise.all(keys.map(k => caches.delete(k)));
+
+    // 2) tentar desregistar este service worker
+    try { await self.registration.unregister(); } catch (e) {}
+
+    // 3) forçar os clientes a recarregar com cache-bust
+    const clientsArr = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+    for (const client of clientsArr) {
+      try {
+        const url = new URL(client.url);
+        url.searchParams.set("nocache", String(Date.now()));
+        client.navigate(url.toString());
+      } catch (e) {}
+    }
+  })());
 });
 
-// FETCH — CACHE FIRST
-self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") return;
-
-  event.respondWith(
-    caches.match(event.request).then(cached => {
-      if (cached) return cached;
-
-      return fetch(event.request).then(response => {
-        if (!response || response.status !== 200) return response;
-
-        const responseClone = response.clone();
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, responseClone);
-        });
-
-        return response;
-      });
-    })
-  );
-});
+// 4) NÃO interceptar fetch (deixa o browser ir à rede)
+// Isto é intencional para quebrar o ciclo de caches.
+self.addEventListener("fetch", () => {});
