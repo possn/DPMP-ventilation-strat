@@ -536,6 +536,7 @@
     <span id="swStatus">PWA: a iniciar…</span>
     <span class="spacerDot">•</span>
     <span>Se vires versão antiga: remover do ecrã principal + limpar “Dados dos Sites” do Safari.</span>
+    <button class="chipBtn" onclick="forceUpdate()">Forçar actualizar</button>
   </div>
 </footer>
 
@@ -1180,6 +1181,39 @@
     catch { $("swStatus").textContent = "PWA: falha no registo"; }
   }
   registerSW();
+  
+  // === BOTÃO DE EMERGÊNCIA: FORÇAR UPDATE PWA ===
+  async function forceUpdate() {
+
+  const ok = confirm("Forçar actualização da app?\nIsto limpa cache local e recarrega.");
+  if (!ok) return;
+
+  try {
+
+    // Apagar caches
+    if ("caches" in window) {
+      const names = await caches.keys();
+      await Promise.all(names.map(n => caches.delete(n)));
+    }
+
+    // Desregistar Service Workers
+    if ("serviceWorker" in navigator) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      for (const reg of regs) {
+        await reg.unregister();
+      }
+    }
+
+    // Reload forçado
+    const url = new URL(window.location.href);
+    url.searchParams.set("force", Date.now());
+    window.location.href = url.toString();
+
+  } catch (e) {
+    alert("Erro ao forçar update. A recarregar.");
+    location.reload();
+  }
+}
 </script>
 
 </body>
