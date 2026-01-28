@@ -417,37 +417,173 @@
 
   <!-- TAB: MANUAL -->
   <section id="manual" class="section">
-    <section class="card">
-      <h2>Manual</h2>
-      <details open>
-        <summary>Porquê ΔP e MP</summary>
-        <div class="detailsBody">
-          <ul>
-            <li>ΔP aproxima o stress elástico por ciclo (Pplat − PEEP_total).</li>
-            <li>MP aproxima energia por minuto; sobe muito com RR.</li>
-            <li>Auto-PEEP e resistência podem aumentar pressões sem equivaler a mais stress alveolar.</li>
-          </ul>
-        </div>
-      </details>
+  <section id="manual" class="section">
+  <section class="card">
+    <h2>Manual (detalhado)</h2>
 
-      <details>
-        <summary>Como medir Pplat (VCV)</summary>
-        <div class="detailsBody">
-          <ul>
-            <li>Pausa inspiratória com fluxo=0; evitar tosse/drive/assincronia.</li>
-          </ul>
-        </div>
-      </details>
+    <details open>
+      <summary>1) Conceito central: porquê ΔP e Mechanical Power</summary>
+      <div class="detailsBody">
+        <p>
+          A ventilação mecânica pode causar lesão pulmonar induzida pelo ventilador (VILI) por carga mecânica excessiva:
+          <b>stress</b> (pressão elástica), <b>strain</b> (deformação/volume) e <b>energia cumulativa</b> ao longo do tempo.
+        </p>
+        <ul>
+          <li><b>ΔP (Driving Pressure)</b> aproxima o <b>stress elástico por ciclo</b> (o “esforço” imposto a cada insuflação).</li>
+          <li><b>Mechanical Power (MP)</b> aproxima a <b>energia por minuto</b> (carga total, muito sensível à RR).</li>
+        </ul>
+        <p>
+          Por isso, “ml/kg” é insuficiente: o mesmo VT pode ser seguro num pulmão complacente e agressivo num “baby lung”
+          (pulmão funcional reduzido, típico de PARDS/atelectasia).
+        </p>
+      </div>
+    </details>
 
-      <details>
-        <summary>Auto-PEEP</summary>
-        <div class="detailsBody">
-          <ul>
-            <li>Pausa expiratória; se ≥2 cmH₂O considerar trapping e usar PEEP_total.</li>
-          </ul>
-        </div>
-      </details>
-    </section>
+    <details>
+      <summary>2) Fisiologia: ΔP, compliance e o que ΔP realmente mede</summary>
+      <div class="detailsBody">
+        <p><b>Definição (VCV):</b></p>
+        <p><b>PEEP_total = PEEP_set + Auto-PEEP</b></p>
+        <p><b>ΔP_total = Pplat − PEEP_total</b></p>
+
+        <p>
+          A ΔP traduz a pressão necessária para acomodar o VT no pulmão disponível. Se a compliance cai, ΔP sobe para o mesmo VT.
+        </p>
+
+        <ul>
+          <li><b>Pplat</b> (com fluxo=0) aproxima a pressão alveolar no fim da inspiração.</li>
+          <li><b>PEEP_total</b> é o “piso” de pressão/volume no fim da expiração (inclui trapping).</li>
+          <li><b>ΔP_total</b> é a pressão “dinâmica elástica” aplicada por ciclo.</li>
+        </ul>
+
+        <p><b>Compliance estática (útil para contexto):</b></p>
+        <p><b>Cstat = VT(mL) / ΔP_total</b></p>
+      </div>
+    </details>
+
+    <details>
+      <summary>3) Fisiologia: Mechanical Power e por que RR é o acelerador</summary>
+      <div class="detailsBody">
+        <p>
+          Mechanical Power integra volume, pressão, fluxo e frequência. Mesmo com ΔP aceitável, RR alta pode elevar muito a energia/minuto.
+          Em termos de risco, <b>energia repetida</b> pode ser tão relevante quanto picos de pressão.
+        </p>
+
+        <p><b>Fórmula prática (VCV, aproximação):</b></p>
+        <p><b>MP ≈ 0.098 × RR × VT(L) × (Ppeak − ½×ΔP_total)</b></p>
+
+        <ul>
+          <li>VT em <b>litros</b>.</li>
+          <li>Pressões em <b>cmH₂O</b>.</li>
+          <li>Resultado em <b>J/min</b> (estimativa).</li>
+        </ul>
+
+        <p>
+          Interpretação: aumentar RR aumenta MP quase linearmente; aumentar pressões/VT também aumenta, mas RR é frequentemente o driver oculto
+          (especialmente em doentes com drive elevado, asma/bronquiolite com trapping ou permissiva hipercápnia não aceite).
+        </p>
+      </div>
+    </details>
+
+    <details>
+      <summary>4) Como obter parâmetros: Pplat (VCV) com fiabilidade</summary>
+      <div class="detailsBody">
+        <ul>
+          <li>Usar <b>pausa inspiratória</b> suficiente para fluxo = 0 (habitualmente 0.5–1.0 s).</li>
+          <li>Garantir ausência de <b>tosse</b>, <b>drive</b> e <b>assincronia</b> durante a pausa.</li>
+          <li>Confirmar traçado estável (sem “serrilhado”).</li>
+          <li>Se leak importante, Pplat pode ficar pouco fiável.</li>
+        </ul>
+
+        <p><b>Nota clínica:</b> Ppeak inclui componente resistiva (tubo/fluxo/broncoespasmo). Pplat é o marcador elástico.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>5) Como obter parâmetros: Auto-PEEP (trapping) e por que muda tudo</summary>
+      <div class="detailsBody">
+        <ul>
+          <li>Usar <b>pausa expiratória</b> para medir pressão no fim da expiração.</li>
+          <li>Se <b>Auto-PEEP ≥ 2 cmH₂O</b>, considerar trapping clinicamente relevante.</li>
+        </ul>
+
+        <p><b>Regra:</b> para ΔP e risco elástico, usa sempre <b>PEEP_total</b>.</p>
+
+        <p><b>Obstrução (asma/bronquiolite):</b></p>
+        <ul>
+          <li>Prioridade é reduzir trapping: <b>↓RR</b>, <b>↑tempo expiratório</b>, tratar broncoespasmo/secreções, rever tubo.</li>
+          <li>PEEP externa pode ajudar em casos seleccionados, mas não “apaga” Auto-PEEP; reavaliar sempre.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>6) Interpretação por limiares: ΔP e MP (uso prático)</summary>
+      <div class="detailsBody">
+        <p><b>ΔP_total (cmH₂O) — regra prática:</b></p>
+        <ul>
+          <li><b>&lt; 14</b> → geralmente aceitável</li>
+          <li><b>14–16</b> → atenção/optimizar contexto</li>
+          <li><b>≥ 16</b> → alto risco mecânico → actuar</li>
+        </ul>
+
+        <p><b>Mechanical Power (J/min) — regra prática (tendência + patologia):</b></p>
+        <ul>
+          <li><b>&lt; 12</b> → geralmente aceitável</li>
+          <li><b>12–17</b> → intermédio (olhar tendência)</li>
+          <li><b>≥ 17</b> → carga energética alta → actuar</li>
+        </ul>
+
+        <p>
+          Em pediatria, mais do que um “número mágico”, interessa <b>o contexto</b> e a <b>tendência ao longo do turno</b>.
+          Se MP sobe após ajustes (ex.: RR a subir para manter CO₂), isso é sinal de risco cumulativo.
+        </p>
+      </div>
+    </details>
+
+    <details>
+      <summary>7) Separar elástico vs resistivo: Gap (Ppeak − Pplat)</summary>
+      <div class="detailsBody">
+        <p>
+          <b>Gap = Ppeak − Pplat</b> aproxima a componente resistiva (tubo/fluxo/broncoespasmo/secreções).
+        </p>
+        <ul>
+          <li><b>Gap elevado</b> com Pplat estável → problema resistivo (tratar resistência).</li>
+          <li><b>Pplat elevado</b> com gap baixo/moderado → problema elástico/compliance.</li>
+        </ul>
+
+        <p><b>Implicação:</b> reduzir Ppeak por tratar resistência pode reduzir MP sem mexer no stress alveolar.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>8) Armadilhas frequentes (erro típico de internos)</summary>
+      <div class="detailsBody">
+        <ul>
+          <li>Usar Ppeak como se fosse Pplat (sobrestima stress alveolar).</li>
+          <li>Medir Pplat sem fluxo=0 (valor “falso”).</li>
+          <li>Ignorar Auto-PEEP em obstrução → ΔP subestimada e risco real oculto.</li>
+          <li>Subir RR para corrigir CO₂ e elevar MP silenciosamente.</li>
+          <li>Não reavaliar após alterações (a tendência é a informação principal).</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>9) Mensagem prática de bedside</summary>
+      <div class="detailsBody">
+        <ul>
+          <li>Não guiar apenas por ml/kg. Usar <b>ΔP</b> e <b>MP</b> para segurança mecânica.</li>
+          <li>Se ΔP está alta: actuar sobretudo em <b>VT/PEEP funcional</b> e reduzir stress por ciclo.</li>
+          <li>Se MP está alta: actuar sobretudo em <b>RR</b> e reduzir energia/min (sem piorar trapping).</li>
+          <li>Em obstrução: tratar <b>Auto-PEEP</b> primeiro (RR/Te/broncoespasmo).</li>
+          <li>Reavaliar sempre após cada mudança e seguir tendência (minutos–horas).</li>
+        </ul>
+      </div>
+    </details>
+
+  </section>
+</section>
   </section>
 
   <!-- TAB: FLUXOGRAMA -->
