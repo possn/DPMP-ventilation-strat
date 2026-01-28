@@ -269,50 +269,48 @@
   <section id="calc" class="section active">
     <div class="grid">
 
-  <section class="card">
-  <h2>Doente</h2>
+      <section class="card">
+        <h2>Doente</h2>
 
-  <div class="row cols2">
-    <div>
-      <label for="patientSelect">Doente/Cama</label>
-      <select id="patientSelect"></select>
-      <div class="hint teaching">Histórico e auditoria ficam por doente neste dispositivo.</div>
-    </div>
+        <div class="row cols2">
+          <div>
+            <label for="patientSelect">Doente/Cama</label>
+            <select id="patientSelect"></select>
+            <div class="hint teaching">Histórico e auditoria ficam por doente neste dispositivo.</div>
+          </div>
 
-    <div>
-      <label>Ações</label>
-      <div class="btnrow">
-        <button class="action secondary" onclick="addPatientPrompt()">+ Novo</button>
-        <button class="action secondary" onclick="renamePatientPrompt()">Renomear</button>
-        <button class="action secondary" onclick="deletePatientConfirm()">Apagar</button>
-      </div>
-    </div>
-  </div>
+          <div>
+            <label>Ações</label>
+            <div class="btnrow">
+              <button class="action secondary" onclick="addPatientPrompt()">+ Novo</button>
+              <button class="action secondary" onclick="renamePatientPrompt()">Renomear</button>
+              <button class="action secondary" onclick="deletePatientConfirm()">Apagar</button>
+            </div>
+          </div>
+        </div>
 
-  <div class="row cols2" style="margin-top:10px;">
-    <div>
-      <label for="pathology">Perfil</label>
-      <select id="pathology" onchange="applyPathologyProfileSafe()">
-        <option value="GEN">Geral</option>
-        <option value="PARDS">PARDS / hipoxémia difusa</option>
-        <option value="OBSTR">Obstrução (asma/bronquiolite)</option>
-        <option value="POSTOP">Pós-operatório</option>
-        <option value="NEURO">Neuro</option>
-      </select>
-      <div class="hint teaching" id="pathologyHint">Perfis ajustam limiares e foco do algoritmo.</div>
-    </div>
+        <div class="row cols2" style="margin-top:10px;">
+          <div>
+            <label for="pathology">Perfil</label>
+            <select id="pathology" onchange="applyPathologyProfile()">
+              <option value="GEN">Geral</option>
+              <option value="PARDS">PARDS / hipoxémia difusa</option>
+              <option value="OBSTR">Obstrução (asma/bronquiolite)</option>
+              <option value="POSTOP">Pós-operatório</option>
+              <option value="NEURO">Neuro</option>
+            </select>
+            <div class="hint teaching" id="pathologyHint">Perfis ajustam limiares e foco do algoritmo.</div>
+          </div>
 
-    <div>
-      <label>Modo ventilatório</label>
-      <div class="hint"><b>VCV activo</b> (cálculo automático nesta app)</div>
-      <div class="hint teaching">PRVC/PC ficaram fora para evitar erros de interpretação.</div>
-    </div>
-  </div>
+          <div>
+            <label>Modo ventilatório</label>
+            <div class="hint"><b>VCV activo</b> (cálculo automático nesta app)</div>
+            <div class="hint teaching">PRVC/PC ficaram fora para evitar erros de interpretação.</div>
+          </div>
+        </div>
 
-  <!-- compatibilidade com as tuas funções add/rename existentes -->
-  <input id="patientNew" style="display:none" />
-</section>
-      
+        <!-- compatibilidade com as tuas funções add/rename existentes -->
+        <input id="patientNew" style="display:none" />
       </section>
 
       <section class="card">
@@ -417,366 +415,366 @@
 
   <!-- TAB: MANUAL -->
   <section id="manual" class="section">
-  <section class="card">
-    <h2>Manual (detalhado)</h2>
+    <section class="card">
+      <h2>Manual (detalhado)</h2>
 
-    <details open>
-      <summary>1) Conceito central: porquê ΔP e Mechanical Power</summary>
-      <div class="detailsBody">
-        <p>
-          A ventilação mecânica pode causar lesão pulmonar induzida pelo ventilador (VILI) por carga mecânica excessiva:
-          <b>stress</b> (pressão elástica), <b>strain</b> (deformação/volume) e <b>energia cumulativa</b> ao longo do tempo.
-        </p>
-        <ul>
-          <li><b>ΔP (Driving Pressure)</b> aproxima o <b>stress elástico por ciclo</b> (o “esforço” imposto a cada insuflação).</li>
-          <li><b>Mechanical Power (MP)</b> aproxima a <b>energia por minuto</b> (carga total, muito sensível à RR).</li>
-        </ul>
-        <p>
-          Por isso, “ml/kg” é insuficiente: o mesmo VT pode ser seguro num pulmão complacente e agressivo num “baby lung”
-          (pulmão funcional reduzido, típico de PARDS/atelectasia).
-        </p>
-      </div>
-    </details>
+      <details open>
+        <summary>1) Conceito central: porquê ΔP e Mechanical Power</summary>
+        <div class="detailsBody">
+          <p>
+            A ventilação mecânica pode causar lesão pulmonar induzida pelo ventilador (VILI) por carga mecânica excessiva:
+            <b>stress</b> (pressão elástica), <b>strain</b> (deformação/volume) e <b>energia cumulativa</b> ao longo do tempo.
+          </p>
+          <ul>
+            <li><b>ΔP (Driving Pressure)</b> aproxima o <b>stress elástico por ciclo</b> (o “esforço” imposto a cada insuflação).</li>
+            <li><b>Mechanical Power (MP)</b> aproxima a <b>energia por minuto</b> (carga total, muito sensível à RR).</li>
+          </ul>
+          <p>
+            Por isso, “ml/kg” é insuficiente: o mesmo VT pode ser seguro num pulmão complacente e agressivo num “baby lung”
+            (pulmão funcional reduzido, típico de PARDS/atelectasia).
+          </p>
+        </div>
+      </details>
 
-    <details>
-      <summary>2) Fisiologia: ΔP, compliance e o que ΔP realmente mede</summary>
-      <div class="detailsBody">
-        <p><b>Definição (VCV):</b></p>
-        <p><b>PEEP_total = PEEP_set + Auto-PEEP</b></p>
-        <p><b>ΔP_total = Pplat − PEEP_total</b></p>
+      <details>
+        <summary>2) Fisiologia: ΔP, compliance e o que ΔP realmente mede</summary>
+        <div class="detailsBody">
+          <p><b>Definição (VCV):</b></p>
+          <p><b>PEEP_total = PEEP_set + Auto-PEEP</b></p>
+          <p><b>ΔP_total = Pplat − PEEP_total</b></p>
 
-        <p>
-          A ΔP traduz a pressão necessária para acomodar o VT no pulmão disponível. Se a compliance cai, ΔP sobe para o mesmo VT.
-        </p>
+          <p>
+            A ΔP traduz a pressão necessária para acomodar o VT no pulmão disponível. Se a compliance cai, ΔP sobe para o mesmo VT.
+          </p>
 
-        <ul>
-          <li><b>Pplat</b> (com fluxo=0) aproxima a pressão alveolar no fim da inspiração.</li>
-          <li><b>PEEP_total</b> é o “piso” de pressão/volume no fim da expiração (inclui trapping).</li>
-          <li><b>ΔP_total</b> é a pressão “dinâmica elástica” aplicada por ciclo.</li>
-        </ul>
+          <ul>
+            <li><b>Pplat</b> (com fluxo=0) aproxima a pressão alveolar no fim da inspiração.</li>
+            <li><b>PEEP_total</b> é o “piso” de pressão/volume no fim da expiração (inclui trapping).</li>
+            <li><b>ΔP_total</b> é a pressão “dinâmica elástica” aplicada por ciclo.</li>
+          </ul>
 
-        <p><b>Compliance estática (útil para contexto):</b></p>
-        <p><b>Cstat = VT(mL) / ΔP_total</b></p>
-      </div>
-    </details>
+          <p><b>Compliance estática (útil para contexto):</b></p>
+          <p><b>Cstat = VT(mL) / ΔP_total</b></p>
+        </div>
+      </details>
 
-    <details>
-      <summary>3) Fisiologia: Mechanical Power e por que RR é o acelerador</summary>
-      <div class="detailsBody">
-        <p>
-          Mechanical Power integra volume, pressão, fluxo e frequência. Mesmo com ΔP aceitável, RR alta pode elevar muito a energia/minuto.
-          Em termos de risco, <b>energia repetida</b> pode ser tão relevante quanto picos de pressão.
-        </p>
+      <details>
+        <summary>3) Fisiologia: Mechanical Power e por que RR é o acelerador</summary>
+        <div class="detailsBody">
+          <p>
+            Mechanical Power integra volume, pressão, fluxo e frequência. Mesmo com ΔP aceitável, RR alta pode elevar muito a energia/minuto.
+            Em termos de risco, <b>energia repetida</b> pode ser tão relevante quanto picos de pressão.
+          </p>
 
-        <p><b>Fórmula prática (VCV, aproximação):</b></p>
-        <p><b>MP ≈ 0.098 × RR × VT(L) × (Ppeak − ½×ΔP_total)</b></p>
+          <p><b>Fórmula prática (VCV, aproximação):</b></p>
+          <p><b>MP ≈ 0.098 × RR × VT(L) × (Ppeak − ½×ΔP_total)</b></p>
 
-        <ul>
-          <li>VT em <b>litros</b>.</li>
-          <li>Pressões em <b>cmH₂O</b>.</li>
-          <li>Resultado em <b>J/min</b> (estimativa).</li>
-        </ul>
+          <ul>
+            <li>VT em <b>litros</b>.</li>
+            <li>Pressões em <b>cmH₂O</b>.</li>
+            <li>Resultado em <b>J/min</b> (estimativa).</li>
+          </ul>
 
-        <p>
-          Interpretação: aumentar RR aumenta MP quase linearmente; aumentar pressões/VT também aumenta, mas RR é frequentemente o driver oculto
-          (especialmente em doentes com drive elevado, asma/bronquiolite com trapping ou permissiva hipercápnia não aceite).
-        </p>
-      </div>
-    </details>
+          <p>
+            Interpretação: aumentar RR aumenta MP quase linearmente; aumentar pressões/VT também aumenta, mas RR é frequentemente o driver oculto
+            (especialmente em doentes com drive elevado, asma/bronquiolite com trapping ou permissiva hipercápnia não aceite).
+          </p>
+        </div>
+      </details>
 
-    <details>
-      <summary>4) Como obter parâmetros: Pplat (VCV) com fiabilidade</summary>
-      <div class="detailsBody">
-        <ul>
-          <li>Usar <b>pausa inspiratória</b> suficiente para fluxo = 0 (habitualmente 0.5–1.0 s).</li>
-          <li>Garantir ausência de <b>tosse</b>, <b>drive</b> e <b>assincronia</b> durante a pausa.</li>
-          <li>Confirmar traçado estável (sem “serrilhado”).</li>
-          <li>Se leak importante, Pplat pode ficar pouco fiável.</li>
-        </ul>
+      <details>
+        <summary>4) Como obter parâmetros: Pplat (VCV) com fiabilidade</summary>
+        <div class="detailsBody">
+          <ul>
+            <li>Usar <b>pausa inspiratória</b> suficiente para fluxo = 0 (habitualmente 0.5–1.0 s).</li>
+            <li>Garantir ausência de <b>tosse</b>, <b>drive</b> e <b>assincronia</b> durante a pausa.</li>
+            <li>Confirmar traçado estável (sem “serrilhado”).</li>
+            <li>Se leak importante, Pplat pode ficar pouco fiável.</li>
+          </ul>
 
-        <p><b>Nota clínica:</b> Ppeak inclui componente resistiva (tubo/fluxo/broncoespasmo). Pplat é o marcador elástico.</p>
-      </div>
-    </details>
+          <p><b>Nota clínica:</b> Ppeak inclui componente resistiva (tubo/fluxo/broncoespasmo). Pplat é o marcador elástico.</p>
+        </div>
+      </details>
 
-    <details>
-      <summary>5) Como obter parâmetros: Auto-PEEP (trapping) e por que muda tudo</summary>
-      <div class="detailsBody">
-        <ul>
-          <li>Usar <b>pausa expiratória</b> para medir pressão no fim da expiração.</li>
-          <li>Se <b>Auto-PEEP ≥ 2 cmH₂O</b>, considerar trapping clinicamente relevante.</li>
-        </ul>
+      <details>
+        <summary>5) Como obter parâmetros: Auto-PEEP (trapping) e por que muda tudo</summary>
+        <div class="detailsBody">
+          <ul>
+            <li>Usar <b>pausa expiratória</b> para medir pressão no fim da expiração.</li>
+            <li>Se <b>Auto-PEEP ≥ 2 cmH₂O</b>, considerar trapping clinicamente relevante.</li>
+          </ul>
 
-        <p><b>Regra:</b> para ΔP e risco elástico, usa sempre <b>PEEP_total</b>.</p>
+          <p><b>Regra:</b> para ΔP e risco elástico, usa sempre <b>PEEP_total</b>.</p>
 
-        <p><b>Obstrução (asma/bronquiolite):</b></p>
-        <ul>
-          <li>Prioridade é reduzir trapping: <b>↓RR</b>, <b>↑tempo expiratório</b>, tratar broncoespasmo/secreções, rever tubo.</li>
-          <li>PEEP externa pode ajudar em casos seleccionados, mas não “apaga” Auto-PEEP; reavaliar sempre.</li>
-        </ul>
-      </div>
-    </details>
+          <p><b>Obstrução (asma/bronquiolite):</b></p>
+          <ul>
+            <li>Prioridade é reduzir trapping: <b>↓RR</b>, <b>↑tempo expiratório</b>, tratar broncoespasmo/secreções, rever tubo.</li>
+            <li>PEEP externa pode ajudar em casos seleccionados, mas não “apaga” Auto-PEEP; reavaliar sempre.</li>
+          </ul>
+        </div>
+      </details>
 
-    <details>
-      <summary>6) Interpretação por limiares: ΔP e MP (uso prático)</summary>
-      <div class="detailsBody">
-        <p><b>ΔP_total (cmH₂O) — regra prática:</b></p>
-        <ul>
-          <li><b>&lt; 14</b> → geralmente aceitável</li>
-          <li><b>14–16</b> → atenção/optimizar contexto</li>
-          <li><b>≥ 16</b> → alto risco mecânico → actuar</li>
-        </ul>
+      <details>
+        <summary>6) Interpretação por limiares: ΔP e MP (uso prático)</summary>
+        <div class="detailsBody">
+          <p><b>ΔP_total (cmH₂O) — regra prática:</b></p>
+          <ul>
+            <li><b>&lt; 14</b> → geralmente aceitável</li>
+            <li><b>14–16</b> → atenção/optimizar contexto</li>
+            <li><b>≥ 16</b> → alto risco mecânico → actuar</li>
+          </ul>
 
-        <p><b>Mechanical Power (J/min) — regra prática (tendência + patologia):</b></p>
-        <ul>
-          <li><b>&lt; 12</b> → geralmente aceitável</li>
-          <li><b>12–17</b> → intermédio (olhar tendência)</li>
-          <li><b>≥ 17</b> → carga energética alta → actuar</li>
-        </ul>
+          <p><b>Mechanical Power (J/min) — regra prática (tendência + patologia):</b></p>
+          <ul>
+            <li><b>&lt; 12</b> → geralmente aceitável</li>
+            <li><b>12–17</b> → intermédio (olhar tendência)</li>
+            <li><b>≥ 17</b> → carga energética alta → actuar</li>
+          </ul>
 
-        <p>
-          Em pediatria, mais do que um “número mágico”, interessa <b>o contexto</b> e a <b>tendência ao longo do turno</b>.
-          Se MP sobe após ajustes (ex.: RR a subir para manter CO₂), isso é sinal de risco cumulativo.
-        </p>
-      </div>
-    </details>
+          <p>
+            Em pediatria, mais do que um “número mágico”, interessa <b>o contexto</b> e a <b>tendência ao longo do turno</b>.
+            Se MP sobe após ajustes (ex.: RR a subir para manter CO₂), isso é sinal de risco cumulativo.
+          </p>
+        </div>
+      </details>
 
-    <details>
-      <summary>7) Separar elástico vs resistivo: Gap (Ppeak − Pplat)</summary>
-      <div class="detailsBody">
-        <p>
-          <b>Gap = Ppeak − Pplat</b> aproxima a componente resistiva (tubo/fluxo/broncoespasmo/secreções).
-        </p>
-        <ul>
-          <li><b>Gap elevado</b> com Pplat estável → problema resistivo (tratar resistência).</li>
-          <li><b>Pplat elevado</b> com gap baixo/moderado → problema elástico/compliance.</li>
-        </ul>
+      <details>
+        <summary>7) Separar elástico vs resistivo: Gap (Ppeak − Pplat)</summary>
+        <div class="detailsBody">
+          <p>
+            <b>Gap = Ppeak − Pplat</b> aproxima a componente resistiva (tubo/fluxo/broncoespasmo/secreções).
+          </p>
+          <ul>
+            <li><b>Gap elevado</b> com Pplat estável → problema resistivo (tratar resistência).</li>
+            <li><b>Pplat elevado</b> com gap baixo/moderado → problema elástico/compliance.</li>
+          </ul>
 
-        <p><b>Implicação:</b> reduzir Ppeak por tratar resistência pode reduzir MP sem mexer no stress alveolar.</p>
-      </div>
-    </details>
+          <p><b>Implicação:</b> reduzir Ppeak por tratar resistência pode reduzir MP sem mexer no stress alveolar.</p>
+        </div>
+      </details>
 
-    <details>
-      <summary>8) Armadilhas frequentes (erro típico de internos)</summary>
-      <div class="detailsBody">
-        <ul>
-          <li>Usar Ppeak como se fosse Pplat (sobrestima stress alveolar).</li>
-          <li>Medir Pplat sem fluxo=0 (valor “falso”).</li>
-          <li>Ignorar Auto-PEEP em obstrução → ΔP subestimada e risco real oculto.</li>
-          <li>Subir RR para corrigir CO₂ e elevar MP silenciosamente.</li>
-          <li>Não reavaliar após alterações (a tendência é a informação principal).</li>
-        </ul>
-      </div>
-    </details>
+      <details>
+        <summary>8) Armadilhas frequentes (erro típico de internos)</summary>
+        <div class="detailsBody">
+          <ul>
+            <li>Usar Ppeak como se fosse Pplat (sobrestima stress alveolar).</li>
+            <li>Medir Pplat sem fluxo=0 (valor “falso”).</li>
+            <li>Ignorar Auto-PEEP em obstrução → ΔP subestimada e risco real oculto.</li>
+            <li>Subir RR para corrigir CO₂ e elevar MP silenciosamente.</li>
+            <li>Não reavaliar após alterações (a tendência é a informação principal).</li>
+          </ul>
+        </div>
+      </details>
 
-    <details>
-      <summary>9) Mensagem prática de bedside</summary>
-      <div class="detailsBody">
-        <ul>
-          <li>Não guiar apenas por ml/kg. Usar <b>ΔP</b> e <b>MP</b> para segurança mecânica.</li>
-          <li>Se ΔP está alta: actuar sobretudo em <b>VT/PEEP funcional</b> e reduzir stress por ciclo.</li>
-          <li>Se MP está alta: actuar sobretudo em <b>RR</b> e reduzir energia/min (sem piorar trapping).</li>
-          <li>Em obstrução: tratar <b>Auto-PEEP</b> primeiro (RR/Te/broncoespasmo).</li>
-          <li>Reavaliar sempre após cada mudança e seguir tendência (minutos–horas).</li>
-        </ul>
-      </div>
-    </details>
+      <details>
+        <summary>9) Mensagem prática de bedside</summary>
+        <div class="detailsBody">
+          <ul>
+            <li>Não guiar apenas por ml/kg. Usar <b>ΔP</b> e <b>MP</b> para segurança mecânica.</li>
+            <li>Se ΔP está alta: actuar sobretudo em <b>VT/PEEP funcional</b> e reduzir stress por ciclo.</li>
+            <li>Se MP está alta: actuar sobretudo em <b>RR</b> e reduzir energia/min (sem piorar trapping).</li>
+            <li>Em obstrução: tratar <b>Auto-PEEP</b> primeiro (RR/Te/broncoespasmo).</li>
+            <li>Reavaliar sempre após cada mudança e seguir tendência (minutos–horas).</li>
+          </ul>
+        </div>
+      </details>
 
+    </section>
   </section>
-</section>
-  
+
   <!-- TAB: FLUXOGRAMA -->
-<section id="flow" class="section">
-  <section class="card">
-    <h2>Fluxograma (algoritmo prático)</h2>
+  <section id="flow" class="section">
+    <section class="card">
+      <h2>Fluxograma (algoritmo prático)</h2>
 
-    <details open>
-      <summary>Checklist 10 segundos (bedside)</summary>
-      <div class="detailsBody">
-        <ul>
-          <li><b>1) Medição fiável?</b> Pplat com fluxo=0, sem tosse/drive/assincronia.</li>
-          <li><b>2) Auto-PEEP ≥ 2?</b> Se sim → <b>↓RR/↑Te</b> primeiro.</li>
-          <li><b>3) ΔP_total ≥ 16?</b> Se sim → <b>↓VT</b> primeiro.</li>
-          <li><b>4) MP ≥ 17 ou a subir?</b> Se sim → <b>↓RR</b> (se tolerável) + tratar resistência.</li>
-          <li><b>5) Gap ≥ 8?</b> Se sim → resistência (tubo/broncoespasmo/secreções/fluxo).</li>
-          <li><b>6) Reavaliar</b> após cada ajuste (5–10 min ou após estabilização).</li>
-        </ul>
-        <p><b>Meta:</b> reduzir stress/ciclo (ΔP) e energia/min (MP) sem induzir trapping.</p>
-      </div>
-    </details>
+      <details open>
+        <summary>Checklist 10 segundos (bedside)</summary>
+        <div class="detailsBody">
+          <ul>
+            <li><b>1) Medição fiável?</b> Pplat com fluxo=0, sem tosse/drive/assincronia.</li>
+            <li><b>2) Auto-PEEP ≥ 2?</b> Se sim → <b>↓RR/↑Te</b> primeiro.</li>
+            <li><b>3) ΔP_total ≥ 16?</b> Se sim → <b>↓VT</b> primeiro.</li>
+            <li><b>4) MP ≥ 17 ou a subir?</b> Se sim → <b>↓RR</b> (se tolerável) + tratar resistência.</li>
+            <li><b>5) Gap ≥ 8?</b> Se sim → resistência (tubo/broncoespasmo/secreções/fluxo).</li>
+            <li><b>6) Reavaliar</b> após cada ajuste (5–10 min ou após estabilização).</li>
+          </ul>
+          <p><b>Meta:</b> reduzir stress/ciclo (ΔP) e energia/min (MP) sem induzir trapping.</p>
+        </div>
+      </details>
 
-    <details>
-      <summary>0) Pré-condições (antes de agir)</summary>
-      <div class="detailsBody">
-        <ul>
-          <li>Modo: <b>VCV</b> (nesta app o cálculo está validado para VCV).</li>
-          <li><b>Pplat fiável</b>: pausa inspiratória com <b>fluxo=0</b> e sem tosse/drive/assincronia.</li>
-          <li>Se suspeita de obstrução/trapping: medir <b>Auto-PEEP</b> com pausa expiratória.</li>
-          <li>Confirmar ausência de leak relevante (se houver, interpretações ficam menos fiáveis).</li>
-        </ul>
-        <p><b>Regra:</b> se os números não batem certo com o doente, primeiro melhora a medição.</p>
-      </div>
-    </details>
+      <details>
+        <summary>0) Pré-condições (antes de agir)</summary>
+        <div class="detailsBody">
+          <ul>
+            <li>Modo: <b>VCV</b> (nesta app o cálculo está validado para VCV).</li>
+            <li><b>Pplat fiável</b>: pausa inspiratória com <b>fluxo=0</b> e sem tosse/drive/assincronia.</li>
+            <li>Se suspeita de obstrução/trapping: medir <b>Auto-PEEP</b> com pausa expiratória.</li>
+            <li>Confirmar ausência de leak relevante (se houver, interpretações ficam menos fiáveis).</li>
+          </ul>
+          <p><b>Regra:</b> se os números não batem certo com o doente, primeiro melhora a medição.</p>
+        </div>
+      </details>
 
-    <details>
-      <summary>1) Calcular correctamente (o que a app calcula)</summary>
-      <div class="detailsBody">
-        <p><b>PEEP_total = PEEP_set + Auto-PEEP</b></p>
-        <p><b>ΔP_total = Pplat − PEEP_total</b></p>
-        <p><b>Gap = Ppeak − Pplat</b> (componente resistiva)</p>
-        <p><b>MP ≈ 0.098 × RR × VT(L) × (Ppeak − ½×ΔP_total)</b></p>
-        <p>A app classifica por zonas e regista tendência por doente/cama.</p>
-      </div>
-    </details>
+      <details>
+        <summary>1) Calcular correctamente (o que a app calcula)</summary>
+        <div class="detailsBody">
+          <p><b>PEEP_total = PEEP_set + Auto-PEEP</b></p>
+          <p><b>ΔP_total = Pplat − PEEP_total</b></p>
+          <p><b>Gap = Ppeak − Pplat</b> (componente resistiva)</p>
+          <p><b>MP ≈ 0.098 × RR × VT(L) × (Ppeak − ½×ΔP_total)</b></p>
+          <p>A app classifica por zonas e regista tendência por doente/cama.</p>
+        </div>
+      </details>
 
-    <details>
-      <summary>2) Nó A — Auto-PEEP ≥ 2 cmH₂O?</summary>
-      <div class="detailsBody">
-        <p><b>SE SIM (trapping relevante):</b> prioridade é reduzir trapping antes de “corrigir” CO₂ com RR alta.</p>
-        <ul>
-          <li><b>1º ↓ RR</b> (ganhar tempo expiratório).</li>
-          <li><b>2º Ajustar I:E</b> (↑Te; encurtar Ti se possível).</li>
-          <li><b>3º Tratar resistência</b>: broncodilatação, aspiração/kinésio, rever tubo (kink/obstrução/calibre).</li>
-          <li><b>4º Reavaliar</b> Auto-PEEP e Pplat após estabilização.</li>
-        </ul>
+      <details>
+        <summary>2) Nó A — Auto-PEEP ≥ 2 cmH₂O?</summary>
+        <div class="detailsBody">
+          <p><b>SE SIM (trapping relevante):</b> prioridade é reduzir trapping antes de “corrigir” CO₂ com RR alta.</p>
+          <ul>
+            <li><b>1º ↓ RR</b> (ganhar tempo expiratório).</li>
+            <li><b>2º Ajustar I:E</b> (↑Te; encurtar Ti se possível).</li>
+            <li><b>3º Tratar resistência</b>: broncodilatação, aspiração/kinésio, rever tubo (kink/obstrução/calibre).</li>
+            <li><b>4º Reavaliar</b> Auto-PEEP e Pplat após estabilização.</li>
+          </ul>
 
-        <p><b>SE NÃO:</b> prosseguir para stress (ΔP) e energia (MP).</p>
+          <p><b>SE NÃO:</b> prosseguir para stress (ΔP) e energia (MP).</p>
 
-        <p><b>Dica obstrução:</b> se Ppeak alto mas Pplat “ok”, o problema é resistivo; não “mates” VT/PEEP sem tratar o básico.</p>
-      </div>
-    </details>
+          <p><b>Dica obstrução:</b> se Ppeak alto mas Pplat “ok”, o problema é resistivo; não “mates” VT/PEEP sem tratar o básico.</p>
+        </div>
+      </details>
 
-    <details>
-      <summary>3) Nó B — ΔP_total ≥ 16 cmH₂O?</summary>
-      <div class="detailsBody">
-        <p><b>SE SIM:</b> stress por ciclo alto → reduzir sobredistensão.</p>
-        <ul>
-          <li><b>1º ↓ VT</b> em passos pequenos (prioridade).</li>
-          <li><b>2º Rever recrutabilidade</b>: se recrutável, um ajuste de PEEP pode <b>reduzir</b> ΔP; se não recrutável, PEEP pode piorar.</li>
-          <li><b>3º Minimizar assincronia</b> (trigger/fluxo/sedação conforme contexto).</li>
-          <li><b>4º Reavaliar</b> ΔP e MP após 5–10 min (ou após estabilização).</li>
-        </ul>
+      <details>
+        <summary>3) Nó B — ΔP_total ≥ 16 cmH₂O?</summary>
+        <div class="detailsBody">
+          <p><b>SE SIM:</b> stress por ciclo alto → reduzir sobredistensão.</p>
+          <ul>
+            <li><b>1º ↓ VT</b> em passos pequenos (prioridade).</li>
+            <li><b>2º Rever recrutabilidade</b>: se recrutável, um ajuste de PEEP pode <b>reduzir</b> ΔP; se não recrutável, PEEP pode piorar.</li>
+            <li><b>3º Minimizar assincronia</b> (trigger/fluxo/sedação conforme contexto).</li>
+            <li><b>4º Reavaliar</b> ΔP e MP após 5–10 min (ou após estabilização).</li>
+          </ul>
 
-        <p><b>SE NÃO:</b> seguir para Mechanical Power.</p>
+          <p><b>SE NÃO:</b> seguir para Mechanical Power.</p>
 
-        <p><b>Se ΔP_total ≤ 0:</b> dados incoerentes → confirmar pausa inspiratória/auto-PEEP/PEEP_total.</p>
-      </div>
-    </details>
+          <p><b>Se ΔP_total ≤ 0:</b> dados incoerentes → confirmar pausa inspiratória/auto-PEEP/PEEP_total.</p>
+        </div>
+      </details>
 
-    <details>
-      <summary>4) Nó C — MP ≥ 17 J/min OU tendência ascendente?</summary>
-      <div class="detailsBody">
-        <p><b>SE SIM:</b> carga energética alta → reduzir energia/min sem induzir trapping.</p>
-        <ul>
-          <li><b>1º ↓ RR</b> (a alavanca mais potente da MP) se clinicamente tolerável.</li>
-          <li><b>2º Rever Ti/fluxo</b> (evitar Ti longo que “come” expiração; evitar fluxos exagerados se aumentam Ppeak).</li>
-          <li><b>3º ↓ VT</b> se ainda elevado (especialmente se ΔP estiver em atenção/limite).</li>
-          <li><b>4º Tratar resistência</b> se Gap alto (reduz Ppeak e MP sem mexer tanto no elástico).</li>
-          <li><b>5º Reavaliar</b> (MP é métrica de tendência ao longo do turno).</li>
-        </ul>
+      <details>
+        <summary>4) Nó C — MP ≥ 17 J/min OU tendência ascendente?</summary>
+        <div class="detailsBody">
+          <p><b>SE SIM:</b> carga energética alta → reduzir energia/min sem induzir trapping.</p>
+          <ul>
+            <li><b>1º ↓ RR</b> (a alavanca mais potente da MP) se clinicamente tolerável.</li>
+            <li><b>2º Rever Ti/fluxo</b> (evitar Ti longo que “come” expiração; evitar fluxos exagerados se aumentam Ppeak).</li>
+            <li><b>3º ↓ VT</b> se ainda elevado (especialmente se ΔP estiver em atenção/limite).</li>
+            <li><b>4º Tratar resistência</b> se Gap alto (reduz Ppeak e MP sem mexer tanto no elástico).</li>
+            <li><b>5º Reavaliar</b> (MP é métrica de tendência ao longo do turno).</li>
+          </ul>
 
-        <p><b>SE NÃO:</b> manter e monitorizar tendência.</p>
-      </div>
-    </details>
+          <p><b>SE NÃO:</b> manter e monitorizar tendência.</p>
+        </div>
+      </details>
 
-    <details>
-      <summary>5) Nó D — Gap (Ppeak − Pplat) ≥ 8 cmH₂O?</summary>
-      <div class="detailsBody">
-        <p><b>SE SIM:</b> componente resistiva relevante.</p>
-        <ul>
-          <li>Verificar tubo (kink, secreções, obstrução parcial, calibre/posição).</li>
-          <li>Tratar broncoespasmo (se aplicável) + higiene brônquica.</li>
-          <li>Rever fluxo (fluxo demasiado alto pode aumentar Ppeak sem benefício).</li>
-          <li>Reavaliar após intervenção (Ppeak, Gap e MP).</li>
-        </ul>
-        <p><b>SE NÃO:</b> componente elástica/compliance domina → foco em ΔP/PEEP funcional.</p>
-      </div>
-    </details>
+      <details>
+        <summary>5) Nó D — Gap (Ppeak − Pplat) ≥ 8 cmH₂O?</summary>
+        <div class="detailsBody">
+          <p><b>SE SIM:</b> componente resistiva relevante.</p>
+          <ul>
+            <li>Verificar tubo (kink, secreções, obstrução parcial, calibre/posição).</li>
+            <li>Tratar broncoespasmo (se aplicável) + higiene brônquica.</li>
+            <li>Rever fluxo (fluxo demasiado alto pode aumentar Ppeak sem benefício).</li>
+            <li>Reavaliar após intervenção (Ppeak, Gap e MP).</li>
+          </ul>
+          <p><b>SE NÃO:</b> componente elástica/compliance domina → foco em ΔP/PEEP funcional.</p>
+        </div>
+      </details>
 
-    <details>
-      <summary>6) Estratégias por perfil (atalhos práticos)</summary>
-      <div class="detailsBody">
-        <p><b>PARDS / hipoxémia difusa:</b></p>
-        <ul>
-          <li>Prioridade: <b>ΔP baixa</b> e MP controlada.</li>
-          <li>PEEP: usar de forma funcional (se ΔP ↓ com PEEP, pode ser recrutável).</li>
-          <li>Evitar “corrigir CO₂” só com RR alta (MP sobe).</li>
-        </ul>
+      <details>
+        <summary>6) Estratégias por perfil (atalhos práticos)</summary>
+        <div class="detailsBody">
+          <p><b>PARDS / hipoxémia difusa:</b></p>
+          <ul>
+            <li>Prioridade: <b>ΔP baixa</b> e MP controlada.</li>
+            <li>PEEP: usar de forma funcional (se ΔP ↓ com PEEP, pode ser recrutável).</li>
+            <li>Evitar “corrigir CO₂” só com RR alta (MP sobe).</li>
+          </ul>
 
-        <p><b>Obstrução (asma/bronquiolite):</b></p>
-        <ul>
-          <li>Prioridade: <b>Auto-PEEP</b> → ↓RR/↑Te primeiro.</li>
-          <li>Gap tende a ser alto: tratar resistência reduz MP.</li>
-          <li>Reavaliar frequentemente (mecânica muda rápido).</li>
-        </ul>
+          <p><b>Obstrução (asma/bronquiolite):</b></p>
+          <ul>
+            <li>Prioridade: <b>Auto-PEEP</b> → ↓RR/↑Te primeiro.</li>
+            <li>Gap tende a ser alto: tratar resistência reduz MP.</li>
+            <li>Reavaliar frequentemente (mecânica muda rápido).</li>
+          </ul>
 
-        <p><b>Pós-operatório pulmão “normal”:</b></p>
-        <ul>
-          <li>Evitar excesso de VT/RR por inércia.</li>
-          <li>Objectivo: estabilidade com ΔP e MP baixas.</li>
-        </ul>
+          <p><b>Pós-operatório pulmão “normal”:</b></p>
+          <ul>
+            <li>Evitar excesso de VT/RR por inércia.</li>
+            <li>Objectivo: estabilidade com ΔP e MP baixas.</li>
+          </ul>
 
-        <p><b>Neuro:</b></p>
-        <ul>
-          <li>Objectivos de PaCO₂ podem limitar ↓RR; documentar compromisso.</li>
-          <li>Evitar auto-PEEP não reconhecida (pode afectar retorno venoso).</li>
-        </ul>
-      </div>
-    </details>
+          <p><b>Neuro:</b></p>
+          <ul>
+            <li>Objectivos de PaCO₂ podem limitar ↓RR; documentar compromisso.</li>
+            <li>Evitar auto-PEEP não reconhecida (pode afectar retorno venoso).</li>
+          </ul>
+        </div>
+      </details>
 
-    <details>
-      <summary>7) Compromissos aceitáveis (autonomia do interno)</summary>
-      <div class="detailsBody">
-        <p>
-          Há situações em que não consegues “optimizar tudo” ao mesmo tempo. Aqui ficam compromissos razoáveis
-          (desde que o doente esteja estável e reavalies tendência):
-        </p>
+      <details>
+        <summary>7) Compromissos aceitáveis (autonomia do interno)</summary>
+        <div class="detailsBody">
+          <p>
+            Há situações em que não consegues “optimizar tudo” ao mesmo tempo. Aqui ficam compromissos razoáveis
+            (desde que o doente esteja estável e reavalies tendência):
+          </p>
 
-        <ul>
-          <li><b>Se ΔP está alta:</b> aceita PaCO₂ um pouco mais alta (permissiva) se pH tolerável e não Neuro/contra-indicações.</li>
-          <li><b>Se MP está alta por RR:</b> prefere reduzir RR e aceitar PaCO₂ ligeiramente mais alta a “manter CO₂” com energia excessiva.</li>
-          <li><b>Obstrução com trapping:</b> aceita hipercápnia transitória enquanto resolves auto-PEEP (RR/Te/resistência).</li>
-          <li><b>Hipoxémia moderada:</b> antes de subir RR/VT, optimiza PEEP funcional/recrutamento (se recrutável) e FiO₂ conforme protocolo local.</li>
-          <li><b>Se números e clínica discordam:</b> primeiro validar medição (pausas, leak, assincronia, tubo).</li>
-        </ul>
+          <ul>
+            <li><b>Se ΔP está alta:</b> aceita PaCO₂ um pouco mais alta (permissiva) se pH tolerável e não Neuro/contra-indicações.</li>
+            <li><b>Se MP está alta por RR:</b> prefere reduzir RR e aceitar PaCO₂ ligeiramente mais alta a “manter CO₂” com energia excessiva.</li>
+            <li><b>Obstrução com trapping:</b> aceita hipercápnia transitória enquanto resolves auto-PEEP (RR/Te/resistência).</li>
+            <li><b>Hipoxémia moderada:</b> antes de subir RR/VT, optimiza PEEP funcional/recrutamento (se recrutável) e FiO₂ conforme protocolo local.</li>
+            <li><b>Se números e clínica discordam:</b> primeiro validar medição (pausas, leak, assincronia, tubo).</li>
+          </ul>
 
-        <p><b>Regra de segurança:</b> qualquer compromisso deve vir com <b>reavaliação programada</b> (ex.: 10–30 min) e registo de tendência.</p>
-      </div>
-    </details>
+          <p><b>Regra de segurança:</b> qualquer compromisso deve vir com <b>reavaliação programada</b> (ex.: 10–30 min) e registo de tendência.</p>
+        </div>
+      </details>
 
-    <details>
-      <summary>8) Quando chamar senior (linha vermelha — mas mantendo autonomia)</summary>
-      <div class="detailsBody">
-        <p>
-          Manténs autonomia na optimização inicial, mas chama apoio se:
-        </p>
-        <ul>
-          <li><b>ΔP_total ≥ 18</b> persistente após ↓VT/optimização e medições fiáveis.</li>
-          <li><b>MP ≥ 20</b> persistente ou claramente a subir apesar de ↓RR e controlo de resistência.</li>
-          <li><b>Auto-PEEP ≥ 6</b> ou trapping com impacto hemodinâmico/ventilatório (hipotensão, aumento súbito de pressões, dificuldade em ventilar).</li>
-          <li><b>Hipoxémia/hipercápnia</b> refractária ao que seria esperado após ajustes.</li>
-          <li><b>Assincronia importante</b> que impede medições fiáveis e ventilação efectiva.</li>
-          <li><b>Instabilidade hemodinâmica</b> após mudanças ventilatórias (suspeitar auto-PEEP/overdistension).</li>
-        </ul>
-        <p>
-          <b>Princípio:</b> se não consegues reduzir carga mecânica sem “pagar” com instabilidade, precisas de segundo par de mãos.
-        </p>
-      </div>
-    </details>
+      <details>
+        <summary>8) Quando chamar senior (linha vermelha — mas mantendo autonomia)</summary>
+        <div class="detailsBody">
+          <p>
+            Manténs autonomia na optimização inicial, mas chama apoio se:
+          </p>
+          <ul>
+            <li><b>ΔP_total ≥ 18</b> persistente após ↓VT/optimização e medições fiáveis.</li>
+            <li><b>MP ≥ 20</b> persistente ou claramente a subir apesar de ↓RR e controlo de resistência.</li>
+            <li><b>Auto-PEEP ≥ 6</b> ou trapping com impacto hemodinâmico/ventilatório (hipotensão, aumento súbito de pressões, dificuldade em ventilar).</li>
+            <li><b>Hipoxémia/hipercápnia</b> refractária ao que seria esperado após ajustes.</li>
+            <li><b>Assincronia importante</b> que impede medições fiáveis e ventilação efectiva.</li>
+            <li><b>Instabilidade hemodinâmica</b> após mudanças ventilatórias (suspeitar auto-PEEP/overdistension).</li>
+          </ul>
+          <p>
+            <b>Princípio:</b> se não consegues reduzir carga mecânica sem “pagar” com instabilidade, precisas de segundo par de mãos.
+          </p>
+        </div>
+      </details>
 
-    <details>
-      <summary>9) Ciclo de decisão (reavaliação)</summary>
-      <div class="detailsBody">
-        <ul>
-          <li>Após qualquer mudança → aguardar estabilização → medir novamente Pplat/auto-PEEP se indicado.</li>
-          <li>Registar em série: a tendência (minutos–horas) vale mais do que 1 valor isolado.</li>
-          <li>Se volta a piorar: regressa ao Nó A (auto-PEEP) e reconfirma medições.</li>
-        </ul>
-        <p><b>Regra final:</b> reduzir primeiro stress/ciclo (ΔP), depois energia/min (MP), sem induzir trapping.</p>
-      </div>
-    </details>
+      <details>
+        <summary>9) Ciclo de decisão (reavaliação)</summary>
+        <div class="detailsBody">
+          <ul>
+            <li>Após qualquer mudança → aguardar estabilização → medir novamente Pplat/auto-PEEP se indicado.</li>
+            <li>Registar em série: a tendência (minutos–horas) vale mais do que 1 valor isolado.</li>
+            <li>Se volta a piorar: regressa ao Nó A (auto-PEEP) e reconfirma medições.</li>
+          </ul>
+          <p><b>Regra final:</b> reduzir primeiro stress/ciclo (ΔP), depois energia/min (MP), sem induzir trapping.</p>
+        </div>
+      </details>
 
+    </section>
   </section>
-</section>
 
   <!-- TAB: AUDITORIA -->
   <section id="audit" class="section">
@@ -987,6 +985,24 @@
     refreshAudit();
   }
 
+  function addPatientPrompt(){
+    const name = prompt("Novo doente/cama (ex: Cama 3 | RN 2.8 kg | ID):");
+    if(!name) return;
+    $("patientNew").value = name.trim();
+    addPatient();
+    $("patientNew").value = "";
+  }
+
+  function renamePatientPrompt(){
+    const sel = $("patientSelect");
+    const current = sel && sel.options && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].text : "";
+    const name = prompt("Renomear doente/cama:", current);
+    if(!name) return;
+    $("patientNew").value = name.trim();
+    renamePatient();
+    $("patientNew").value = "";
+  }
+
   function historyForCurrentPatient() {
     const { pid } = currentPatient();
     return historyData.filter(x => x.pid === pid);
@@ -1019,14 +1035,6 @@
 
     drawChart();
     refreshAudit();
-  }
-
-  function onModeChange() {
-    const mv = $("modeVent").value;
-    if (mv !== "VCV") {
-      alert("Cálculo automático nesta versão: apenas VCV.");
-      $("modeVent").value = "VCV";
-    }
   }
 
   function clearOutputs() {
@@ -1466,104 +1474,34 @@
     catch { $("swStatus").textContent = "PWA: falha no registo"; }
   }
   registerSW();
-  
+
   // === BOTÃO DE EMERGÊNCIA: FORÇAR UPDATE PWA ===
   async function forceUpdate() {
+    const ok = confirm("Forçar actualização da app?\nIsto limpa cache local e recarrega.");
+    if (!ok) return;
 
-  const ok = confirm("Forçar actualização da app?\nIsto limpa cache local e recarrega.");
-  if (!ok) return;
-
-  try {
-
-    // Apagar caches
-    if ("caches" in window) {
-      const names = await caches.keys();
-      await Promise.all(names.map(n => caches.delete(n)));
-    }
-
-    // Desregistar Service Workers
-    if ("serviceWorker" in navigator) {
-      const regs = await navigator.serviceWorker.getRegistrations();
-      for (const reg of regs) {
-        await reg.unregister();
+    try {
+      if ("caches" in window) {
+        const names = await caches.keys();
+        await Promise.all(names.map(n => caches.delete(n)));
       }
+
+      if ("serviceWorker" in navigator) {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        for (const reg of regs) {
+          await reg.unregister();
+        }
+      }
+
+      const url = new URL(window.location.href);
+      url.searchParams.set("force", Date.now());
+      window.location.href = url.toString();
+
+    } catch (e) {
+      alert("Erro ao forçar update. A recarregar.");
+      location.reload();
     }
-
-    // Reload forçado
-    const url = new URL(window.location.href);
-    url.searchParams.set("force", Date.now());
-    window.location.href = url.toString();
-
-  } catch (e) {
-    alert("Erro ao forçar update. A recarregar.");
-    location.reload();
   }
-}
-// ===== Minimal UX helpers (não mexem na tua lógica central) =====
-function addPatientPrompt(){
-  const name = prompt("Novo doente/cama (ex: Cama 3 | RN 2.8 kg | ID):");
-  if(!name) return;
-  const el = document.getElementById("patientNew");
-  if (el) el.value = name.trim();
-  if (typeof addPatient === "function") addPatient();
-}
-
-function renamePatientPrompt(){
-  const sel = document.getElementById("patientSelect");
-  const current = sel && sel.options && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].text : "";
-  const name = prompt("Renomear doente/cama:", current);
-  if(!name) return;
-  const el = document.getElementById("patientNew");
-  if (el) el.value = name.trim();
-  if (typeof renamePatient === "function") renamePatient();
-}
-
-// Se já existir no teu código, isto não altera nada.
-// Se não existir, cria uma versão segura.
-if (typeof deletePatientConfirm !== "function") {
-  function deletePatientConfirm(){
-    const ok = confirm("Apagar doente seleccionado?");
-    if(!ok) return;
-    if (typeof deletePatient === "function") deletePatient();
-  }
-}
-
-// Chamadores “safe” (se já tens funções, chamam as tuas; senão não rebentam)
-function applyPathologyProfileSafe(){
-  if (typeof applyPathologyProfile === "function") applyPathologyProfile();
-}
-
-function applyVentModeSafe(){
-  // Se já tens uma função própria, chama-a
-  if (typeof applyVentMode === "function") return applyVentMode();
-
-  // Caso não exista, guarda só o estado (não estraga nada)
-  const vm = document.getElementById("ventMode")?.value || "VCV";
-  try { localStorage.setItem("ucip_ventMode", vm); } catch(e){}
-}
-  function addPatientPrompt(){
-  const name = prompt("Novo doente/cama (ex: Cama 3 | RN 2.8 kg | ID):");
-  if(!name) return;
-  const el = document.getElementById("patientNew");
-  if (el) el.value = name.trim();
-  if (typeof addPatient === "function") addPatient();
-  if (el) el.value = "";
-}
-
-function renamePatientPrompt(){
-  const sel = document.getElementById("patientSelect");
-  const current = sel && sel.options && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].text : "";
-  const name = prompt("Renomear doente/cama:", current);
-  if(!name) return;
-  const el = document.getElementById("patientNew");
-  if (el) el.value = name.trim();
-  if (typeof renamePatient === "function") renamePatient();
-  if (el) el.value = "";
-}
-
-function applyPathologyProfileSafe(){
-  if (typeof applyPathologyProfile === "function") applyPathologyProfile();
-}
 </script>
 
 </body>
