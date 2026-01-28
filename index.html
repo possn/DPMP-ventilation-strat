@@ -269,50 +269,55 @@
   <section id="calc" class="section active">
     <div class="grid">
 
-      <section class="card">
-        <h2>Doente e perfil</h2>
+  <section class="card">
+    <h2>Doente</h2>
 
-        <div class="row cols2">
-          <div>
-            <label for="patientSelect">Doente/Cama</label>
-            <select id="patientSelect"></select>
-            <div class="hint teaching">O histórico é separado por doente/cama (local neste dispositivo).</div>
-          </div>
+  <!-- Linha 1: Doente + botões mínimos -->
+  <div class="row cols2">
+    <div>
+      <label for="patientSelect">Doente/Cama</label>
+      <select id="patientSelect"></select>
+      <div class="hint teaching">Histórico e auditoria ficam por doente neste dispositivo.</div>
+    </div>
 
-          <div>
-            <label for="patientNew">Criar doente / renomear (texto)</label>
-            <input id="patientNew" placeholder="ex: Cama 3 | RN 2.8 kg | ID" />
-            <div class="btnrow">
-              <button class="action secondary" onclick="addPatient()">Novo doente</button>
-              <button class="action secondary" onclick="renamePatient()">Renomear</button>
-              <button class="action secondary" onclick="deletePatientConfirm()">Apagar</button>
-            </div>
-          </div>
-        </div>
+    <div>
+      <label>Ações</label>
+      <div class="btnrow">
+        <button class="action secondary" onclick="addPatientPrompt()">+ Novo</button>
+        <button class="action secondary" onclick="renamePatientPrompt()">Renomear</button>
+        <button class="action secondary" onclick="deletePatientConfirm()">Apagar</button>
+      </div>
+    </div>
+  </div>
 
-        <div class="row cols2" style="margin-top:10px;">
-          <div>
-            <label for="pathology">Perfil por patologia</label>
-            <select id="pathology" onchange="applyPathologyProfile()">
-              <option value="GEN">Geral</option>
-              <option value="PARDS">PARDS / hipoxémia difusa</option>
-              <option value="OBSTR">Obstrução / asma/bronquiolite</option>
-              <option value="POSTOP">Pós-operatório / pulmão “normal”</option>
-              <option value="NEURO">Neuro</option>
-            </select>
-            <div class="hint teaching" id="pathologyHint">Perfis ajustam limiares e foco do algoritmo.</div>
-          </div>
+  <!-- Linha 2: Perfil + Modo ventilatório -->
+  <div class="row cols2" style="margin-top:10px;">
+    <div>
+      <label for="pathology">Perfil</label>
+      <select id="pathology" onchange="applyPathologyProfileSafe()">
+        <option value="GEN">Geral</option>
+        <option value="PARDS">PARDS / hipoxémia difusa</option>
+        <option value="OBSTR">Obstrução (asma/bronquiolite)</option>
+        <option value="POSTOP">Pós-operatório</option>
+        <option value="NEURO">Neuro</option>
+      </select>
+      <div class="hint teaching" id="pathologyHint">Perfis ajustam limiares e foco do algoritmo.</div>
+    </div>
 
-          <div>
-            <label for="modeVent">Modo ventilatório</label>
-            <select id="modeVent" onchange="onModeChange()">
-              <option value="VCV">VCV (cálculo activo)</option>
-              <option value="PCV">PCV (estrutura/ensino)</option>
-              <option value="PSIMV">PSIMV (estrutura/ensino)</option>
-            </select>
-            <div class="hint teaching">Cálculo automático nesta app: <b>VCV</b>.</div>
-          </div>
-        </div>
+    <div>
+      <label for="ventMode">Modo</label>
+      <select id="ventMode" onchange="applyVentModeSafe()">
+        <option value="VCV">VCV</option>
+        <option value="PRVC">PRVC</option>
+        <option value="PC">PC</option>
+      </select>
+      <div class="hint teaching" id="ventHint">Cálculos: VCV/PRVC/PC conforme implementado na app.</div>
+    </div>
+  </div>
+
+  <!-- input oculto para compatibilidade com a tua lógica existente -->
+  <input id="patientNew" style="display:none" />
+      
       </section>
 
       <section class="card">
