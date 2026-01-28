@@ -1504,6 +1504,49 @@
     location.reload();
   }
 }
+// ===== Minimal UX helpers (não mexem na tua lógica central) =====
+function addPatientPrompt(){
+  const name = prompt("Novo doente/cama (ex: Cama 3 | RN 2.8 kg | ID):");
+  if(!name) return;
+  const el = document.getElementById("patientNew");
+  if (el) el.value = name.trim();
+  if (typeof addPatient === "function") addPatient();
+}
+
+function renamePatientPrompt(){
+  const sel = document.getElementById("patientSelect");
+  const current = sel && sel.options && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].text : "";
+  const name = prompt("Renomear doente/cama:", current);
+  if(!name) return;
+  const el = document.getElementById("patientNew");
+  if (el) el.value = name.trim();
+  if (typeof renamePatient === "function") renamePatient();
+}
+
+// Se já existir no teu código, isto não altera nada.
+// Se não existir, cria uma versão segura.
+if (typeof deletePatientConfirm !== "function") {
+  function deletePatientConfirm(){
+    const ok = confirm("Apagar doente seleccionado?");
+    if(!ok) return;
+    if (typeof deletePatient === "function") deletePatient();
+  }
+}
+
+// Chamadores “safe” (se já tens funções, chamam as tuas; senão não rebentam)
+function applyPathologyProfileSafe(){
+  if (typeof applyPathologyProfile === "function") applyPathologyProfile();
+}
+
+function applyVentModeSafe(){
+  // Se já tens uma função própria, chama-a
+  if (typeof applyVentMode === "function") return applyVentMode();
+
+  // Caso não exista, guarda só o estado (não estraga nada)
+  const vm = document.getElementById("ventMode")?.value || "VCV";
+  try { localStorage.setItem("ucip_ventMode", vm); } catch(e){}
+}
+  
 </script>
 
 </body>
