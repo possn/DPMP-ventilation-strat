@@ -1546,7 +1546,29 @@ function applyVentModeSafe(){
   const vm = document.getElementById("ventMode")?.value || "VCV";
   try { localStorage.setItem("ucip_ventMode", vm); } catch(e){}
 }
-  
+  function addPatientPrompt(){
+  const name = prompt("Novo doente/cama (ex: Cama 3 | RN 2.8 kg | ID):");
+  if(!name) return;
+  const el = document.getElementById("patientNew");
+  if (el) el.value = name.trim();
+  if (typeof addPatient === "function") addPatient();
+  if (el) el.value = "";
+}
+
+function renamePatientPrompt(){
+  const sel = document.getElementById("patientSelect");
+  const current = sel && sel.options && sel.selectedIndex >= 0 ? sel.options[sel.selectedIndex].text : "";
+  const name = prompt("Renomear doente/cama:", current);
+  if(!name) return;
+  const el = document.getElementById("patientNew");
+  if (el) el.value = name.trim();
+  if (typeof renamePatient === "function") renamePatient();
+  if (el) el.value = "";
+}
+
+function applyPathologyProfileSafe(){
+  if (typeof applyPathologyProfile === "function") applyPathologyProfile();
+}
 </script>
 
 </body>
