@@ -270,9 +270,8 @@
     <div class="grid">
 
   <section class="card">
-    <h2>Doente</h2>
+  <h2>Doente</h2>
 
-  <!-- Linha 1: Doente + botões mínimos -->
   <div class="row cols2">
     <div>
       <label for="patientSelect">Doente/Cama</label>
@@ -290,7 +289,6 @@
     </div>
   </div>
 
-  <!-- Linha 2: Perfil + Modo ventilatório -->
   <div class="row cols2" style="margin-top:10px;">
     <div>
       <label for="pathology">Perfil</label>
@@ -305,18 +303,15 @@
     </div>
 
     <div>
-      <label for="ventMode">Modo</label>
-      <select id="ventMode" onchange="applyVentModeSafe()">
-        <option value="VCV">VCV</option>
-        <option value="PRVC">PRVC</option>
-        <option value="PC">PC</option>
-      </select>
-      <div class="hint teaching" id="ventHint">Cálculos: VCV/PRVC/PC conforme implementado na app.</div>
+      <label>Modo ventilatório</label>
+      <div class="hint"><b>VCV activo</b> (cálculo automático nesta app)</div>
+      <div class="hint teaching">PRVC/PC ficaram fora para evitar erros de interpretação.</div>
     </div>
   </div>
 
-  <!-- input oculto para compatibilidade com a tua lógica existente -->
+  <!-- compatibilidade com as tuas funções add/rename existentes -->
   <input id="patientNew" style="display:none" />
+</section>
       
       </section>
 
