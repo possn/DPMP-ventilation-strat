@@ -585,47 +585,198 @@
 </section>
   
   <!-- TAB: FLUXOGRAMA -->
-  <section id="flow" class="section">
-    <section class="card">
-      <h2>Fluxograma</h2>
+<section id="flow" class="section">
+  <section class="card">
+    <h2>Fluxograma (algoritmo prático)</h2>
 
-      <details open>
-        <summary>0) Medições fiáveis</summary>
-        <div class="detailsBody">
-          <ul>
-            <li>Pplat válida; auto-PEEP medida se suspeita; minimizar leaks/assincronia.</li>
-          </ul>
-        </div>
-      </details>
+    <details open>
+      <summary>Checklist 10 segundos (bedside)</summary>
+      <div class="detailsBody">
+        <ul>
+          <li><b>1) Medição fiável?</b> Pplat com fluxo=0, sem tosse/drive/assincronia.</li>
+          <li><b>2) Auto-PEEP ≥ 2?</b> Se sim → <b>↓RR/↑Te</b> primeiro.</li>
+          <li><b>3) ΔP_total ≥ 16?</b> Se sim → <b>↓VT</b> primeiro.</li>
+          <li><b>4) MP ≥ 17 ou a subir?</b> Se sim → <b>↓RR</b> (se tolerável) + tratar resistência.</li>
+          <li><b>5) Gap ≥ 8?</b> Se sim → resistência (tubo/broncoespasmo/secreções/fluxo).</li>
+          <li><b>6) Reavaliar</b> após cada ajuste (5–10 min ou após estabilização).</li>
+        </ul>
+        <p><b>Meta:</b> reduzir stress/ciclo (ΔP) e energia/min (MP) sem induzir trapping.</p>
+      </div>
+    </details>
 
-      <details>
-        <summary>1) Auto-PEEP ≥ 2?</summary>
-        <div class="detailsBody">
-          <ul>
-            <li>↓RR, ↑tempo expiratório, tratar broncoespasmo/secreções, rever tubo.</li>
-          </ul>
-        </div>
-      </details>
+    <details>
+      <summary>0) Pré-condições (antes de agir)</summary>
+      <div class="detailsBody">
+        <ul>
+          <li>Modo: <b>VCV</b> (nesta app o cálculo está validado para VCV).</li>
+          <li><b>Pplat fiável</b>: pausa inspiratória com <b>fluxo=0</b> e sem tosse/drive/assincronia.</li>
+          <li>Se suspeita de obstrução/trapping: medir <b>Auto-PEEP</b> com pausa expiratória.</li>
+          <li>Confirmar ausência de leak relevante (se houver, interpretações ficam menos fiáveis).</li>
+        </ul>
+        <p><b>Regra:</b> se os números não batem certo com o doente, primeiro melhora a medição.</p>
+      </div>
+    </details>
 
-      <details>
-        <summary>2) ΔP_total acima do alvo?</summary>
-        <div class="detailsBody">
-          <ul>
-            <li>↓VT em passos pequenos; permissiva CO₂ se tolerável (excepto Neuro).</li>
-          </ul>
-        </div>
-      </details>
+    <details>
+      <summary>1) Calcular correctamente (o que a app calcula)</summary>
+      <div class="detailsBody">
+        <p><b>PEEP_total = PEEP_set + Auto-PEEP</b></p>
+        <p><b>ΔP_total = Pplat − PEEP_total</b></p>
+        <p><b>Gap = Ppeak − Pplat</b> (componente resistiva)</p>
+        <p><b>MP ≈ 0.098 × RR × VT(L) × (Ppeak − ½×ΔP_total)</b></p>
+        <p>A app classifica por zonas e regista tendência por doente/cama.</p>
+      </div>
+    </details>
 
-      <details>
-        <summary>3) ΔP ok mas MP alta/ascendente?</summary>
-        <div class="detailsBody">
-          <ul>
-            <li>Se tolerável: ↓RR (primeira alavanca); optimizar tempos e resistência.</li>
-          </ul>
-        </div>
-      </details>
-    </section>
+    <details>
+      <summary>2) Nó A — Auto-PEEP ≥ 2 cmH₂O?</summary>
+      <div class="detailsBody">
+        <p><b>SE SIM (trapping relevante):</b> prioridade é reduzir trapping antes de “corrigir” CO₂ com RR alta.</p>
+        <ul>
+          <li><b>1º ↓ RR</b> (ganhar tempo expiratório).</li>
+          <li><b>2º Ajustar I:E</b> (↑Te; encurtar Ti se possível).</li>
+          <li><b>3º Tratar resistência</b>: broncodilatação, aspiração/kinésio, rever tubo (kink/obstrução/calibre).</li>
+          <li><b>4º Reavaliar</b> Auto-PEEP e Pplat após estabilização.</li>
+        </ul>
+
+        <p><b>SE NÃO:</b> prosseguir para stress (ΔP) e energia (MP).</p>
+
+        <p><b>Dica obstrução:</b> se Ppeak alto mas Pplat “ok”, o problema é resistivo; não “mates” VT/PEEP sem tratar o básico.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>3) Nó B — ΔP_total ≥ 16 cmH₂O?</summary>
+      <div class="detailsBody">
+        <p><b>SE SIM:</b> stress por ciclo alto → reduzir sobredistensão.</p>
+        <ul>
+          <li><b>1º ↓ VT</b> em passos pequenos (prioridade).</li>
+          <li><b>2º Rever recrutabilidade</b>: se recrutável, um ajuste de PEEP pode <b>reduzir</b> ΔP; se não recrutável, PEEP pode piorar.</li>
+          <li><b>3º Minimizar assincronia</b> (trigger/fluxo/sedação conforme contexto).</li>
+          <li><b>4º Reavaliar</b> ΔP e MP após 5–10 min (ou após estabilização).</li>
+        </ul>
+
+        <p><b>SE NÃO:</b> seguir para Mechanical Power.</p>
+
+        <p><b>Se ΔP_total ≤ 0:</b> dados incoerentes → confirmar pausa inspiratória/auto-PEEP/PEEP_total.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>4) Nó C — MP ≥ 17 J/min OU tendência ascendente?</summary>
+      <div class="detailsBody">
+        <p><b>SE SIM:</b> carga energética alta → reduzir energia/min sem induzir trapping.</p>
+        <ul>
+          <li><b>1º ↓ RR</b> (a alavanca mais potente da MP) se clinicamente tolerável.</li>
+          <li><b>2º Rever Ti/fluxo</b> (evitar Ti longo que “come” expiração; evitar fluxos exagerados se aumentam Ppeak).</li>
+          <li><b>3º ↓ VT</b> se ainda elevado (especialmente se ΔP estiver em atenção/limite).</li>
+          <li><b>4º Tratar resistência</b> se Gap alto (reduz Ppeak e MP sem mexer tanto no elástico).</li>
+          <li><b>5º Reavaliar</b> (MP é métrica de tendência ao longo do turno).</li>
+        </ul>
+
+        <p><b>SE NÃO:</b> manter e monitorizar tendência.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>5) Nó D — Gap (Ppeak − Pplat) ≥ 8 cmH₂O?</summary>
+      <div class="detailsBody">
+        <p><b>SE SIM:</b> componente resistiva relevante.</p>
+        <ul>
+          <li>Verificar tubo (kink, secreções, obstrução parcial, calibre/posição).</li>
+          <li>Tratar broncoespasmo (se aplicável) + higiene brônquica.</li>
+          <li>Rever fluxo (fluxo demasiado alto pode aumentar Ppeak sem benefício).</li>
+          <li>Reavaliar após intervenção (Ppeak, Gap e MP).</li>
+        </ul>
+        <p><b>SE NÃO:</b> componente elástica/compliance domina → foco em ΔP/PEEP funcional.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>6) Estratégias por perfil (atalhos práticos)</summary>
+      <div class="detailsBody">
+        <p><b>PARDS / hipoxémia difusa:</b></p>
+        <ul>
+          <li>Prioridade: <b>ΔP baixa</b> e MP controlada.</li>
+          <li>PEEP: usar de forma funcional (se ΔP ↓ com PEEP, pode ser recrutável).</li>
+          <li>Evitar “corrigir CO₂” só com RR alta (MP sobe).</li>
+        </ul>
+
+        <p><b>Obstrução (asma/bronquiolite):</b></p>
+        <ul>
+          <li>Prioridade: <b>Auto-PEEP</b> → ↓RR/↑Te primeiro.</li>
+          <li>Gap tende a ser alto: tratar resistência reduz MP.</li>
+          <li>Reavaliar frequentemente (mecânica muda rápido).</li>
+        </ul>
+
+        <p><b>Pós-operatório pulmão “normal”:</b></p>
+        <ul>
+          <li>Evitar excesso de VT/RR por inércia.</li>
+          <li>Objectivo: estabilidade com ΔP e MP baixas.</li>
+        </ul>
+
+        <p><b>Neuro:</b></p>
+        <ul>
+          <li>Objectivos de PaCO₂ podem limitar ↓RR; documentar compromisso.</li>
+          <li>Evitar auto-PEEP não reconhecida (pode afectar retorno venoso).</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>7) Compromissos aceitáveis (autonomia do interno)</summary>
+      <div class="detailsBody">
+        <p>
+          Há situações em que não consegues “optimizar tudo” ao mesmo tempo. Aqui ficam compromissos razoáveis
+          (desde que o doente esteja estável e reavalies tendência):
+        </p>
+
+        <ul>
+          <li><b>Se ΔP está alta:</b> aceita PaCO₂ um pouco mais alta (permissiva) se pH tolerável e não Neuro/contra-indicações.</li>
+          <li><b>Se MP está alta por RR:</b> prefere reduzir RR e aceitar PaCO₂ ligeiramente mais alta a “manter CO₂” com energia excessiva.</li>
+          <li><b>Obstrução com trapping:</b> aceita hipercápnia transitória enquanto resolves auto-PEEP (RR/Te/resistência).</li>
+          <li><b>Hipoxémia moderada:</b> antes de subir RR/VT, optimiza PEEP funcional/recrutamento (se recrutável) e FiO₂ conforme protocolo local.</li>
+          <li><b>Se números e clínica discordam:</b> primeiro validar medição (pausas, leak, assincronia, tubo).</li>
+        </ul>
+
+        <p><b>Regra de segurança:</b> qualquer compromisso deve vir com <b>reavaliação programada</b> (ex.: 10–30 min) e registo de tendência.</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>8) Quando chamar senior (linha vermelha — mas mantendo autonomia)</summary>
+      <div class="detailsBody">
+        <p>
+          Manténs autonomia na optimização inicial, mas chama apoio se:
+        </p>
+        <ul>
+          <li><b>ΔP_total ≥ 18</b> persistente após ↓VT/optimização e medições fiáveis.</li>
+          <li><b>MP ≥ 20</b> persistente ou claramente a subir apesar de ↓RR e controlo de resistência.</li>
+          <li><b>Auto-PEEP ≥ 6</b> ou trapping com impacto hemodinâmico/ventilatório (hipotensão, aumento súbito de pressões, dificuldade em ventilar).</li>
+          <li><b>Hipoxémia/hipercápnia</b> refractária ao que seria esperado após ajustes.</li>
+          <li><b>Assincronia importante</b> que impede medições fiáveis e ventilação efectiva.</li>
+          <li><b>Instabilidade hemodinâmica</b> após mudanças ventilatórias (suspeitar auto-PEEP/overdistension).</li>
+        </ul>
+        <p>
+          <b>Princípio:</b> se não consegues reduzir carga mecânica sem “pagar” com instabilidade, precisas de segundo par de mãos.
+        </p>
+      </div>
+    </details>
+
+    <details>
+      <summary>9) Ciclo de decisão (reavaliação)</summary>
+      <div class="detailsBody">
+        <ul>
+          <li>Após qualquer mudança → aguardar estabilização → medir novamente Pplat/auto-PEEP se indicado.</li>
+          <li>Registar em série: a tendência (minutos–horas) vale mais do que 1 valor isolado.</li>
+          <li>Se volta a piorar: regressa ao Nó A (auto-PEEP) e reconfirma medições.</li>
+        </ul>
+        <p><b>Regra final:</b> reduzir primeiro stress/ciclo (ΔP), depois energia/min (MP), sem induzir trapping.</p>
+      </div>
+    </details>
+
   </section>
+</section>
 
   <!-- TAB: AUDITORIA -->
   <section id="audit" class="section">
